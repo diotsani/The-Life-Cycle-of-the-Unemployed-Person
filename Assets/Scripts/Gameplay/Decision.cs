@@ -22,7 +22,7 @@ namespace Team8.Unemployment.Gameplay
         private int _bookCost;
         private int _foodCost;
         
-        public void InitDecision(string getName,int getSkill, int getStress, int getHealth, int getMoney, int getAction, int getBook, int getFood)
+        public void Init(string getName,int getSkill, int getStress, int getHealth, int getMoney, int getAction, int getBook, int getFood)
         {
             this.name = getName;
             decisionText = getName;
