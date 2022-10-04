@@ -1,12 +1,13 @@
 ﻿using System;
+using Team8.Unemployment.Utility;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 namespace Team8.Unemployment.Global
 {
-    public class PlayerStatusData : MonoBehaviour
+    public class PlayerStatusData : SingletonMonoBehaviour<PlayerStatusData>
     {
-        public static PlayerStatusData instance;
+        //public static PlayerStatusData instance;
     
         public delegate void EventName();
         public static event EventName OnResetAction;
@@ -21,18 +22,18 @@ namespace Team8.Unemployment.Global
         private int _resetAction = 3;
         private int _totalAction;
 
-        private void Awake()
-        {
-            if(instance == null)
-            {
-                instance = this;
-                DontDestroyOnLoad(gameObject);
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
-        }
+        // private void Awake()
+        // {
+        //     if(instance == null)
+        //     {
+        //         instance = this;
+        //         DontDestroyOnLoad(gameObject);
+        //     }
+        //     else
+        //     {
+        //         Destroy(gameObject);
+        //     }
+        // }
 
         private void Start()
         {

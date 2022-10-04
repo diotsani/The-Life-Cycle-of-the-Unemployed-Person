@@ -22,8 +22,12 @@ namespace Team8.Unemployment.Gameplay
         private int _bookCost;
         private int _foodCost;
         
-        public void InitDecision(int getSkill, int getStress, int getHealth, int getMoney, int getAction, int getBook, int getFood)
+        public void InitDecision(string getName,int getSkill, int getStress, int getHealth, int getMoney, int getAction, int getBook, int getFood)
         {
+            this.name = getName;
+            decisionText = getName;
+            _buttonText.text = getName;
+            
             _skillCost = getSkill;
             _stressCost = getStress;
             _healthCost = getHealth;
@@ -47,21 +51,7 @@ namespace Team8.Unemployment.Gameplay
             getPlayer.ActionCost(_actionCost);
             getPlayer.BookCost(_bookCost);
             getPlayer.FoodCost(_foodCost);
-            
         }
-        public void OnClickLock()
-        {
-            _lockButton.onClick.RemoveAllListeners();
-            _lockButton.onClick.AddListener(LockDecision);
-        }
-        private void LockDecision()
-        {
-            if (decisionText == Constants.Requirments.Repair)
-            {
-                
-            }
-        }
-        
         public string DecisionText()
         {
             return decisionText;

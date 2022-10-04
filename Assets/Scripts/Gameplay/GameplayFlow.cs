@@ -10,7 +10,7 @@ namespace Team8.Unemployment.Gameplay
 
         private void Start()
         {
-            playerStatusData = PlayerStatusData.instance;
+            playerStatusData = PlayerStatusData.Instance;
         }
 
         private void ActionOver()
