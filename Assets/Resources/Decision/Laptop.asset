@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc3403f79b394033ba1542e26381a631, type: 3}
+  m_Name: Laptop
+  m_EditorClassIdentifier: 
+  decisionList:
+  - decisionName: Apply Job
+    skillCost: 0
+    stressCost: 0
+    healthCost: 0
+    moneyCost: 0
+    actionCost: 1
+    bookCost: 0
+    foodCost: 0
+  - decisionName: Take Course
+    skillCost: 10
+    stressCost: 30
+    healthCost: 0
+    moneyCost: 0
+    actionCost: 1
+    bookCost: 0
+    foodCost: 0
+  - decisionName: Play Game
+    skillCost: 0
+    stressCost: -10
+    healthCost: 0
+    moneyCost: 0
+    actionCost: 1
+    bookCost: 0
+    foodCost: 0
+  - decisionName: Repair
+    skillCost: 0
+    stressCost: 0
+    healthCost: 0
+    moneyCost: -50
+    actionCost: 1
+    bookCost: 0
+    foodCost: 0
