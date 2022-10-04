@@ -7,8 +7,6 @@ namespace Team8.Unemployment.Global
 {
     public class PlayerStatusData : SingletonMonoBehaviour<PlayerStatusData>
     {
-        //public static PlayerStatusData instance;
-    
         public delegate void EventName();
         public static event EventName OnResetAction;
     
@@ -21,20 +19,6 @@ namespace Team8.Unemployment.Global
         public int action = 3;
         private int _resetAction = 3;
         private int _totalAction;
-
-        // private void Awake()
-        // {
-        //     if(instance == null)
-        //     {
-        //         instance = this;
-        //         DontDestroyOnLoad(gameObject);
-        //     }
-        //     else
-        //     {
-        //         Destroy(gameObject);
-        //     }
-        // }
-
         private void Start()
         {
             

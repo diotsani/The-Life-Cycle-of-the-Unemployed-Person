@@ -4,6 +4,15 @@ using UnityEngine;
 
 internal static class Constants
 {
+    public static class InteractionName
+    {
+        public const string Laptop ="Laptop";
+        public const string Handphone = "Handphone";
+        public const string BookShelf = "Book Shelf";
+        public const string Door = "Door";
+        public const string Refrigerator = "Refrigerator";
+        
+    }
     public static class Status
     {
         public const string Skill = "Skill: ";
@@ -40,11 +49,11 @@ internal static class Constants
     }
     public static class Path
     {
-        public const string Laptop ="ScriptableObjects/Laptop";
-        public const string Handphone = "ScriptableObjects/Handphone";
-        public const string BookShelf = "ScriptableObjects/BookShelf";
-        public const string Door = "ScriptableObjects/Door";
-        public const string Refrigerator = "ScriptableObjects/Refrigerator";
+        public const string Laptop ="Decision/Laptop";
+        public const string Handphone = "Decision/Handphone";
+        public const string BookShelf = "Decision/BookShelf";
+        public const string Door = "Decision/Door";
+        public const string Refrigerator = "Decision/Refrigerator";
         
     }
     public static class Monologue
