@@ -1,4 +1,5 @@
 ﻿using System;
+using Team8.Unemployment.Global;
 using UnityEngine;
 
 namespace Team8.Unemployment.Gameplay
@@ -11,18 +12,19 @@ namespace Team8.Unemployment.Gameplay
         public delegate void EventParameter(int value);
         public static event EventParameter OnShowDay;
         
+        private PlayerStatusData _playerStatusData;
+        
         [SerializeField] private int _amountDay;
         private int _maxDay = 7;
-        private bool isMaxDay = false;
 
         private void Start()
         {
-            ChangeDay();
+            _playerStatusData = PlayerStatusData.Instance;
         }
-        private void ChangeDay()
+        public void ChangeDay()
         {
             CheckDay();
-            if (!isMaxDay)
+            if (!_playerStatusData.isMaxDay)
             {
                 _amountDay++;
                 OnShowDay?.Invoke(_amountDay);
@@ -32,7 +34,7 @@ namespace Team8.Unemployment.Gameplay
         {
             if (_amountDay == _maxDay)
             {
-                isMaxDay = true;
+                _playerStatusData.isMaxDay = true;
                 OnMaxDay?.Invoke();
             }
         }
