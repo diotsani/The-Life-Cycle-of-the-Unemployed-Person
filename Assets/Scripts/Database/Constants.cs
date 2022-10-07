@@ -22,7 +22,7 @@ internal static class Constants
         public const string Book = "Book: ";
         public const string Food = "Food: ";
         public const string Action = "Action: ";
-        public const string Day = "Day: ";
+        public const string Day = "Day ";
     }
     public static class Requirments
     {
