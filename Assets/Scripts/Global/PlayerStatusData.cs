@@ -9,7 +9,8 @@ namespace Team8.Unemployment.Global
     {
         public delegate void EventName();
         public static event EventName OnResetAction;
-    
+        
+        [Header("Config")]
         public int skill = 20;
         public int stress = 10;
         public int health = 100;
@@ -19,6 +20,13 @@ namespace Team8.Unemployment.Global
         public int action = 3;
         private int _resetAction = 3;
         private int _totalAction;
+        
+        [Header("Change Config")]
+        private int _addStress = 10;
+        private int _reduceHealth = 16;
+        
+        public bool isMaxDay;
+        public bool isApplyJob;
         private void Start()
         {
             
@@ -27,6 +35,22 @@ namespace Team8.Unemployment.Global
         private void Update()
         {
             
+        }
+        public void ChangeStatus()
+        {
+            //int randomHealth = Random.Range(30, 40);
+            
+            health -= _reduceHealth;
+            stress += _addStress;
+            
+            if (health < 0)
+            {
+                health = 0;
+            }
+            else if (health > 100)
+            {
+                health = 100;
+            }
         }
         public void SkillCost(int value)
         {
@@ -55,19 +79,6 @@ namespace Team8.Unemployment.Global
         public void HealthCost(int value)
         {
             health += value;
-            if (health < 0)
-            {
-                health = 0;
-            }
-            else if (health > 100)
-            {
-                health = 100;
-            }
-        }
-        public void ReduceHealth()
-        {
-            int randomHealth = Random.Range(30, 40);
-            health -= randomHealth;
             if (health < 0)
             {
                 health = 0;
