@@ -19,7 +19,7 @@ namespace Team8.Unemployment.Gameplay
         
         protected PlayerStatusData _playerStatusData;
         [SerializeField] protected string _interactionName;
-        
+
         [Header("Decision")]
         protected DecisionScriptable _decisionScriptable;
         protected Decision _decisionPrefab;
@@ -30,6 +30,9 @@ namespace Team8.Unemployment.Gameplay
         [SerializeField] protected int _amountClicked;
         [SerializeField] protected int _dailyClicks;
         [SerializeField] protected int _consecutiveDay;
+        
+        [Header("Position")]
+        [SerializeField] protected Transform _objectPosition;
 
         protected virtual void OnEnable()
         {
@@ -112,9 +115,20 @@ namespace Team8.Unemployment.Gameplay
                 objs.DecisionButton().interactable = false;
             }
         }
+
+        public string GetName()
+        {
+            return _interactionName;
+        }
+
         public void OnInteraction(bool status)
         {
             _decisionParent.SetActive(status);
+        }
+
+        public Vector3 TargetPostision()
+        {
+            return _objectPosition.position;
         }
     }
 }
