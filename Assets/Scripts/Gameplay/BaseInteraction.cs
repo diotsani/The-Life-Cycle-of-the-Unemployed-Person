@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Team8.Unemployment.Database;
 using Team8.Unemployment.Global;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Team8.Unemployment.Gameplay
 {
@@ -14,8 +15,8 @@ namespace Team8.Unemployment.Gameplay
     }
     public abstract class BaseInteraction : MonoBehaviour,IInteractable
     {
-        public delegate void EventName(string monologue);
-        public static event EventName OnShowMonologue;
+        public delegate void EventParameter(string monologue);
+        public static event EventParameter OnShowMonologue;
         
         protected PlayerStatusData _playerStatusData;
         [SerializeField] protected string _interactionName;
@@ -28,8 +29,18 @@ namespace Team8.Unemployment.Gameplay
         
         [Header("Config")]
         [SerializeField] protected int _amountClicked;
-        [SerializeField] protected int _dailyClicks;
-        [SerializeField] protected int _consecutiveDay;
+        [SerializeField] protected int _maxClicked;
+        protected int _durabilityDay;
+        protected int _maxDurability = 3;
+        
+        [Header("Position")]
+        [SerializeField] protected Transform _objectPosition;
+        [SerializeField] protected Vector3 _position = new Vector3();
+        
+        [Header("Condition")]
+        [SerializeField] protected InteractionState _interactionState;
+        [SerializeField] protected bool _isInteractable;
+        [SerializeField] protected bool _isDamaged;
 
         protected virtual void OnEnable()
         {
@@ -50,10 +61,15 @@ namespace Team8.Unemployment.Gameplay
             ClickSpecificDecision(_decisionList);
         }
 
+        protected void Update()
+        {
+            Vector3 parentPosition = Camera.main.WorldToScreenPoint(_objectPosition.position+ _position);
+            _decisionParent.transform.position = parentPosition;
+        }
+
         private void InitDecision()
         {
-            Vector3 pos = new Vector3(0,1,0);
-            Vector3 parentPosition = Camera.main.WorldToScreenPoint(transform.position+ pos);
+            Vector3 parentPosition = Camera.main.WorldToScreenPoint(_objectPosition.position+ _position);
             _decisionParent.transform.position = parentPosition;
             
             for (int i = 0; i < _decisionScriptable.decisionList.Count; i++)
@@ -74,22 +90,21 @@ namespace Team8.Unemployment.Gameplay
                 decision.OnClick(decision,this,_playerStatusData);
             }
         }
-        public void AddClick()
+        public void AddAmountClick()
         {
             _amountClicked++;
-            _dailyClicks++;
         }
         public void ResetAmountClick()
         {
             _amountClicked = 0;
         }
-        public void ResetDailyClicks()
+        public void AddDurability()
         {
-            _dailyClicks = 0;
+            _durabilityDay++;
         }
-        public void ResetConsecutiveDay()
+        public void ResetDurability()
         {
-            _consecutiveDay = 0;
+            _durabilityDay = 0;
         }
         protected virtual void ClickSpecificDecision(List<Decision> decisionList)
         {
@@ -100,10 +115,39 @@ namespace Team8.Unemployment.Gameplay
             }
         }
         protected abstract void SpecificDecision(Decision decision);
-        protected abstract void RequirmentDecision(List<Decision> decisionList);
+        protected abstract void RequirementDecision(List<Decision> decisionList);
+
+        protected virtual void CheckCondition()
+        {
+            //Check Condition for interaction state in Laptop, Handphone, Refrigerator
+        }
+        protected virtual void DamageInteraction()
+        {
+            //Damage Interaction in Laptop, Handphone, Refrigerator
+        }
         protected virtual void ShowMonologue(string monologue)
         {
             OnShowMonologue?.Invoke(monologue);
+        }
+
+        protected virtual void ResetDecision()
+        {
+            foreach (Decision obj in _decisionList)
+            {
+                obj.DecisionObject().SetActive(true);
+            }
+        }
+        protected virtual void SetRepairDecision(int value)
+        {
+            foreach (Decision obj in _decisionList)
+            {
+                if (obj.DecisionText() == Constants.Requirments.Repair)
+                {
+                    bool set = _playerStatusData.money >= value;
+                    obj.LockButton().gameObject.SetActive(!set);
+                    obj.DecisionObject().SetActive(_isDamaged);
+                }
+            }
         }
         public void DeactivateDecision()
         {
@@ -111,6 +155,10 @@ namespace Team8.Unemployment.Gameplay
             {
                 objs.DecisionButton().interactable = false;
             }
+        }
+        public void RandomMaxClick(int min, int max)
+        {
+            _maxClicked = Random.Range(min, max);
         }
         public void OnInteraction(bool status)
         {

@@ -10,6 +10,9 @@ namespace Team8.Unemployment.Global
         public delegate void EventName();
         public static event EventName OnResetAction;
         
+        public delegate void EventParameter(string name, int value);
+        public static event EventParameter OnStatusChange;
+        
         [Header("Config")]
         public int skill = 20;
         public int stress = 10;
@@ -27,6 +30,7 @@ namespace Team8.Unemployment.Global
         
         public bool isMaxDay;
         public bool isApplyJob;
+        public bool isApplied;
         private void Start()
         {
             
@@ -138,6 +142,10 @@ namespace Team8.Unemployment.Global
         public void ResetAction()
         {
             action = _resetAction;
+        }
+        public void AppliedJob()
+        {
+            if(isApplyJob) isApplied = true;
         }
     }
 }

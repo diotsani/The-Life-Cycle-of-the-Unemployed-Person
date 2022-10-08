@@ -18,7 +18,7 @@ namespace Team8.Unemployment.Gameplay
             
         }
 
-        protected override void RequirmentDecision(List<Decision> decisionList)
+        protected override void RequirementDecision(List<Decision> decisionList)
         {
             
         }

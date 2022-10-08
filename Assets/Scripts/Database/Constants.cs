@@ -60,11 +60,13 @@ internal static class Constants
     {
         public const string ApplyJobMonolog = "I have to get a job or I will suffer for the rest of my life. Wish me luck!";
         public const string TakeCourseMonolog = "That’s make my head hurt.";
-        public const string CheckMailMonolog = "There’s no email. Sorry, you did not pass the test.";
+        public const string CheckMailMonolog_1 = "There’s no email.";
+        public const string CheckMailMonolog_2 = "It's hard to get a job. Oh God, what should I do now?";
         public const string PlayGameMonolog = "I feel refreshed, I can release my stress.";
         public const string RepairLaptopMonolog = "I have to spend a lot of money to fix it, come on!";
         
-        public const string SocialMediaMonolog = "We are looking for a talented designer who will be responsible for the design of our mobile application.” / “No job info.";
+        public const string SocialMediaMonolog_1 = "We are looking for a talented designer who will be responsible for the design of our mobile application. They said. I should try to apply for this job.";
+        public const string SocialMediaMonolog_2 = "No job info.";
         public const string RepairHandphoneMonolog = "I have to change my phone, this phone is too old. I want a new model of iPhone, but I'm broke.";
         public const string SellHandphoneMonolog = "This is the only thing I can do to survive, I really need money";
         

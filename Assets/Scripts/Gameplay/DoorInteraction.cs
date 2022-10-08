@@ -12,7 +12,7 @@ namespace Team8.Unemployment.Gameplay
             _decisionScriptable = Resources.Load<DecisionScriptable>(Constants.Path.Door);
             base.Start();
         }
-        protected override void RequirmentDecision(List<Decision> decisionList)
+        protected override void RequirementDecision(List<Decision> decisionList)
         {
             
         }
