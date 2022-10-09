@@ -160,9 +160,17 @@ namespace Team8.Unemployment.Gameplay
         {
             _maxClicked = Random.Range(min, max);
         }
+        public string GetName()
+        {
+            return _interactionName;
+        }
         public void OnInteraction(bool status)
         {
             _decisionParent.SetActive(status);
+        }
+        public Vector3 TargetPostision()
+        {
+            return _objectPosition.position;
         }
     }
 }
