@@ -7,6 +7,9 @@ namespace Team8.Unemployment.Gameplay
 {
     public class Decision : MonoBehaviour
     {
+        public delegate void EventName();
+        public static event EventName OnClickDecision;
+        
         [Header("Button")]
         [SerializeField] private string decisionText;
         [SerializeField] private Button _decisionButton;
@@ -44,6 +47,8 @@ namespace Team8.Unemployment.Gameplay
 
         private void DecisionChoose(BaseInteraction getBase,PlayerStatusData getPlayer)
         {
+            OnClickDecision?.Invoke();
+            
             getPlayer.SkillCost(_skillCost);
             getPlayer.StressCost(_stressCost);
             getPlayer.HealthCost(_healthCost);

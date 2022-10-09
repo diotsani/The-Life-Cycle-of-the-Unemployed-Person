@@ -18,6 +18,8 @@ namespace Team8.Unemployment.Gameplay
         public delegate void EventParameter(string monologue);
         public static event EventParameter OnShowMonologue;
         
+        [Header("Dependencies")]
+        [SerializeField] protected interaccon _interactionController;
         protected PlayerStatusData _playerStatusData;
         [SerializeField] protected string _interactionName;
         
@@ -40,6 +42,7 @@ namespace Team8.Unemployment.Gameplay
         [Header("Condition")]
         [SerializeField] protected InteractionState _interactionState;
         [SerializeField] protected bool _isInteractable;
+        public bool isClicked;
         [SerializeField] protected bool _isDamaged;
 
         protected virtual void OnEnable()
@@ -58,6 +61,7 @@ namespace Team8.Unemployment.Gameplay
             _decisionList = new List<Decision>();
             _decisionPrefab = Resources.Load<Decision>("Prefabs/DecisionButton");
             InitDecision();
+            RequirementDecision(_decisionList);
             ClickSpecificDecision(_decisionList);
         }
 
@@ -65,6 +69,13 @@ namespace Team8.Unemployment.Gameplay
         {
             Vector3 parentPosition = Camera.main.WorldToScreenPoint(_objectPosition.position+ _position);
             _decisionParent.transform.position = parentPosition;
+
+            if (isClicked)
+            {
+                RequirementDecision(_decisionList);
+                CheckCondition();
+                isClicked = false;
+            }
         }
 
         private void InitDecision()

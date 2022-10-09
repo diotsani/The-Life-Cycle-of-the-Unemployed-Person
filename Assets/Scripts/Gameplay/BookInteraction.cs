@@ -8,7 +8,7 @@ namespace Team8.Unemployment.Gameplay
     {
         protected override void Start()
         {
-            _interactionName = Constants.InteractionName.BookShelf;
+            _interactionName = Constants.Name.BookShelf;
             _decisionScriptable = Resources.Load<DecisionScriptable>(Constants.Path.BookShelf);
             base.Start();
         }

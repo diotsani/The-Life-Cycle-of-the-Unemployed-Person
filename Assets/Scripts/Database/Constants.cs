@@ -4,7 +4,7 @@ using UnityEngine;
 
 internal static class Constants
 {
-    public static class InteractionName
+    public static class Name
     {
         public const string Laptop ="Laptop";
         public const string Handphone = "Handphone";

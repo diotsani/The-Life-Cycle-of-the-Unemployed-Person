@@ -37,16 +37,18 @@ namespace Team8.Unemployment.Gameplay
         [SerializeField] private TMP_Text _actionText;
         [SerializeField] private TMP_Text _daysText;
 
+        private bool _isWaitDelay;
+
         private void OnEnable()
         {
-            DayManager.OnShowDay += ShowDay;
+            //DayManager.OnShowDay += ShowDay;
             BaseInteraction.OnShowMonologue += ShowMonolog;
             PlayerStatusData.OnStatusChange += ShowStatus;
         }
 
         private void OnDisable()
         {
-            DayManager.OnShowDay -= ShowDay;
+            //DayManager.OnShowDay -= ShowDay;
             BaseInteraction.OnShowMonologue -= ShowMonolog;
             PlayerStatusData.OnStatusChange -= ShowStatus;
         }
@@ -79,6 +81,7 @@ namespace Team8.Unemployment.Gameplay
 
         private void ShowMonolog(string monolog)
         {
+            _isWaitDelay = true;
             _monologText.text = monolog;
             _monologPanel.SetActive(true);
             StartCoroutine(AfterActive(_monologPanel,3f));
@@ -100,7 +103,7 @@ namespace Team8.Unemployment.Gameplay
                 text.gameObject.SetActive(true);
                 text.text = $"{name} {value.ToString("+#;-#;0")}";
                 text.transform.SetAsLastSibling();
-                StartCoroutine(AfterActive(text.gameObject, 2f));
+                StartCoroutine(AfterActive(text.gameObject, 3f));
             }
         }
         private TMP_Text GetStatusText()
@@ -117,6 +120,7 @@ namespace Team8.Unemployment.Gameplay
         private IEnumerator AfterActive(GameObject obj, float delay)
         {
             yield return new WaitForSeconds(delay);
+            _isWaitDelay = false;
             obj.SetActive(false);
         }
     }

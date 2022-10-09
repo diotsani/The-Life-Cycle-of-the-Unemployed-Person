@@ -8,7 +8,7 @@ namespace Team8.Unemployment.Gameplay
     {
         protected override void Start()
         {
-            _interactionName = Constants.InteractionName.Handphone;
+            _interactionName = Constants.Name.Handphone;
             _decisionScriptable = Resources.Load<DecisionScriptable>(Constants.Path.Handphone);
             base.Start();
         }

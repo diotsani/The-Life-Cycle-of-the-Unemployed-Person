@@ -7,6 +7,10 @@ namespace Team8.Unemployment.Gameplay
 {
     public class GameplayFlow : MonoBehaviour
     {
+        public delegate void EventName();
+        public static event EventName OnEndGame;
+        public static event EventName OnChangeDay;
+        
         [Header("Dependencies")] private PlayerStatusData playerStatusData;
         [SerializeField] private DayManager _dayManager;
 
@@ -24,6 +28,7 @@ namespace Team8.Unemployment.Gameplay
 
         private void Update()
         {
+            ActionOver();
             EndGameCondition();
         }
 
@@ -31,8 +36,12 @@ namespace Team8.Unemployment.Gameplay
         {
             if (playerStatusData.action == 0)
             {
+                OnChangeDay?.Invoke();
+                
                 playerStatusData.ResetAction();
                 playerStatusData.AppliedJob();
+                playerStatusData.ChangeStatus();
+                
                 _dayManager.ChangeDay();
             }
         }

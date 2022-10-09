@@ -8,7 +8,7 @@ namespace Team8.Unemployment.Gameplay
     {
         protected override void Start()
         {
-            _interactionName = Constants.InteractionName.Door;
+            _interactionName = Constants.Name.Door;
             _decisionScriptable = Resources.Load<DecisionScriptable>(Constants.Path.Door);
             base.Start();
         }
@@ -19,7 +19,12 @@ namespace Team8.Unemployment.Gameplay
 
         protected override void SpecificDecision(Decision decision)
         {
-            
+            if (decision.DecisionText() == Constants.Requirments.BuyFood)
+            {
+                ShowMonologue(Constants.Monologue.BuyFoodMonolog);
+                _interactionController.ResetAllDurability();
+                _playerStatusData.isFresh = true;
+            }
         }
     }
 }

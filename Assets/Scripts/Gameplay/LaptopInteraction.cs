@@ -6,15 +6,18 @@ namespace Team8.Unemployment.Gameplay
 {
     public class LaptopInteraction : BaseInteraction
     {
+        [SerializeField] private Decision _checkMailDecision;
+        
         private int _priceRepair = 50;
         private int _minRandom = 3;
         private int _maxRandom = 6;
         protected override void Start()
         {
-            _interactionName = Constants.InteractionName.Laptop;
+            _interactionName = Constants.Name.Laptop;
             _decisionScriptable = Resources.Load<DecisionScriptable>(Constants.Path.Laptop);
             RandomMaxClick(_minRandom, _maxRandom);
             base.Start();
+            SetCheckMailDecision();
         }
         protected override void SpecificDecision(Decision decision)
         {
@@ -22,7 +25,7 @@ namespace Team8.Unemployment.Gameplay
             {
                 ShowMonologue(Constants.Monologue.ApplyJobMonolog);
                 _playerStatusData.isApplyJob = true;
-                decision.DecisionObject().SetActive(false);
+                decision.DecisionObject().SetActive(!_playerStatusData.isApplyJob);
             }
             if (decision.DecisionText() == Constants.Requirments.TakeCourse)
             {
@@ -34,7 +37,7 @@ namespace Team8.Unemployment.Gameplay
             }
             if (decision.DecisionText() == Constants.Requirments.CheckMail)
             {
-                if(!_playerStatusData.isApplyJob)
+                if(!_playerStatusData.isApplied)
                 {
                     ShowMonologue(Constants.Monologue.CheckMailMonolog_1);
                 }
@@ -92,6 +95,11 @@ namespace Team8.Unemployment.Gameplay
                     obj.DecisionObject().SetActive(true);
                 }
             }
+        }
+        protected void SetCheckMailDecision()
+        {
+            _decisionList.Add(_checkMailDecision);
+            ClickSpecificDecision(_decisionList);
         }
     }
 }
