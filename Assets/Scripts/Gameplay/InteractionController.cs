@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace Team8.Unemployment.Gameplay
 {
@@ -10,6 +11,7 @@ namespace Team8.Unemployment.Gameplay
         private void OnEnable()
         {
             Decision.OnClickDecision += SetAllObjects;
+            Decision.OnClickDecision += SetOffInteracted;
             GameplayFlow.OnChangeDay += ChangeDay;
             GameplayFlow.OnEndGame += OnGameOver;
         }
@@ -17,10 +19,24 @@ namespace Team8.Unemployment.Gameplay
         private void OnDisable()
         {
             Decision.OnClickDecision -= SetAllObjects;
+            Decision.OnClickDecision -= SetOffInteracted;
             GameplayFlow.OnChangeDay -= ChangeDay;
             GameplayFlow.OnEndGame -= OnGameOver;
         }
-
+        public void SetOffParent()
+        {
+            foreach (var obj in _objects)
+            {
+                obj.DecisionParent().SetActive(false);
+            }
+        }
+        public void SetOffInteracted()
+        {
+            foreach (var obj in _objects)
+            {
+                obj.isInteracted = false;
+            }
+        }
         private void SetAllObjects()
         {
             foreach (var obj in _objects)

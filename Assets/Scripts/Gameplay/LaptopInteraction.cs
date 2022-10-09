@@ -6,8 +6,6 @@ namespace Team8.Unemployment.Gameplay
 {
     public class LaptopInteraction : BaseInteraction
     {
-        [SerializeField] private Decision _checkMailDecision;
-        
         private int _priceRepair = 50;
         private int _minRandom = 3;
         private int _maxRandom = 6;
@@ -17,7 +15,6 @@ namespace Team8.Unemployment.Gameplay
             _decisionScriptable = Resources.Load<DecisionScriptable>(Constants.Path.Laptop);
             RandomMaxClick(_minRandom, _maxRandom);
             base.Start();
-            SetCheckMailDecision();
         }
         protected override void SpecificDecision(Decision decision)
         {
@@ -66,12 +63,12 @@ namespace Team8.Unemployment.Gameplay
                 var obj = decisionList[i];
                 if (obj.DecisionText() == Constants.Requirments.ApplyJob)
                 {
-                    obj.DecisionObject().SetActive(!_playerStatusData.isApplyJob);
+                    obj.DecisionButton().interactable = !_playerStatusData.isApplyJob;
                 }
                 if (obj.DecisionText() == Constants.Requirments.TakeCourse)
                 {
-                    bool set = _playerStatusData.stress <= 50;
-                    obj.DecisionObject().SetActive(set);
+                    bool set = _playerStatusData.stress < 50;
+                    obj.DecisionButton().interactable = set;
                 }
             }
         }
@@ -89,17 +86,13 @@ namespace Team8.Unemployment.Gameplay
             _isDamaged = true;
             foreach (Decision obj in _decisionList)
             {
-                obj.DecisionObject().SetActive(false);
+                obj.DecisionButton().interactable = false;
                 if (obj.DecisionText() == Constants.Requirments.Repair)
                 {
                     obj.DecisionObject().SetActive(true);
+                    obj.DecisionButton().interactable = true;
                 }
             }
-        }
-        protected void SetCheckMailDecision()
-        {
-            _decisionList.Add(_checkMailDecision);
-            ClickSpecificDecision(_decisionList);
         }
     }
 }

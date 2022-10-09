@@ -19,7 +19,7 @@ namespace Team8.Unemployment.Gameplay
         public static event EventParameter OnShowMonologue;
         
         [Header("Dependencies")]
-        [SerializeField] protected interaccon _interactionController;
+        [SerializeField] protected InteractionController _interactionController;
         protected PlayerStatusData _playerStatusData;
         [SerializeField] protected string _interactionName;
         
@@ -37,11 +37,11 @@ namespace Team8.Unemployment.Gameplay
         
         [Header("Position")]
         [SerializeField] protected Transform _objectPosition;
-        [SerializeField] protected Vector3 _position = new Vector3();
+        protected Vector3 _position = new Vector3(-0.3f,0.3f,0f);
         
         [Header("Condition")]
         [SerializeField] protected InteractionState _interactionState;
-        [SerializeField] protected bool _isInteractable;
+        public bool isInteracted;
         public bool isClicked;
         [SerializeField] protected bool _isDamaged;
 
@@ -100,6 +100,7 @@ namespace Team8.Unemployment.Gameplay
                 decision.Init(getName, getSkill, getStress, getHealth, getMoney, getAction, getBook, getFood);
                 decision.OnClick(decision,this,_playerStatusData);
             }
+            //_decisionParent.SetActive(false); // dont delete this line
         }
         public void AddAmountClick()
         {
@@ -146,6 +147,7 @@ namespace Team8.Unemployment.Gameplay
             foreach (Decision obj in _decisionList)
             {
                 obj.DecisionObject().SetActive(true);
+                obj.DecisionButton().interactable = true;
             }
         }
         protected virtual void SetRepairDecision(int value)
@@ -171,9 +173,14 @@ namespace Team8.Unemployment.Gameplay
         {
             _maxClicked = Random.Range(min, max);
         }
+
         public string GetName()
         {
             return _interactionName;
+        }
+        public GameObject DecisionParent()
+        {
+            return _decisionParent;
         }
         public void OnInteraction(bool status)
         {

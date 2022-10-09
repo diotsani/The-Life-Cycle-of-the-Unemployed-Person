@@ -57,6 +57,8 @@ namespace Team8.Unemployment.Gameplay
             getPlayer.BookCost(_bookCost);
             getPlayer.FoodCost(_foodCost);
             
+            
+            //getBase.DecisionParent().SetActive(false); dont delete this line
             getBase.AddAmountClick();
         }
         public string DecisionText()

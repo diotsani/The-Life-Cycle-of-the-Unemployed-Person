@@ -41,14 +41,14 @@ namespace Team8.Unemployment.Gameplay
 
         private void OnEnable()
         {
-            //DayManager.OnShowDay += ShowDay;
+            DayManager.OnShowDay += ShowDay;
             BaseInteraction.OnShowMonologue += ShowMonolog;
             PlayerStatusData.OnStatusChange += ShowStatus;
         }
 
         private void OnDisable()
         {
-            //DayManager.OnShowDay -= ShowDay;
+            DayManager.OnShowDay -= ShowDay;
             BaseInteraction.OnShowMonologue -= ShowMonolog;
             PlayerStatusData.OnStatusChange -= ShowStatus;
         }

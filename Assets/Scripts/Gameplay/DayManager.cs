@@ -38,7 +38,6 @@ namespace Team8.Unemployment.Gameplay
                 OnMaxDay?.Invoke();
             }
         }
-
         public int AmountDay()
         {
             return _amountDay;

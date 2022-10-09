@@ -21,7 +21,7 @@ namespace Team8.Unemployment.Gameplay
 
         private void Start()
         {
-            //playerStatusData = PlayerStatusData.Instance;
+            playerStatusData = PlayerStatusData.Instance;
 
             _dayManager.ChangeDay();
         }
@@ -41,7 +41,7 @@ namespace Team8.Unemployment.Gameplay
                 playerStatusData.ResetAction();
                 playerStatusData.AppliedJob();
                 playerStatusData.ChangeStatus();
-                
+
                 _dayManager.ChangeDay();
             }
         }
