@@ -15,12 +15,28 @@ namespace Team8.Unemployment.Gameplay
 
         protected override void SpecificDecision(Decision decision)
         {
-            
+            if (decision.DecisionText() == Constants.Requirments.ReadBook)
+            {
+                ShowMonologue(Constants.Monologue.ReadBookMonolog);
+            }
+            if (decision.DecisionText() == Constants.Requirments.Sell)
+            {
+                ShowMonologue(Constants.Monologue.SellBookMonolog);
+            }
+            if (decision.DecisionText() == Constants.Requirments.CheckBookShelf)
+            {
+                ShowMonologue(Constants.Monologue.BookStockMonolog(_playerStatusData.book));
+            }
         }
 
         protected override void RequirementDecision(List<Decision> decisionList)
         {
-            
+            foreach (var obj in decisionList)
+            {
+                bool set = _playerStatusData.book > 0;
+                DecisionParent().SetActive(set);
+                this.gameObject.SetActive(set);
+            }
         }
     }
 }

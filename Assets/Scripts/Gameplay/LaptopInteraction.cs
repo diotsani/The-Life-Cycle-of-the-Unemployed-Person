@@ -63,7 +63,9 @@ namespace Team8.Unemployment.Gameplay
                 var obj = decisionList[i];
                 if (obj.DecisionText() == Constants.Requirments.ApplyJob)
                 {
-                    obj.DecisionButton().interactable = !_playerStatusData.isApplyJob;
+                    bool set = _playerStatusData.isApplyJob;
+                    obj.DecisionObject().SetActive(!set);
+                    obj.DecisionButton().interactable = !set;
                 }
                 if (obj.DecisionText() == Constants.Requirments.TakeCourse)
                 {

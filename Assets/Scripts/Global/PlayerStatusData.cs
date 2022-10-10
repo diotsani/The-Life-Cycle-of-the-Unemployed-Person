@@ -8,7 +8,7 @@ namespace Team8.Unemployment.Global
     public class PlayerStatusData : SingletonMonoBehaviour<PlayerStatusData>
     {
         public delegate void EventName();
-        public static event EventName OnResetAction;
+        //public static event EventName OnResetAction;
         
         public delegate void EventParameter(string name, int value);
         public static event EventParameter OnStatusChange;
@@ -40,6 +40,24 @@ namespace Team8.Unemployment.Global
         private void Update()
         {
             
+        }
+
+        public void ResetStatus()
+        {
+            skill = 20;
+            stress = 10;
+            health = 100;
+            money = 50;
+            book = 5;
+            food = 30;
+            action = 3;
+            _resetAction = 3;
+            _totalAction = 0;
+            
+            isFresh = true;
+            isMaxDay = false;
+            isApplyJob = false;
+            isApplied = false;
         }
         public void ChangeStatus()
         {
@@ -152,17 +170,20 @@ namespace Team8.Unemployment.Global
             if (value >= 20) //Buy Food
             {
                 food += value;
+                OnStatusChange?.Invoke("Food", value);
             }
-            if(isFresh && value >= 10) // Eat Food
+            if(isFresh && value == 10) // Eat Food
             {
                 int randomFood = Random.Range(10, 16);
                 food -= randomFood;
+                OnStatusChange?.Invoke("Food", randomFood*-1);
                 HealthCost(24);
             }
-            else if(!isFresh) // Eat Food not fresh
+            else if(!isFresh && value == 10) // Eat Food not fresh
             {
                 int randomFood = Random.Range(10, 16);
                 food -= randomFood;
+                OnStatusChange?.Invoke("Food", randomFood*-1);
                 HealthCost(-14);
             }
         

@@ -6,6 +6,18 @@ namespace Team8.Unemployment.Gameplay
 {
     public class RefrigeratorInteraction : BaseInteraction
     {
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+            DoorInteraction.OnFreshFood += GoodInteraction;
+        }
+
+        protected override void OnDisable()
+        {
+            base.OnDisable();
+            DoorInteraction.OnFreshFood -= GoodInteraction;
+        }
+
         protected override void Start()
         {
             _interactionName = Constants.Name.Refrigerator;
@@ -22,12 +34,8 @@ namespace Team8.Unemployment.Gameplay
             if(decision.DecisionText() == Constants.Requirments.ThrowFood)
             {
                 ShowMonologue(Constants.Monologue.ThrowFoodMonolog);
-                ResetDecision();
-                ResetDurability();
                 _playerStatusData.ResetFood();
-                _interactionState = InteractionState.Good;
-                _playerStatusData.isFresh = true;
-                _isDamaged = false;
+                GoodInteraction();
             }
 
             if (decision.DecisionText() == Constants.Requirments.CheckFoodStock)
@@ -44,21 +52,25 @@ namespace Team8.Unemployment.Gameplay
                 var obj = decisionList[i];
                 if (obj.DecisionText() == Constants.Requirments.ThrowFood)
                 {
-                    obj.DecisionObject().SetActive(false);
+                    bool set = _playerStatusData.isFresh;
+                    obj.DecisionButton().interactable = !set;
                 }
                 if (obj.DecisionText() == Constants.Requirments.Eat)
                 {
                     bool set = _playerStatusData.food >= 10;
-                    obj.DecisionObject().SetActive(set);
+                    obj.DecisionButton().interactable = set;
                 }
             }
         }
         protected override void CheckCondition()
         {
-            if(_durabilityDay>= _maxDurability)
+            if (!_isDamaged)
             {
-                _interactionState = InteractionState.Damaged;
-                DamageInteraction();
+                if(_durabilityDay >= _maxDurability)
+                {
+                    _interactionState = InteractionState.Damaged;
+                    DamageInteraction();
+                }
             }
         }
         protected override void DamageInteraction()
@@ -69,9 +81,17 @@ namespace Team8.Unemployment.Gameplay
             {
                 if (obj.DecisionText() == Constants.Requirments.ThrowFood)
                 {
-                    obj.DecisionObject().SetActive(true);
+                    obj.DecisionButton().interactable = true;
                 }
             }
+        }
+        protected void GoodInteraction()
+        {
+            ResetDecision();
+            ResetDurability();
+            _interactionState = InteractionState.Good;
+            _playerStatusData.isFresh = true;
+            _isDamaged = false;
         }
     }
 }

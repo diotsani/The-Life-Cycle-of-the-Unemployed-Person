@@ -11,6 +11,9 @@ namespace Team8.Unemployment.Gameplay
         public static event EventName OnEndGame;
         public static event EventName OnChangeDay;
         
+        public delegate void EventEndGame(string title, string description);
+        public static event EventEndGame OnShowEndGame;
+        
         [Header("Dependencies")] private PlayerStatusData playerStatusData;
         [SerializeField] private DayManager _dayManager;
 
@@ -28,8 +31,8 @@ namespace Team8.Unemployment.Gameplay
 
         private void Update()
         {
-            ActionOver();
             EndGameCondition();
+            ActionOver();
         }
 
         private void ActionOver()
@@ -48,31 +51,33 @@ namespace Team8.Unemployment.Gameplay
 
         private void EndGameCondition()
         {
-            if (playerStatusData.food <= 0)
+            if (playerStatusData.stress >= 100 || playerStatusData.health <= 0)
             {
-                OnGameOver();
+                OnGameOver(" Stress Over / Health Under 0, You are dead");
             }
-            if(playerStatusData.isApplyJob && playerStatusData.skill >= 100)
+            else if(playerStatusData.isApplied && playerStatusData.skill >= 100)
             {
                 OnVictory();
             }
             if(!playerStatusData.isMaxDay)return;
-            if (playerStatusData.skill <= 100 && !playerStatusData.isApplyJob)
+            if (playerStatusData.skill < 100 && playerStatusData.isApplied)
             {
-                OnGameOver();
+                OnGameOver(" Skill Not Enough");
                 return;
             }
             OnVictory();
         }
 
-        private void OnGameOver()
+        private void OnGameOver(string add)
         {
-            Debug.Log("GameOver");
+            OnEndGame?.Invoke();
+            OnShowEndGame?.Invoke(Constants.EndGame.LoseTitle, Constants.EndGame.LoseDescription + add);
         }
 
         private void OnVictory()
         {
-            Debug.Log("Victory");
+            OnEndGame?.Invoke();
+            OnShowEndGame?.Invoke(Constants.EndGame.WinTitle, Constants.EndGame.WinDescription);
         }
     }
 }

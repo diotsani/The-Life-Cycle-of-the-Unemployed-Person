@@ -43,6 +43,7 @@ namespace Team8.Unemployment.Gameplay
         public void OnClick(Decision getDecision, BaseInteraction getBase, PlayerStatusData getPlayer)
         {
             getDecision.DecisionButton().onClick.AddListener(()=>DecisionChoose(getBase,getPlayer));
+            _lockButton.onClick.AddListener(SetLockButton);
         }
 
         private void DecisionChoose(BaseInteraction getBase,PlayerStatusData getPlayer)
@@ -76,6 +77,10 @@ namespace Team8.Unemployment.Gameplay
         public Button LockButton()
         {
             return _lockButton;
+        }
+        void SetLockButton()
+        {
+            Debug.Log(name + " is locked");
         }
     }
 }

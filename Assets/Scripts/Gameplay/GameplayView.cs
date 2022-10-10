@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using Team8.Unemployment.Global;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace Team8.Unemployment.Gameplay
 {
@@ -26,7 +28,10 @@ namespace Team8.Unemployment.Gameplay
         [SerializeField] private TMP_Text _statusFloatText;
         private List<TMP_Text> _statusFloatTexts = new List<TMP_Text>();
         private int _amountStatus = 5;
-
+        [Header("End Game Display")]
+        [SerializeField] private GameObject _endGamePanel;
+        [SerializeField] private TMP_Text _titleText;
+        [SerializeField] private TMP_Text _descriptionText;
         [Header("Player Stats Display")]
         [SerializeField] private TMP_Text _skillText;
         [SerializeField] private TMP_Text _stressText;
@@ -44,6 +49,7 @@ namespace Team8.Unemployment.Gameplay
             DayManager.OnShowDay += ShowDay;
             BaseInteraction.OnShowMonologue += ShowMonolog;
             PlayerStatusData.OnStatusChange += ShowStatus;
+            GameplayFlow.OnShowEndGame += ShowEndPanel;
         }
 
         private void OnDisable()
@@ -51,12 +57,13 @@ namespace Team8.Unemployment.Gameplay
             DayManager.OnShowDay -= ShowDay;
             BaseInteraction.OnShowMonologue -= ShowMonolog;
             PlayerStatusData.OnStatusChange -= ShowStatus;
+            GameplayFlow.OnShowEndGame -= ShowEndPanel;
         }
 
         private void Start()
         {
             _playerStatusData = PlayerStatusData.Instance;
-            
+            _endGamePanel.GetComponent<Button>().onClick.AddListener(ResetGameplay);
             InitStatusFloat();
         }
 
@@ -72,6 +79,12 @@ namespace Team8.Unemployment.Gameplay
             _daysText.text = Constants.Status.Day + _dayManager.AmountDay().ToString();
         }
 
+        void ResetGameplay()
+        {
+            _playerStatusData.ResetStatus();
+            SceneManager.LoadScene("TestGameplay");
+        }
+
         private void ShowDay(int value)
         {
             _dayText.text = Constants.Status.Day + value.ToString();
@@ -85,6 +98,12 @@ namespace Team8.Unemployment.Gameplay
             _monologText.text = monolog;
             _monologPanel.SetActive(true);
             StartCoroutine(AfterActive(_monologPanel,3f));
+        }
+        private void ShowEndPanel(string title, string description)
+        {
+            _titleText.text = title;
+            _descriptionText.text = description;
+            _endGamePanel.SetActive(true);
         }
         private void InitStatusFloat()
         {

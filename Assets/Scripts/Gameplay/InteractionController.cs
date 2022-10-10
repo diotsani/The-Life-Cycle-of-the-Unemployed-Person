@@ -57,6 +57,7 @@ namespace Team8.Unemployment.Gameplay
             foreach (var obj in _objects)
             {
                 obj.ResetDurability();
+                Debug.Log("ResetDurability");
             }
         }
         private void OnGameOver()

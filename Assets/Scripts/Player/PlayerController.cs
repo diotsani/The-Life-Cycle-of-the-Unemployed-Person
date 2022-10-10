@@ -60,7 +60,7 @@ namespace Team8.Unemployment.Player
             {
                 isWalking = true;
                 Interact();
-                interactionController.SetOffParent();
+                //interactionController.SetOffParent(); // dont delete this line
                 agent.SetDestination(tooltip.target);
                 animator.SetBool("isWalk", true);
             }
@@ -68,7 +68,7 @@ namespace Team8.Unemployment.Player
 
         public void Interact()
         {
-            currentInteractable.OnInteraction(!isWalking);
+            //currentInteractable.OnInteraction(!isWalking); dont delete this line
         }
         
         public void LookAtTarget(Vector3 target)

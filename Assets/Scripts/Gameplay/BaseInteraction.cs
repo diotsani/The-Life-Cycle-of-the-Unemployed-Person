@@ -32,7 +32,7 @@ namespace Team8.Unemployment.Gameplay
         [Header("Config")]
         [SerializeField] protected int _amountClicked;
         [SerializeField] protected int _maxClicked;
-        protected int _durabilityDay;
+        [SerializeField] protected int _durabilityDay;
         protected int _maxDurability = 3;
         
         [Header("Position")]
@@ -123,6 +123,7 @@ namespace Team8.Unemployment.Gameplay
             for (int i = 0; i < decisionList.Count; i++)
             {
                 Decision decision = decisionList[i];
+                decision.LockButton().onClick.AddListener(()=> ShowMonologue(Constants.Monologue.LockRepairMonolog));
                 decision.DecisionButton().onClick.AddListener(()=> SpecificDecision(decision));
             }
         }
@@ -164,9 +165,9 @@ namespace Team8.Unemployment.Gameplay
         }
         public void DeactivateDecision()
         {
-            foreach (Decision objs in _decisionList)
+            foreach (Decision obj in _decisionList)
             {
-                objs.DecisionButton().interactable = false;
+                obj.DecisionButton().interactable = false;
             }
         }
         public void RandomMaxClick(int min, int max)
