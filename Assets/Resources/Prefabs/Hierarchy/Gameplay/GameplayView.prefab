@@ -51,6 +51,9 @@ MonoBehaviour:
   _monologText: {fileID: 0}
   _statusFloatHeader: {fileID: 0}
   _statusFloatText: {fileID: 0}
+  _endGamePanel: {fileID: 0}
+  _titleText: {fileID: 0}
+  _descriptionText: {fileID: 0}
   _skillText: {fileID: 0}
   _stressText: {fileID: 0}
   _healthText: {fileID: 0}

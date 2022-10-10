@@ -308,6 +308,7 @@ MonoBehaviour:
   _decisionParent: {fileID: 0}
   _amountClicked: 0
   _maxClicked: 0
+  _durabilityDay: 0
   _objectPosition: {fileID: 5087787099887326895}
   _interactionState: 0
   isInteracted: 0
@@ -428,6 +429,7 @@ MonoBehaviour:
   _decisionParent: {fileID: 0}
   _amountClicked: 0
   _maxClicked: 0
+  _durabilityDay: 0
   _objectPosition: {fileID: 5381988948865029304}
   _interactionState: 0
   isInteracted: 0
@@ -542,6 +544,7 @@ MonoBehaviour:
   _decisionParent: {fileID: 0}
   _amountClicked: 0
   _maxClicked: 0
+  _durabilityDay: 0
   _objectPosition: {fileID: 1367927310}
   _interactionState: 0
   isInteracted: 0
@@ -656,6 +659,7 @@ MonoBehaviour:
   _decisionParent: {fileID: 0}
   _amountClicked: 0
   _maxClicked: 0
+  _durabilityDay: 0
   _objectPosition: {fileID: 5381988950032251578}
   _interactionState: 0
   isInteracted: 0
