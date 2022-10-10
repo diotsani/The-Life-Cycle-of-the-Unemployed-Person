@@ -18,14 +18,17 @@ namespace Team8.Unemployment.Gameplay
             if (decision.DecisionText() == Constants.Requirments.ReadBook)
             {
                 ShowMonologue(Constants.Monologue.ReadBookMonolog);
+                ShowHistory(Constants.History.ReadBook);
             }
             if (decision.DecisionText() == Constants.Requirments.Sell)
             {
                 ShowMonologue(Constants.Monologue.SellBookMonolog);
+                ShowHistory(Constants.History.SellBook);
             }
             if (decision.DecisionText() == Constants.Requirments.CheckBookShelf)
             {
                 ShowMonologue(Constants.Monologue.BookStockMonolog(_playerStatusData.book));
+                ShowHistory(Constants.History.CheckBookShelf);
             }
         }
 

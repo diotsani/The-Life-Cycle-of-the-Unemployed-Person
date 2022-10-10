@@ -18,8 +18,12 @@ namespace Team8.Unemployment.Gameplay
         public delegate void EventParameter(string monologue);
         public static event EventParameter OnShowMonologue;
         
+        public delegate void EventHistory(string history);
+        public static event EventHistory OnShowHistory;
+        
         [Header("Dependencies")]
         [SerializeField] protected InteractionController _interactionController;
+        [SerializeField] protected DayManager _dayManager;
         protected PlayerStatusData _playerStatusData;
         [SerializeField] protected string _interactionName;
         
@@ -137,6 +141,11 @@ namespace Team8.Unemployment.Gameplay
         protected virtual void DamageInteraction()
         {
             //Damage Interaction in Laptop, Handphone, Refrigerator
+        }
+
+        protected virtual void ShowHistory(string history)
+        {
+            OnShowHistory?.Invoke($"Day: {_dayManager.AmountDay()} " + history);
         }
         protected virtual void ShowMonologue(string monologue)
         {

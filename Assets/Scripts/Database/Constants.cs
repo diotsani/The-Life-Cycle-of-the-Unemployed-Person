@@ -112,4 +112,29 @@ internal static class Constants
             return $"Not Enough Money, You need {positiveValue} money";
         }
     }
+    public static class History
+    {
+        public const string ApplyJob = "Apply Job";
+        public const string TakeCourse = "Take Course";
+        public const string PlayGame = "Play Game";
+        public const string CheckMail = "Check Mail";
+        public const string RepairLaptop = "Repair Laptop";
+        
+        public const string SocialMedia = "Social Media";
+        public const string RepairHandphone = "Repair Handphone";
+        public const string SellHandphone = "Sell Handphone";
+        
+        public const string ReadBook = "Read Book";
+        public const string CheckBookShelf = "Check Book Shelf";
+        public const string SellBook = "Sell Book";
+        
+        public const string Jogging = "Jogging";
+        public const string BuyFoodStock = "Buy Food Stock";
+        
+        public const string Eat = "Eat";
+        public const string ThrowFood = "Throw Food";
+        public const string CheckFoodStock = "Check Food Stock";
+        
+        public const string CheckMoney = "Check Money";
+    }
 }

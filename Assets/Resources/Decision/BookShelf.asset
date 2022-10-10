@@ -35,5 +35,5 @@ MonoBehaviour:
     healthCost: 0
     moneyCost: 5
     actionCost: 1
-    bookCost: 0
+    bookCost: -1
     foodCost: 0

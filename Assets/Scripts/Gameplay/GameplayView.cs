@@ -41,6 +41,10 @@ namespace Team8.Unemployment.Gameplay
         [SerializeField] private TMP_Text _foodText;
         [SerializeField] private TMP_Text _actionText;
         [SerializeField] private TMP_Text _daysText;
+        
+        [Header("Decision History Display")]
+        [SerializeField] private GameObject _content;
+        [SerializeField] private TMP_Text _historyText;
 
         private bool _isWaitDelay;
 
@@ -48,6 +52,7 @@ namespace Team8.Unemployment.Gameplay
         {
             DayManager.OnShowDay += ShowDay;
             BaseInteraction.OnShowMonologue += ShowMonolog;
+            BaseInteraction.OnShowHistory += ShowHistory;
             PlayerStatusData.OnStatusChange += ShowStatus;
             GameplayFlow.OnShowEndGame += ShowEndPanel;
         }
@@ -56,6 +61,7 @@ namespace Team8.Unemployment.Gameplay
         {
             DayManager.OnShowDay -= ShowDay;
             BaseInteraction.OnShowMonologue -= ShowMonolog;
+            BaseInteraction.OnShowHistory -= ShowHistory;
             PlayerStatusData.OnStatusChange -= ShowStatus;
             GameplayFlow.OnShowEndGame -= ShowEndPanel;
         }
@@ -104,6 +110,13 @@ namespace Team8.Unemployment.Gameplay
             _titleText.text = title;
             _descriptionText.text = description;
             _endGamePanel.SetActive(true);
+        }
+
+        void ShowHistory(string getHistory)
+        {
+            var text = Instantiate(_historyText,_content.transform);
+            text.text = getHistory;
+            text.gameObject.SetActive(true);
         }
         private void InitStatusFloat()
         {
