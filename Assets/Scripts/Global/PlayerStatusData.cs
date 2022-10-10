@@ -8,7 +8,10 @@ namespace Team8.Unemployment.Global
     public class PlayerStatusData : SingletonMonoBehaviour<PlayerStatusData>
     {
         public delegate void EventName();
-        public static event EventName OnResetAction;
+        //public static event EventName OnResetAction;
+        
+        public delegate void EventParameter(string name, int value);
+        public static event EventParameter OnStatusChange;
         
         [Header("Config")]
         public int skill = 20;
@@ -23,10 +26,12 @@ namespace Team8.Unemployment.Global
         
         [Header("Change Config")]
         private int _addStress = 10;
-        private int _reduceHealth = 16;
-        
+        private int _reduceHealth = 12;
+
+        public bool isFresh = true;
         public bool isMaxDay;
         public bool isApplyJob;
+        public bool isApplied;
         private void Start()
         {
             
@@ -36,12 +41,33 @@ namespace Team8.Unemployment.Global
         {
             
         }
+
+        public void ResetStatus()
+        {
+            skill = 20;
+            stress = 10;
+            health = 100;
+            money = 50;
+            book = 5;
+            food = 30;
+            action = 3;
+            _resetAction = 3;
+            _totalAction = 0;
+            
+            isFresh = true;
+            isMaxDay = false;
+            isApplyJob = false;
+            isApplied = false;
+        }
         public void ChangeStatus()
         {
-            //int randomHealth = Random.Range(30, 40);
+            // need delay
             
             health -= _reduceHealth;
             stress += _addStress;
+            
+            OnStatusChange?.Invoke("Health", _reduceHealth*-1);
+            OnStatusChange?.Invoke("Stress", _addStress);
             
             if (health < 0)
             {
@@ -55,6 +81,13 @@ namespace Team8.Unemployment.Global
         public void SkillCost(int value)
         {
             skill += value;
+            
+            var positiveValue = Mathf.Abs(value);
+            if(positiveValue > 1)
+            {
+                OnStatusChange?.Invoke("Skill", value);
+            }
+            
             if(skill < 0)
             {
                 skill = 0;
@@ -67,6 +100,13 @@ namespace Team8.Unemployment.Global
         public void StressCost(int value)
         {
             stress += value;
+            
+            var positiveValue = Mathf.Abs(value);
+            if(positiveValue > 1)
+            {
+                OnStatusChange?.Invoke("Stress", value);
+            }
+            
             if (stress < 0)
             {
                 stress = 0;
@@ -79,6 +119,13 @@ namespace Team8.Unemployment.Global
         public void HealthCost(int value)
         {
             health += value;
+            
+            var positiveValue = Mathf.Abs(value);
+            if(positiveValue > 1)
+            {
+                OnStatusChange?.Invoke("Health", value);
+            }
+            
             if (health < 0)
             {
                 health = 0;
@@ -90,12 +137,14 @@ namespace Team8.Unemployment.Global
         }
         public void MoneyCost(int value)
         {
-            int PositiveValue = Mathf.Abs(value);
-            if (money < PositiveValue)
-            {
-                return;
-            }
             money += value;
+        
+            var positiveValue = Mathf.Abs(value);
+            if(positiveValue > 1)
+            {
+                OnStatusChange?.Invoke("Money", value);
+            }
+
             if (money < 0)
             {
                 money = 0;
@@ -104,6 +153,13 @@ namespace Team8.Unemployment.Global
         public void BookCost(int value)
         {
             book += value;
+            
+            var positiveValue = Mathf.Abs(value);
+            if(positiveValue > 0)
+            {
+                OnStatusChange?.Invoke("Book", value);
+            }
+            
             if (book < 0)
             {
                 book = 0;
@@ -111,13 +167,24 @@ namespace Team8.Unemployment.Global
         }
         public void FoodCost(int value)
         {
-            if (value >= 20)
-            {
-                food += Random.Range(10, value);
-            }
-            else
+            if (value >= 20) //Buy Food
             {
                 food += value;
+                OnStatusChange?.Invoke("Food", value);
+            }
+            if(isFresh && value == 10) // Eat Food
+            {
+                int randomFood = Random.Range(10, 16);
+                food -= randomFood;
+                OnStatusChange?.Invoke("Food", randomFood*-1);
+                HealthCost(24);
+            }
+            else if(!isFresh && value == 10) // Eat Food not fresh
+            {
+                int randomFood = Random.Range(10, 16);
+                food -= randomFood;
+                OnStatusChange?.Invoke("Food", randomFood*-1);
+                HealthCost(-14);
             }
         
             if (food < 0)
@@ -138,6 +205,10 @@ namespace Team8.Unemployment.Global
         public void ResetAction()
         {
             action = _resetAction;
+        }
+        public void AppliedJob()
+        {
+            if(isApplyJob) isApplied = true;
         }
     }
 }

@@ -21,6 +21,14 @@ MonoBehaviour:
     actionCost: 1
     bookCost: 0
     foodCost: 0
+  - decisionName: Check Mail
+    skillCost: 0
+    stressCost: 0
+    healthCost: 0
+    moneyCost: 0
+    actionCost: 0
+    bookCost: 0
+    foodCost: 0
   - decisionName: Take Course
     skillCost: 10
     stressCost: 30

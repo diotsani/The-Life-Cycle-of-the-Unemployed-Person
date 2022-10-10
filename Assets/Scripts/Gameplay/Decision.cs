@@ -7,6 +7,9 @@ namespace Team8.Unemployment.Gameplay
 {
     public class Decision : MonoBehaviour
     {
+        public delegate void EventName();
+        public static event EventName OnClickDecision;
+        
         [Header("Button")]
         [SerializeField] private string decisionText;
         [SerializeField] private Button _decisionButton;
@@ -40,10 +43,13 @@ namespace Team8.Unemployment.Gameplay
         public void OnClick(Decision getDecision, BaseInteraction getBase, PlayerStatusData getPlayer)
         {
             getDecision.DecisionButton().onClick.AddListener(()=>DecisionChoose(getBase,getPlayer));
+            _lockButton.onClick.AddListener(SetLockButton);
         }
 
         private void DecisionChoose(BaseInteraction getBase,PlayerStatusData getPlayer)
         {
+            OnClickDecision?.Invoke();
+            
             getPlayer.SkillCost(_skillCost);
             getPlayer.StressCost(_stressCost);
             getPlayer.HealthCost(_healthCost);
@@ -51,6 +57,10 @@ namespace Team8.Unemployment.Gameplay
             getPlayer.ActionCost(_actionCost);
             getPlayer.BookCost(_bookCost);
             getPlayer.FoodCost(_foodCost);
+            
+            
+            //getBase.DecisionParent().SetActive(false); dont delete this line
+            getBase.AddAmountClick();
         }
         public string DecisionText()
         {
@@ -67,6 +77,10 @@ namespace Team8.Unemployment.Gameplay
         public Button LockButton()
         {
             return _lockButton;
+        }
+        void SetLockButton()
+        {
+            Debug.Log(name + " is locked");
         }
     }
 }

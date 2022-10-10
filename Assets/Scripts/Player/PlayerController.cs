@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Team8.Unemployment.Gameplay;
 using Team8.Unemployment.Utility;
 using UnityEngine;
 using UnityEngine.AI;
@@ -15,13 +16,16 @@ namespace Team8.Unemployment.Player
             walk,
             interact,
         }
-
+        public InteractionController interactionController;
         public PlayerStatus playerStatus;
         public NavMeshAgent agent;
         public Animator animator;
         public Tooltip tooltip;
         public float stopDistance;
         
+        public IInteractable currentInteractable;
+        public BaseInteraction currentInteraction;
+        public bool isWalking;
         private void FixedUpdate()
         {
             switch (playerStatus)
@@ -30,7 +34,7 @@ namespace Team8.Unemployment.Player
                     Walk();
                     break;
                 case PlayerStatus.interact:
-                    Interact();
+                    //Interact();
                     break;
                 default:
                     playerStatus = PlayerStatus.idle;
@@ -42,6 +46,9 @@ namespace Team8.Unemployment.Player
         {
             if (Vector3.Distance(transform.position, tooltip.target) <= stopDistance)
             {
+                isWalking = false;
+                currentInteraction.isInteracted = true;
+                Interact();
                 agent.ResetPath();
                 animator.SetBool("isWalk", false);
 
@@ -51,6 +58,9 @@ namespace Team8.Unemployment.Player
             }
             else
             {
+                isWalking = true;
+                Interact();
+                //interactionController.SetOffParent(); // dont delete this line
                 agent.SetDestination(tooltip.target);
                 animator.SetBool("isWalk", true);
             }
@@ -58,7 +68,7 @@ namespace Team8.Unemployment.Player
 
         public void Interact()
         {
-            Debug.Log("Interaction");
+            //currentInteractable.OnInteraction(!isWalking); dont delete this line
         }
         
         public void LookAtTarget(Vector3 target)

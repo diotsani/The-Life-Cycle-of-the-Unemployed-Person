@@ -10,26 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fc3403f79b394033ba1542e26381a631, type: 3}
-  m_Name: Refrigerator
+  m_Name: Wallet
   m_EditorClassIdentifier: 
   decisionList:
-  - decisionName: Eat
-    skillCost: 0
-    stressCost: 0
-    healthCost: 0
-    moneyCost: 0
-    actionCost: 1
-    bookCost: 0
-    foodCost: 10
-  - decisionName: Throw Food
-    skillCost: 0
-    stressCost: 0
-    healthCost: 0
-    moneyCost: 0
-    actionCost: 1
-    bookCost: 0
-    foodCost: 0
-  - decisionName: Check Food Stock
+  - decisionName: Check Money
     skillCost: 0
     stressCost: 0
     healthCost: 0

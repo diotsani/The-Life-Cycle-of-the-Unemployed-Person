@@ -31,6 +31,7 @@ namespace Team8.Unemployment.Utility
         private RaycastHit _hit;
         private bool _hitInfo;
         private IInteractable _interactable;
+        private BaseInteraction _interaction;
 
         #endregion
 
@@ -51,22 +52,26 @@ namespace Team8.Unemployment.Utility
             if (Physics.Raycast(_ray, out _hit, interactMask))
             {
                 _interactable = _hit.collider.GetComponent<IInteractable>();
-
+                _interaction = _hit.collider.GetComponent<BaseInteraction>();
+                
                 if (_interactable != null)
                 {
                     _hitInfo = true;
                     
-                    TooltipUI(_hitInfo);
+                    //TooltipUI(!_hitInfo);
 
                     if (Input.GetMouseButtonDown(0))
                     {
                         target = _interactable.TargetPostision();
                         player.LookAtTarget(target);
+                        player.currentInteractable = _interactable;
+                        player.currentInteraction = _interaction;
                         player.playerStatus = PlayerController.PlayerStatus.walk;
                     }
                 }
                 
-                TooltipUI(_hitInfo);
+                if(_interaction !=null) TooltipUI(!_interaction.isInteracted);
+                else TooltipUI(false);
             }
         }
 

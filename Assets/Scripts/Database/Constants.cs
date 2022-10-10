@@ -4,13 +4,14 @@ using UnityEngine;
 
 internal static class Constants
 {
-    public static class InteractionName
+    public static class Name
     {
         public const string Laptop ="Laptop";
         public const string Handphone = "Handphone";
         public const string BookShelf = "Book Shelf";
         public const string Door = "Door";
         public const string Refrigerator = "Refrigerator";
+        public const string Wallet = "Wallet";
         
     }
     public static class Status
@@ -37,11 +38,13 @@ internal static class Constants
         public const string CheckBookShelf = "Check Book Shelf";
         
         public const string Jogging = "Jogging";
-        public const string BuyFood = "Buy Food";
+        public const string BuyFoodStock = "Buy Food Stock";
         
         public const string Eat = "Eat";
         public const string ThrowFood = "Throw Food";
         public const string CheckFoodStock = "Check Food Stock";
+        
+        public const string CheckMoney = "Check Money";
         
         public const string Sell = "Sell";
         public const string Repair = "Repair";
@@ -54,17 +57,28 @@ internal static class Constants
         public const string BookShelf = "Decision/BookShelf";
         public const string Door = "Decision/Door";
         public const string Refrigerator = "Decision/Refrigerator";
+        public const string Wallet = "Decision/Wallet";
         
+    }
+    public static class EndGame
+    {
+        public const string WinTitle = "Congratulations!";
+        public const string LoseTitle = "Too Bad!";
+        
+        public const string WinDescription = "You Win";
+        public const string LoseDescription = "You Lose";
     }
     public static class Monologue
     {
         public const string ApplyJobMonolog = "I have to get a job or I will suffer for the rest of my life. Wish me luck!";
         public const string TakeCourseMonolog = "That’s make my head hurt.";
-        public const string CheckMailMonolog = "There’s no email. Sorry, you did not pass the test.";
+        public const string CheckMailMonolog_1 = "There’s no email.";
+        public const string CheckMailMonolog_2 = "It's hard to get a job. Oh God, what should I do now?";
         public const string PlayGameMonolog = "I feel refreshed, I can release my stress.";
         public const string RepairLaptopMonolog = "I have to spend a lot of money to fix it, come on!";
         
-        public const string SocialMediaMonolog = "We are looking for a talented designer who will be responsible for the design of our mobile application.” / “No job info.";
+        public const string SocialMediaMonolog_1 = "We are looking for a talented designer who will be responsible for the design of our mobile application. They said. I should try to apply for this job.";
+        public const string SocialMediaMonolog_2 = "No job info.";
         public const string RepairHandphoneMonolog = "I have to change my phone, this phone is too old. I want a new model of iPhone, but I'm broke.";
         public const string SellHandphoneMonolog = "This is the only thing I can do to survive, I really need money";
         
@@ -77,6 +91,7 @@ internal static class Constants
         public const string EatMonolog = "Don’t forget to eat for your own sake.";
         public const string ThrowFoodMonolog = "It's too bad if you have to throw it away.";
 
+        public const string LockRepairMonolog = "I’m broke. I need money.";
         public static string FoodStockMonolog(int value)
         {
             return $"I have {value} food right now";
@@ -85,6 +100,10 @@ internal static class Constants
         public static string BookStockMonolog(int value)
         {
             return $"I have {value} book right now";
+        }
+        public static string CheckMoneyMonolog(int value)
+        {
+            return $"I have ${value} left in my wallet";
         }
         
         public static string MoneyOverMonolog(int value)

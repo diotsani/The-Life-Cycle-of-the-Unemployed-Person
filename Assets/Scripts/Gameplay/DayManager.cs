@@ -17,14 +17,14 @@ namespace Team8.Unemployment.Gameplay
         [SerializeField] private int _amountDay;
         private int _maxDay = 7;
 
-        private void Start()
+        private void Awake()
         {
             _playerStatusData = PlayerStatusData.Instance;
         }
         public void ChangeDay()
         {
             CheckDay();
-            if (!_playerStatusData.isMaxDay)
+            if (_playerStatusData.isMaxDay == false)
             {
                 _amountDay++;
                 OnShowDay?.Invoke(_amountDay);
@@ -37,6 +37,10 @@ namespace Team8.Unemployment.Gameplay
                 _playerStatusData.isMaxDay = true;
                 OnMaxDay?.Invoke();
             }
+        }
+        public int AmountDay()
+        {
+            return _amountDay;
         }
     }
 }
