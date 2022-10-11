@@ -17,6 +17,7 @@ namespace Team8.Unemployment.Gameplay
             if (decision.DecisionText() == Constants.Requirments.CheckMoney)
             {
                 ShowMonologue(Constants.Monologue.CheckMoneyMonolog(_playerStatusData.money));
+                ShowHistory(Constants.History.CheckMoney);
             }
         }
 

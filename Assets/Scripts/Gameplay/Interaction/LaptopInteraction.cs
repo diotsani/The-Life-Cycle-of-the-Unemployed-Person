@@ -21,19 +21,23 @@ namespace Team8.Unemployment.Gameplay
             if (decision.DecisionText() == Constants.Requirments.ApplyJob)
             {
                 ShowMonologue(Constants.Monologue.ApplyJobMonolog);
+                ShowHistory(Constants.History.ApplyJob);
                 _playerStatusData.isApplyJob = true;
                 decision.DecisionObject().SetActive(!_playerStatusData.isApplyJob);
             }
             if (decision.DecisionText() == Constants.Requirments.TakeCourse)
             {
                 ShowMonologue(Constants.Monologue.TakeCourseMonolog);
+                ShowHistory(Constants.History.TakeCourse);
             }
             if (decision.DecisionText() == Constants.Requirments.PlayGame)
             {
                 ShowMonologue(Constants.Monologue.PlayGameMonolog);
+                ShowHistory(Constants.History.PlayGame);
             }
             if (decision.DecisionText() == Constants.Requirments.CheckMail)
             {
+                ShowHistory(Constants.History.CheckMail);
                 if(!_playerStatusData.isApplied)
                 {
                     ShowMonologue(Constants.Monologue.CheckMailMonolog_1);
@@ -46,6 +50,7 @@ namespace Team8.Unemployment.Gameplay
             if (decision.DecisionText() == Constants.Requirments.Repair)
             {
                 ShowMonologue(Constants.Monologue.RepairLaptopMonolog);
+                ShowHistory(Constants.History.RepairLaptop);
                 ResetDecision();
                 ResetAmountClick();
                 RandomMaxClick(_minRandom, _maxRandom);

@@ -33,13 +33,13 @@ namespace Team8.Unemployment.Gameplay
             if(decision.DecisionText() == Constants.Requirments.Jogging)
             {
                 ShowMonologue(Constants.Monologue.JoggingMonolog);
+                ShowHistory(Constants.History.Jogging);
             }
             if (decision.DecisionText() == Constants.Requirments.BuyFoodStock)
             {
                 ShowMonologue(Constants.Monologue.BuyFoodMonolog);
-                //_interactionController.ResetAllDurability();
-                //_playerStatusData.isFresh = true;
-                
+                ShowHistory(Constants.History.BuyFoodStock);
+
                 OnFreshFood?.Invoke();
             }
         }
