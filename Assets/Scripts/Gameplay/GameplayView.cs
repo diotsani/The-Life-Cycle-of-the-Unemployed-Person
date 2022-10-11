@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using Team8.Unemployment.Global;
 using TMPro;
 using UnityEngine;
@@ -14,6 +15,10 @@ namespace Team8.Unemployment.Gameplay
         [Header("Dependencies")]
         PlayerStatusData _playerStatusData;
         [SerializeField] DayManager _dayManager;
+        
+        [Header("Begin Display")]
+        [SerializeField] GameObject _beginPanel;
+        [SerializeField] TMP_Text _beginText;
         
         [Header("Day Display")]
         [SerializeField] private GameObject _dayPanel;
@@ -46,8 +51,6 @@ namespace Team8.Unemployment.Gameplay
         [SerializeField] private GameObject _content;
         [SerializeField] private TMP_Text _historyText;
 
-        private bool _isWaitDelay;
-
         private void OnEnable()
         {
             DayManager.OnShowDay += ShowDay;
@@ -55,6 +58,7 @@ namespace Team8.Unemployment.Gameplay
             BaseInteraction.OnShowHistory += ShowHistory;
             PlayerStatusData.OnStatusChange += ShowStatus;
             GameplayFlow.OnShowEndGame += ShowEndPanel;
+            GameplayFlow.OnBeginGame += ShowBegin;
         }
 
         private void OnDisable()
@@ -64,11 +68,13 @@ namespace Team8.Unemployment.Gameplay
             BaseInteraction.OnShowHistory -= ShowHistory;
             PlayerStatusData.OnStatusChange -= ShowStatus;
             GameplayFlow.OnShowEndGame -= ShowEndPanel;
+            GameplayFlow.OnBeginGame -= ShowBegin;
         }
 
         private void Start()
         {
             _playerStatusData = PlayerStatusData.Instance;
+            _beginPanel.GetComponent<Button>().onClick.AddListener(ClickBegin);
             _endGamePanel.GetComponent<Button>().onClick.AddListener(ResetGameplay);
             InitStatusFloat();
         }
@@ -91,16 +97,25 @@ namespace Team8.Unemployment.Gameplay
             SceneManager.LoadScene("TestGameplay");
         }
 
-        private void ShowDay(int value)
+        private void ShowBegin()
         {
-            _dayText.text = Constants.Status.Day + value.ToString();
-            _dayPanel.SetActive(true);
-            StartCoroutine(AfterActive(_dayPanel,2f));
+            _beginPanel.SetActive(true);
+        }
+        private void ClickBegin()
+        {
+            _beginPanel.SetActive(false);
+            _dayManager.ChangeDay(0);
+        }
+
+        private void ShowDay(int value, int delay)
+        {
+            // _dayText.text = Constants.Status.Day + value.ToString();
+            // _dayPanel.SetActive(true);
+            StartCoroutine(ShowDayDelay(value,delay));
         }
 
         private void ShowMonolog(string monolog)
         {
-            _isWaitDelay = true;
             _monologText.text = monolog;
             _monologPanel.SetActive(true);
             StartCoroutine(AfterActive(_monologPanel,3f));
@@ -135,7 +150,8 @@ namespace Team8.Unemployment.Gameplay
                 text.gameObject.SetActive(true);
                 text.text = $"{name} {value.ToString("+#;-#;0")}";
                 text.transform.SetAsLastSibling();
-                StartCoroutine(AfterActive(text.gameObject, 3f));
+                text.DOFade(1,1.5f).OnComplete(() => text.DOFade(0,3f).OnComplete(() => text.gameObject.SetActive(false)));
+                //StartCoroutine(AfterActive(text.gameObject, 3f));
             }
         }
         private TMP_Text GetStatusText()
@@ -152,8 +168,16 @@ namespace Team8.Unemployment.Gameplay
         private IEnumerator AfterActive(GameObject obj, float delay)
         {
             yield return new WaitForSeconds(delay);
-            _isWaitDelay = false;
             obj.SetActive(false);
+        }
+        private IEnumerator ShowDayDelay(int value, int delay)
+        {
+            yield return new WaitForSeconds(delay);
+            _dayText.text = Constants.Status.Day + value.ToString();
+            _dayPanel.SetActive(true);
+            yield return new WaitForSeconds(3);
+            _playerStatusData.ChangeStatus();
+            _dayPanel.SetActive(false);
         }
     }
 }

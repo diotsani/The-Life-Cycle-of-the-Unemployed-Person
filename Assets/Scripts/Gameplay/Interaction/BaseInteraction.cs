@@ -177,6 +177,17 @@ namespace Team8.Unemployment.Gameplay
             foreach (Decision obj in _decisionList)
             {
                 obj.DecisionButton().interactable = false;
+                obj.LockButton().interactable = false;
+            }
+        }
+        public void ReactivateDecision()
+        {
+            foreach (Decision obj in _decisionList)
+            {
+                obj.DecisionButton().interactable = true;
+                obj.LockButton().interactable = true;
+                RequirementDecision(_decisionList);
+                CheckCondition();
             }
         }
         public void RandomMaxClick(int min, int max)

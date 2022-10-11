@@ -1,4 +1,5 @@
 ﻿using System;
+using Team8.Unemployment.Gameplay;
 using Team8.Unemployment.Utility;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -23,10 +24,12 @@ namespace Team8.Unemployment.Global
         public int action = 3;
         private int _resetAction = 3;
         private int _totalAction;
-        
-        [Header("Change Config")]
+
+        [Header("Change Config")] 
+        public int day;
         [SerializeField] private int _addStress = 12;
         [SerializeField] private int _reduceHealth = 16;
+        public int maxSkill { get; private set; } = 100;
 
         public bool isFresh = true;
         public bool isMaxDay;
@@ -64,8 +67,7 @@ namespace Team8.Unemployment.Global
         }
         public void ChangeStatus()
         {
-            // need delay
-            
+            if(day <=1)return;
             health -= _reduceHealth;
             stress += _addStress;
             
