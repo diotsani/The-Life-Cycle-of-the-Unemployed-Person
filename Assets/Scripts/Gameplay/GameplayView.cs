@@ -33,6 +33,7 @@ namespace Team8.Unemployment.Gameplay
         [SerializeField] private TMP_Text _statusFloatText;
         private List<TMP_Text> _statusFloatTexts = new List<TMP_Text>();
         private int _amountStatus = 5;
+
         [Header("End Game Display")]
         [SerializeField] private GameObject _endGamePanel;
         [SerializeField] private TMP_Text _titleText;
