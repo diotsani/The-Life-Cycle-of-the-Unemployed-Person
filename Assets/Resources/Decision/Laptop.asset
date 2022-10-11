@@ -39,7 +39,7 @@ MonoBehaviour:
     foodCost: 0
   - decisionName: Play Game
     skillCost: 0
-    stressCost: -8
+    stressCost: -10
     healthCost: 0
     moneyCost: 0
     actionCost: 1

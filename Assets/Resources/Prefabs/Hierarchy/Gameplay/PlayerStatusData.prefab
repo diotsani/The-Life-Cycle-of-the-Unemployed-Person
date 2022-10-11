@@ -47,12 +47,10 @@ MonoBehaviour:
   skill: 20
   stress: 10
   health: 100
-  money: 30
+  money: 50
   book: 5
-  food: 26
+  food: 30
   action: 3
-  _addStress: 12
-  _reduceHealth: 16
   isFresh: 1
   isMaxDay: 0
   isApplyJob: 0
