@@ -9,7 +9,7 @@ namespace Team8.Unemployment.Gameplay
         public delegate void EventName();
         public static event EventName OnMaxDay;
         
-        public delegate void EventParameter(int value);
+        public delegate void EventParameter(int value,float delay);
         public static event EventParameter OnShowDay;
         
         private PlayerStatusData _playerStatusData;
@@ -21,13 +21,14 @@ namespace Team8.Unemployment.Gameplay
         {
             _playerStatusData = PlayerStatusData.Instance;
         }
-        public void ChangeDay()
+        public void ChangeDay(float delay)
         {
             CheckDay();
             if (_playerStatusData.isMaxDay == false)
             {
                 _amountDay++;
-                OnShowDay?.Invoke(_amountDay);
+                _playerStatusData.day++;
+                OnShowDay?.Invoke(_amountDay,delay);
             }
         }
         private void CheckDay()

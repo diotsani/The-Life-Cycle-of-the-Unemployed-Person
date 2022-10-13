@@ -28,17 +28,23 @@ namespace Team8.Unemployment.Gameplay
                 {
                     ShowMonologue(Constants.Monologue.SocialMediaMonolog_2);
                 }
+                
+                ShowHistory(Constants.History.SocialMedia);
             }
             if (decision.DecisionText() == Constants.Requirments.Sell)
             {
                 ShowMonologue(Constants.Monologue.SellHandphoneMonolog);
-                
+                ShowFeedback(Constants.Feedback.SellHandphoneFeedback);
+                ShowHistory(Constants.History.SellHandphone);
+
                 DecisionParent().SetActive(false);
                 this.gameObject.SetActive(false);
             }
             if (decision.DecisionText() == Constants.Requirments.Repair)
             {
                 ShowMonologue(Constants.Monologue.RepairHandphoneMonolog);
+                ShowFeedback(Constants.Feedback.RepairHandphoneFeedback);
+                ShowHistory(Constants.History.RepairHandphone);
                 ResetDecision();
                 ResetAmountClick();
                 RandomMaxClick(_minRandom, _maxRandom);

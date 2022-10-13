@@ -2,6 +2,7 @@
 using Team8.Unemployment.Global;
 using UnityEngine;
 using UnityEngine.Rendering;
+using Random = UnityEngine.Random;
 
 namespace Team8.Unemployment.Gameplay
 {
@@ -9,6 +10,8 @@ namespace Team8.Unemployment.Gameplay
     {
         public delegate void EventName();
         public static event EventName OnEndGame;
+        public static event EventName OnBeginGame;
+        public static event EventName OnEndDay;
         public static event EventName OnChangeDay;
         
         public delegate void EventEndGame(string title, string description);
@@ -16,6 +19,9 @@ namespace Team8.Unemployment.Gameplay
         
         [Header("Dependencies")] private PlayerStatusData playerStatusData;
         [SerializeField] private DayManager _dayManager;
+        
+        [SerializeField] private bool isEndGame;
+        public bool isPauseGame;
 
         private void Awake()
         {
@@ -25,30 +31,42 @@ namespace Team8.Unemployment.Gameplay
         private void Start()
         {
             playerStatusData = PlayerStatusData.Instance;
-
-            _dayManager.ChangeDay();
+            
+            OnBeginGame?.Invoke();
         }
 
         private void Update()
         {
-            EndGameCondition();
-            ActionOver();
+            if (!isEndGame)
+            {
+                EndGameCondition();
+                ActionOver();
+            }
         }
 
         private void ActionOver()
         {
             if (playerStatusData.action == 0)
             {
-                OnChangeDay?.Invoke();
-                
-                playerStatusData.ResetAction();
-                playerStatusData.AppliedJob();
-                playerStatusData.ChangeStatus();
-
-                _dayManager.ChangeDay();
+                OnEndDay?.Invoke();
+                playerStatusData.isPlayGame = false;
+                if (playerStatusData.isNewDay)
+                {
+                    OnChangeDay?.Invoke();
+                    playerStatusData.ResetAction();
+                    playerStatusData.AppliedJob();
+                    _dayManager.ChangeDay(0.5f);
+                }
             }
         }
-
+        public void CheckEndGame() // after apply job, in change day
+        {
+            if (playerStatusData.isApplyJob)
+            {
+                Debug.Log("Check End Game After Apply Job");
+                ProbabilityVictory(playerStatusData.skill,playerStatusData.maxSkill);
+            }
+        }
         private void EndGameCondition()
         {
             if (playerStatusData.stress >= 100 || playerStatusData.health <= 0)
@@ -60,24 +78,47 @@ namespace Team8.Unemployment.Gameplay
                 OnVictory();
             }
             if(!playerStatusData.isMaxDay)return;
-            if (playerStatusData.skill < 100 && playerStatusData.isApplied)
+            if (playerStatusData.skill <= 100 && playerStatusData.isApplied)
             {
-                OnGameOver(" Skill Not Enough");
+                ProbabilityVictory(playerStatusData.skill,playerStatusData.maxSkill);
                 return;
             }
-            OnVictory();
+            OnGameOver(" Skill Not Enough");
+        }
+        private void ProbabilityVictory(int skillChance, int maxSkill)
+        {
+            int randomChance = Random.Range(0, maxSkill+1);
+            Debug.Log(randomChance);
+            if (randomChance <= skillChance)
+            {
+                OnVictory();
+            }
+            else
+            {
+                OnGameOver(" Skill Not Enough");
+            }
         }
 
         private void OnGameOver(string add)
         {
-            OnEndGame?.Invoke();
-            OnShowEndGame?.Invoke(Constants.EndGame.LoseTitle, Constants.EndGame.LoseDescription + add);
+            if (playerStatusData.isMaxDay)
+            {
+                OnEndGame?.Invoke();
+                OnShowEndGame?.Invoke(Constants.EndGame.LoseTitle, Constants.EndGame.LoseDescription + add);
+                isEndGame = true;
+            }
+            else
+            {
+                playerStatusData.isApplyJob = false;
+            }
+            
         }
 
         private void OnVictory()
         {
             OnEndGame?.Invoke();
             OnShowEndGame?.Invoke(Constants.EndGame.WinTitle, Constants.EndGame.WinDescription);
+            isEndGame = true;
         }
     }
 }

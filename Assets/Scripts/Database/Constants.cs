@@ -112,4 +112,48 @@ internal static class Constants
             return $"Not Enough Money, You need {positiveValue} money";
         }
     }
+    public static class Feedback
+    {
+        public const string ApplyJobFeedback = "Just wait for the response. You will be informed the next day.";
+        public const string TakeCourseFeedback = "You make some progress. Keep it up!";
+        public const string PlayGameFeedback = "Release your stress a bit is important thing to do.";
+        public const string RepairLaptopFeedback = "That’s a lot of money you have to spend.";
+        
+        public const string RepairHandphoneFeedback = "You need to consider your expenses. Is that worth it to repair your phone?";
+        public const string SellHandphoneFeedback = "No phone is okay, right? At least you have more money now.";
+        
+        public const string ReadBookFeedback = "Do not rush! You need to slow down your pace sometimes.";
+        public const string SellBookFeedback = "Don’t worry! If you get a job, you will buy the book back.";
+        
+        public const string JoggingFeedback = "Make sure to keep healthy. Releasing your stress is a good thing.";
+        public const string BuyFoodFeedback = "It’s worth buying. I guarantee you.";
+        
+        public const string EatFeedback = "Don’t forget to eat and stay hydrated!";
+        public const string ThrowFoodFeedback = "Oh God, this is a waste of food.";
+    }
+    public static class History
+    {
+        public const string ApplyJob = "Apply Job";
+        public const string TakeCourse = "Take Course";
+        public const string PlayGame = "Play Game";
+        public const string CheckMail = "Check Mail";
+        public const string RepairLaptop = "Repair Laptop";
+        
+        public const string SocialMedia = "Social Media";
+        public const string RepairHandphone = "Repair Handphone";
+        public const string SellHandphone = "Sell Handphone";
+        
+        public const string ReadBook = "Read Book";
+        public const string CheckBookShelf = "Check Book Shelf";
+        public const string SellBook = "Sell Book";
+        
+        public const string Jogging = "Jogging";
+        public const string BuyFoodStock = "Buy Food Stock";
+        
+        public const string Eat = "Eat";
+        public const string ThrowFood = "Throw Food";
+        public const string CheckFoodStock = "Check Food Stock";
+        
+        public const string CheckMoney = "Check Money";
+    }
 }
