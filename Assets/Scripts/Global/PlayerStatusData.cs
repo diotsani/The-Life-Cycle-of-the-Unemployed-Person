@@ -31,6 +31,7 @@ namespace Team8.Unemployment.Global
         [SerializeField] private int _reduceHealth = 20;
         public int maxSkill { get; private set; } = 100;
 
+        public bool isPlayGame;
         public bool isFresh = true;
         public bool isNewDay;
         public bool isMaxDay;
@@ -76,7 +77,7 @@ namespace Team8.Unemployment.Global
             if(day <=1)return;
             health -= _reduceHealth;
             stress += _addStress;
-            
+            isPlayGame = true;
             OnStatusChange?.Invoke("Health", _reduceHealth*-1);
             OnStatusChange?.Invoke("Stress", _addStress);
             
@@ -220,6 +221,7 @@ namespace Team8.Unemployment.Global
         public void AppliedJob()
         {
             if(isApplyJob) isApplied = true;
+            if(!isApplyJob) isApplied= false;
         }
     }
 }

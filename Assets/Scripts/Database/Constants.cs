@@ -112,6 +112,25 @@ internal static class Constants
             return $"Not Enough Money, You need {positiveValue} money";
         }
     }
+    public static class Feedback
+    {
+        public const string ApplyJobFeedback = "Just wait for the response. You will be informed the next day.";
+        public const string TakeCourseFeedback = "You make some progress. Keep it up!";
+        public const string PlayGameFeedback = "Release your stress a bit is important thing to do.";
+        public const string RepairLaptopFeedback = "That’s a lot of money you have to spend.";
+        
+        public const string RepairHandphoneFeedback = "You need to consider your expenses. Is that worth it to repair your phone?";
+        public const string SellHandphoneFeedback = "No phone is okay, right? At least you have more money now.";
+        
+        public const string ReadBookFeedback = "Do not rush! You need to slow down your pace sometimes.";
+        public const string SellBookFeedback = "Don’t worry! If you get a job, you will buy the book back.";
+        
+        public const string JoggingFeedback = "Make sure to keep healthy. Releasing your stress is a good thing.";
+        public const string BuyFoodFeedback = "It’s worth buying. I guarantee you.";
+        
+        public const string EatFeedback = "Don’t forget to eat and stay hydrated!";
+        public const string ThrowFoodFeedback = "Yikes!";
+    }
     public static class History
     {
         public const string ApplyJob = "Apply Job";

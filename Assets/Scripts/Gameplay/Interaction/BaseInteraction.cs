@@ -17,6 +17,7 @@ namespace Team8.Unemployment.Gameplay
     {
         public delegate void EventParameter(string monologue);
         public static event EventParameter OnShowMonologue;
+        public static event EventParameter OnShowFeedback;
         
         public delegate void EventHistory(string history);
         public static event EventHistory OnShowHistory;
@@ -150,6 +151,10 @@ namespace Team8.Unemployment.Gameplay
         protected virtual void ShowMonologue(string monologue)
         {
             OnShowMonologue?.Invoke(monologue);
+        }
+        protected virtual void ShowFeedback(string feedback)
+        {
+            OnShowFeedback?.Invoke(feedback);
         }
 
         protected virtual void ResetDecision()

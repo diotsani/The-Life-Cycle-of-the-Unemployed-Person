@@ -11,7 +11,7 @@ namespace Team8.Unemployment.Gameplay
         private void OnEnable()
         {
             Decision.OnClickDecision += SetAllObjects;
-            Decision.OnClickDecision += SetOffInteracted;
+            Decision.OnClickInteracted += SetInteracted;
             GameplayFlow.OnEndDay += DeactivatedDecision;
             GameplayFlow.OnChangeDay += ChangeDay;
             GameplayFlow.OnEndGame += DeactivatedDecision;
@@ -20,7 +20,7 @@ namespace Team8.Unemployment.Gameplay
         private void OnDisable()
         {
             Decision.OnClickDecision -= SetAllObjects;
-            Decision.OnClickDecision -= SetOffInteracted;
+            Decision.OnClickInteracted -= SetInteracted;
             GameplayFlow.OnEndDay -= DeactivatedDecision;
             GameplayFlow.OnChangeDay -= ChangeDay;
             GameplayFlow.OnEndGame -= DeactivatedDecision;
@@ -32,11 +32,11 @@ namespace Team8.Unemployment.Gameplay
                 obj.DecisionParent().SetActive(false);
             }
         }
-        public void SetOffInteracted()
+        public void SetInteracted(bool isInteracted)
         {
             foreach (var obj in _objects)
             {
-                obj.isInteracted = false;
+                obj.isInteracted = isInteracted;
             }
         }
         private void SetAllObjects()

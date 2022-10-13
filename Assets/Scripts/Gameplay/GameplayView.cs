@@ -12,16 +12,23 @@ namespace Team8.Unemployment.Gameplay
 {
     public class GameplayView : MonoBehaviour
     {
-        [Header("Button")]
-        [SerializeField] private Button _retryButton;
         [Header("Dependencies")]
         PlayerStatusData _playerStatusData;
         [SerializeField] DayManager _dayManager;
+        [SerializeField] private GameplayFlow _gameplayFlow;
         
         [Header("Begin Display")]
         [SerializeField] private CanvasGroup _beginDisplay;
         [SerializeField] Image _beginPanel;
         [SerializeField] TMP_Text _beginText;
+        
+        [Header("Pause Display")]
+        [SerializeField] private Button _pauseButton;
+        [SerializeField] private Button _lockPauseButton;
+        [SerializeField] private CanvasGroup _pausePanel;
+        [SerializeField] private Button _resumeButton;
+        [SerializeField] private Button _homeButton;
+        [SerializeField] private Button _quitButton;
         
         [Header("Day Display")]
         [SerializeField] private CanvasGroup _dayGroup;
@@ -36,6 +43,12 @@ namespace Team8.Unemployment.Gameplay
         private Vector2 _negativePosition;
         private Vector2 _positivePosition;
         private bool _isShowingMonolog;
+        
+        [Header("Feedback Display")]
+        [SerializeField] private CanvasGroup _feedbackPanel;
+        [SerializeField] private TMP_Text _feedbackText;
+        [SerializeField] private float _feedbackDuration;
+        [SerializeField] private Ease _feedbackEase;
         
         [Header("Status Float Display")]
         [SerializeField] private GameObject _statusFloatHeader;
@@ -56,6 +69,7 @@ namespace Team8.Unemployment.Gameplay
         {
             DayManager.OnShowDay += ShowDay;
             BaseInteraction.OnShowMonologue += ShowMonolog;
+            BaseInteraction.OnShowFeedback += ShowFeedback;
             PlayerStatusData.OnStatusChange += ShowStatus;
             GameplayFlow.OnShowEndGame += ShowEndPanel;
             GameplayFlow.OnBeginGame += ShowBegin;
@@ -65,6 +79,7 @@ namespace Team8.Unemployment.Gameplay
         {
             DayManager.OnShowDay -= ShowDay;
             BaseInteraction.OnShowMonologue -= ShowMonolog;
+            BaseInteraction.OnShowFeedback -= ShowFeedback;
             PlayerStatusData.OnStatusChange -= ShowStatus;
             GameplayFlow.OnShowEndGame -= ShowEndPanel;
             GameplayFlow.OnBeginGame -= ShowBegin;
@@ -74,9 +89,9 @@ namespace Team8.Unemployment.Gameplay
         {
             _playerStatusData = PlayerStatusData.Instance;
             _beginPanel.GetComponent<Button>().onClick.AddListener(ClickBegin);
-            _retryButton.onClick.AddListener(ResetGameplay);
             _endGamePanel.GetComponent<Button>().onClick.AddListener(ResetGameplay);
             InitStatusFloat();
+            InitPause();
             
             _positivePosition = new Vector2(0,_monologPanel.rectTransform.anchoredPosition.y);
             _negativePosition = _positivePosition * -1;
@@ -85,12 +100,28 @@ namespace Team8.Unemployment.Gameplay
 
         private void Update()
         {
+            _lockPauseButton.gameObject.SetActive(_isShowingMonolog);
             if (_isShowingMonolog)
             {
                 if(Input.GetMouseButtonDown(0))
                 {
                     UnShowMonolog();
                 }
+            }
+
+            if (_gameplayFlow.isPauseGame)
+            {
+                if(Input.GetKeyDown(KeyCode.Escape))
+                {
+                    ShowPause("Resume");
+                    _gameplayFlow.isPauseGame = false;
+                }
+                return;
+            }
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                ShowPause("Pause");
+                _gameplayFlow.isPauseGame = true;
             }
         }
 
@@ -122,6 +153,32 @@ namespace Team8.Unemployment.Gameplay
              _dayManager.ChangeDay(0.5f);
         }
 
+        private void InitPause()
+        {
+            _pauseButton.onClick.AddListener(()=> ShowPause("Pause"));
+            _resumeButton.onClick.AddListener(()=> ShowPause("Resume"));
+            _homeButton.onClick.AddListener(()=>SceneManager.LoadScene("Home"));
+            _quitButton.onClick.AddListener(Application.Quit);
+        }
+        private void ShowPause(string message)
+        {
+            if(message == "Pause")
+            {
+                _pausePanel.gameObject.SetActive(true);
+                _pausePanel.DOFade(1, 0.5f).From(0)
+                    .OnComplete(()=> Time.timeScale = 0);
+                _playerStatusData.isPlayGame = false;
+            }
+            else
+            {
+                Time.timeScale = 1;
+                Debug.Log(message);
+                _pausePanel.DOFade(0, 0.5f).From(1)
+                    .OnComplete(() => _pausePanel.gameObject.SetActive(false));
+                _playerStatusData.isPlayGame = true;
+            }
+        }
+
         private void ShowDay(int value,float delay)
         {
             // _dayText.text = Constants.Status.Day + value.ToString();
@@ -140,9 +197,18 @@ namespace Team8.Unemployment.Gameplay
         private void UnShowMonolog()
         {
             //Vector2 negativePosition = new Vector2(0, _monologPanel.rectTransform.anchoredPosition.y*-1);
-            _monologPanel.rectTransform.DOAnchorPos(_negativePosition, _monologDuration)
-                .OnComplete(_playerStatusData.NewDay);
+            _playerStatusData.isNewDay = true;
+            _monologPanel.rectTransform.DOAnchorPos(_negativePosition, _monologDuration);
+                //.OnComplete(_playerStatusData.NewDay);
             _isShowingMonolog = false;
+        }
+        private void ShowFeedback(string feedback)
+        {
+            _feedbackText.text = feedback;
+            _feedbackPanel.gameObject.SetActive(true);
+            _feedbackPanel.DOFade(1, _feedbackDuration/2).From(0).SetEase(_feedbackEase)
+                .OnComplete(()=>_feedbackPanel.DOFade(0, _feedbackDuration/2).From(1).SetDelay(_feedbackDuration)
+                    .OnComplete(()=>_feedbackPanel.gameObject.SetActive(false)));
         }
         private void ShowEndPanel(string title, string description)
         {
@@ -193,10 +259,11 @@ namespace Team8.Unemployment.Gameplay
                 _dayText.text = Constants.Status.Day + value.ToString();
                 _dayPanel.gameObject.SetActive(true);
                 _dayGroup.alpha = 1;
-                _dayGroup.DOFade(1, delay).From(0);
+                _dayGroup.DOFade(1, delay).From(0).SetDelay(delay);
             }
             else
             {
+                // First Day
                 _dayText.text = Constants.Status.Day + value.ToString();
                 _dayPanel.gameObject.SetActive(true);
                 _dayGroup.alpha = 1;
@@ -206,7 +273,10 @@ namespace Team8.Unemployment.Gameplay
             _playerStatusData.ChangeStatus();
             _dayGroup.DOFade(0, delay)
                 .OnComplete(() => _dayPanel.gameObject.SetActive(false));
-            //_dayText.DOFade(0, 0.5f);
+            yield return new WaitForSeconds(delay);
+            _gameplayFlow.CheckEndGame();
+            _playerStatusData.isPlayGame = true;
+            
         }
     }
 }

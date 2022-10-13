@@ -34,6 +34,7 @@ namespace Team8.Unemployment.Gameplay
             if (decision.DecisionText() == Constants.Requirments.Sell)
             {
                 ShowMonologue(Constants.Monologue.SellHandphoneMonolog);
+                ShowFeedback(Constants.Feedback.SellHandphoneFeedback);
                 ShowHistory(Constants.History.SellHandphone);
 
                 DecisionParent().SetActive(false);
@@ -42,6 +43,7 @@ namespace Team8.Unemployment.Gameplay
             if (decision.DecisionText() == Constants.Requirments.Repair)
             {
                 ShowMonologue(Constants.Monologue.RepairHandphoneMonolog);
+                ShowFeedback(Constants.Feedback.RepairHandphoneFeedback);
                 ShowHistory(Constants.History.RepairHandphone);
                 ResetDecision();
                 ResetAmountClick();

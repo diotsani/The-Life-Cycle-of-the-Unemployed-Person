@@ -9,6 +9,8 @@ namespace Team8.Unemployment.Gameplay
     {
         public delegate void EventName();
         public static event EventName OnClickDecision;
+        public delegate void EventInteracted(bool isClick);
+        public static event EventInteracted OnClickInteracted;
         
         [Header("Button")]
         [SerializeField] private string decisionText;
@@ -49,6 +51,7 @@ namespace Team8.Unemployment.Gameplay
         private void DecisionChoose(BaseInteraction getBase,PlayerStatusData getPlayer)
         {
             OnClickDecision?.Invoke();
+            OnClickInteracted?.Invoke(false);
             
             getPlayer.SkillCost(_skillCost);
             getPlayer.StressCost(_stressCost);
