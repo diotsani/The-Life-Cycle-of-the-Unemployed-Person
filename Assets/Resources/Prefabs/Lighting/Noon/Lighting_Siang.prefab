@@ -4945,7 +4945,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 0.881234, b: 0.7490196, a: 1}
-  m_Intensity: 26
+  m_Intensity: 21.5
   m_Range: 2.7421484
   m_SpotAngle: 43.57203
   m_InnerSpotAngle: 0
@@ -5041,8 +5041,8 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   intensityFromLight: 1
   intensityModeAdvanced: 0
-  intensityInside: 2.4
-  intensityOutside: 2.4
+  intensityInside: 26
+  intensityOutside: 26
   blendingMode: 0
   spotAngleFromLight: 1
   spotAngle: 43.57203
@@ -5347,8 +5347,8 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 0.1372549, g: 0.52227443, b: 1, a: 1}
-  m_Intensity: 28
+  m_Color: {r: 0.759434, g: 0.8665952, b: 1, a: 1}
+  m_Intensity: 7.83
   m_Range: 1.85
   m_SpotAngle: 45
   m_InnerSpotAngle: 21.80208
@@ -5466,7 +5466,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: a6560a915ef98420e9faacc1c7438823, type: 2}
+  sharedProfile: {fileID: 11400000, guid: 27f779cda3d838c4cad04fd81d2e1b7a, type: 2}
 --- !u!1 &7195439352892837913
 GameObject:
   m_ObjectHideFlags: 0
@@ -5577,7 +5577,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 0.8632076, g: 0.9449717, b: 1, a: 1}
-  m_Intensity: 1.9
+  m_Intensity: 1.4
   m_Range: 2.34
   m_SpotAngle: 45
   m_InnerSpotAngle: 21.80208

@@ -1416,7 +1416,7 @@ PrefabInstance:
     - target: {fileID: 7835245970651067193, guid: 094e97e8646ae8e4e87e6a7722b17b29,
         type: 3}
       propertyPath: m_Name
-      value: Main Camera
+      value: Main Camera_Siang
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 094e97e8646ae8e4e87e6a7722b17b29, type: 3}
@@ -1571,26 +1571,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 239079428288271752, guid: bd956878567e60144bd2f2a85e97852d,
-        type: 3}
-      propertyPath: _decisionParent
-      value: 
-      objectReference: {fileID: 1015408110}
-    - target: {fileID: 5381988948865029310, guid: bd956878567e60144bd2f2a85e97852d,
-        type: 3}
-      propertyPath: _decisionParent
-      value: 
-      objectReference: {fileID: 1015408110}
-    - target: {fileID: 5381988950032251582, guid: bd956878567e60144bd2f2a85e97852d,
-        type: 3}
-      propertyPath: _decisionParent
-      value: 
-      objectReference: {fileID: 1015408110}
-    - target: {fileID: 5381988950334129802, guid: bd956878567e60144bd2f2a85e97852d,
-        type: 3}
-      propertyPath: _decisionParent
-      value: 
-      objectReference: {fileID: 1015408110}
     - target: {fileID: 5564781258288561424, guid: bd956878567e60144bd2f2a85e97852d,
         type: 3}
       propertyPath: m_RootOrder
@@ -1651,11 +1631,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Interactable
       objectReference: {fileID: 0}
-    - target: {fileID: 7421036389185966009, guid: bd956878567e60144bd2f2a85e97852d,
-        type: 3}
-      propertyPath: _decisionParent
-      value: 
-      objectReference: {fileID: 1015408110}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd956878567e60144bd2f2a85e97852d, type: 3}
 --- !u!1001 &5650318975958641328
@@ -1906,31 +1881,6 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 1119510701}
-    - target: {fileID: 73112203874419506, guid: 9d5eaf813844fc2488ca2d9a9dc33510,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 73112203874419508, guid: 9d5eaf813844fc2488ca2d9a9dc33510,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 73112203874419508, guid: 9d5eaf813844fc2488ca2d9a9dc33510,
-        type: 3}
-      propertyPath: intensityInside
-      value: 26
-      objectReference: {fileID: 0}
-    - target: {fileID: 73112203874419508, guid: 9d5eaf813844fc2488ca2d9a9dc33510,
-        type: 3}
-      propertyPath: intensityOutside
-      value: 26
-      objectReference: {fileID: 0}
-    - target: {fileID: 73112203874419511, guid: 9d5eaf813844fc2488ca2d9a9dc33510,
-        type: 3}
-      propertyPath: m_Intensity
-      value: 21.5
-      objectReference: {fileID: 0}
     - target: {fileID: 7195439351184650356, guid: 9d5eaf813844fc2488ca2d9a9dc33510,
         type: 3}
       propertyPath: m_RootOrder
@@ -1990,37 +1940,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Lighting_Siang
-      objectReference: {fileID: 0}
-    - target: {fileID: 7195439351381484282, guid: 9d5eaf813844fc2488ca2d9a9dc33510,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7195439351381484282, guid: 9d5eaf813844fc2488ca2d9a9dc33510,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 0.8665952
-      objectReference: {fileID: 0}
-    - target: {fileID: 7195439351381484282, guid: 9d5eaf813844fc2488ca2d9a9dc33510,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 0.759434
-      objectReference: {fileID: 0}
-    - target: {fileID: 7195439351381484282, guid: 9d5eaf813844fc2488ca2d9a9dc33510,
-        type: 3}
-      propertyPath: m_Intensity
-      value: 7.83
-      objectReference: {fileID: 0}
-    - target: {fileID: 7195439352069710809, guid: 9d5eaf813844fc2488ca2d9a9dc33510,
-        type: 3}
-      propertyPath: sharedProfile
-      value: 
-      objectReference: {fileID: 11400000, guid: 27f779cda3d838c4cad04fd81d2e1b7a,
-        type: 2}
-    - target: {fileID: 8736392111146345569, guid: 9d5eaf813844fc2488ca2d9a9dc33510,
-        type: 3}
-      propertyPath: m_Intensity
-      value: 1.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d5eaf813844fc2488ca2d9a9dc33510, type: 3}
