@@ -28,10 +28,11 @@ namespace Team8.Unemployment.Global
         [Header("Change Config")] 
         public int day;
         [SerializeField] private int _addStress = 12;
-        [SerializeField] private int _reduceHealth = 16;
+        [SerializeField] private int _reduceHealth = 20;
         public int maxSkill { get; private set; } = 100;
 
         public bool isFresh = true;
+        public bool isNewDay;
         public bool isMaxDay;
         public bool isApplyJob;
         public bool isApplied;
@@ -58,12 +59,17 @@ namespace Team8.Unemployment.Global
             _totalAction = 0;
             
             _addStress = 12; 
-            _reduceHealth = 16;
+            _reduceHealth = 20;
             
             isFresh = true;
             isMaxDay = false;
             isApplyJob = false;
             isApplied = false;
+        }
+
+        public void NewDay()
+        {
+            isNewDay = true;
         }
         public void ChangeStatus()
         {

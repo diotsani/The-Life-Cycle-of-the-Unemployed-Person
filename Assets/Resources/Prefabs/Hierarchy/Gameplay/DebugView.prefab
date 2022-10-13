@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &267900287149822658
+--- !u!1 &5293617347549984482
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,54 +8,49 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 267900287149822660}
-  - component: {fileID: 267900287149822659}
+  - component: {fileID: 5293617347549984476}
+  - component: {fileID: 5293617347549984477}
   m_Layer: 0
-  m_Name: PlayerStatusData
+  m_Name: DebugView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &267900287149822660
+--- !u!4 &5293617347549984476
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 267900287149822658}
+  m_GameObject: {fileID: 5293617347549984482}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.07604474, y: 0.29519123, z: 0.17541087}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &267900287149822659
+--- !u!114 &5293617347549984477
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 267900287149822658}
+  m_GameObject: {fileID: 5293617347549984482}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a0df51df8304943a1b9a6c7c69cb49f, type: 3}
+  m_Script: {fileID: 11500000, guid: 91215cbd266f4c4f93d8f3b935138bce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skill: 8
-  stress: 10
-  health: 100
-  money: 30
-  book: 5
-  food: 26
-  action: 3
-  day: 0
-  _addStress: 12
-  _reduceHealth: 16
-  isFresh: 1
-  isNewDay: 0
-  isMaxDay: 0
-  isApplyJob: 0
-  isApplied: 0
+  _skillText: {fileID: 0}
+  _stressText: {fileID: 0}
+  _healthText: {fileID: 0}
+  _moneyText: {fileID: 0}
+  _bookText: {fileID: 0}
+  _foodText: {fileID: 0}
+  _actionText: {fileID: 0}
+  _daysText: {fileID: 0}
+  _content: {fileID: 0}
+  _historyText: {fileID: 0}

@@ -37,8 +37,13 @@ namespace Team8.Unemployment.Gameplay
             foreach (var obj in decisionList)
             {
                 bool set = _playerStatusData.book > 0;
-                DecisionParent().SetActive(set);
-                this.gameObject.SetActive(set);
+                if(_playerStatusData.book <= 0)
+                {
+                    DecisionParent().SetActive(false);
+                }
+                //DecisionParent().SetActive(set);
+                //this.gameObject.SetActive(set);
+                this.enabled = set;
             }
         }
     }

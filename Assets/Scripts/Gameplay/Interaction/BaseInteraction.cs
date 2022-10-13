@@ -104,7 +104,7 @@ namespace Team8.Unemployment.Gameplay
                 decision.Init(getName, getSkill, getStress, getHealth, getMoney, getAction, getBook, getFood);
                 decision.OnClick(decision,this,_playerStatusData);
             }
-            //_decisionParent.SetActive(false); // dont delete this line
+            _decisionParent.SetActive(false); // dont delete this line
         }
         public void AddAmountClick()
         {

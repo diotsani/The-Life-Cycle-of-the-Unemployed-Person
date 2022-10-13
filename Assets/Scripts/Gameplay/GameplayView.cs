@@ -12,51 +12,50 @@ namespace Team8.Unemployment.Gameplay
 {
     public class GameplayView : MonoBehaviour
     {
+        [Header("Button")]
+        [SerializeField] private Button _retryButton;
         [Header("Dependencies")]
         PlayerStatusData _playerStatusData;
         [SerializeField] DayManager _dayManager;
         
         [Header("Begin Display")]
-        [SerializeField] GameObject _beginPanel;
+        [SerializeField] private CanvasGroup _beginDisplay;
+        [SerializeField] Image _beginPanel;
         [SerializeField] TMP_Text _beginText;
         
         [Header("Day Display")]
-        [SerializeField] private GameObject _dayPanel;
+        [SerializeField] private CanvasGroup _dayGroup;
+        [SerializeField] private Image _dayPanel;
         [SerializeField] private TMP_Text _dayText;
         
         [Header("Monolog Display")]
-        [SerializeField] private GameObject _monologPanel;
+        [SerializeField] private Image _monologPanel;
         [SerializeField] private TMP_Text _monologText;
+        [SerializeField] private float _monologDuration;
+        [SerializeField] private Ease _monologEase;
+        private Vector2 _negativePosition;
+        private Vector2 _positivePosition;
+        private bool _isShowingMonolog;
         
         [Header("Status Float Display")]
         [SerializeField] private GameObject _statusFloatHeader;
+        [SerializeField] private Vector2 _statusPosition;
+        [SerializeField] private Vector2 _statusSpacing;
         [SerializeField] private TMP_Text _statusFloatText;
+        [SerializeField] private float _statusFloatDuration;
+        [SerializeField] private Ease _statusFloatEase;
         private List<TMP_Text> _statusFloatTexts = new List<TMP_Text>();
         private int _amountStatus = 5;
 
         [Header("End Game Display")]
-        [SerializeField] private GameObject _endGamePanel;
+        [SerializeField] private Image _endGamePanel;
         [SerializeField] private TMP_Text _titleText;
         [SerializeField] private TMP_Text _descriptionText;
-        [Header("Player Stats Display")]
-        [SerializeField] private TMP_Text _skillText;
-        [SerializeField] private TMP_Text _stressText;
-        [SerializeField] private TMP_Text _healthText;
-        [SerializeField] private TMP_Text _moneyText;
-        [SerializeField] private TMP_Text _bookText;
-        [SerializeField] private TMP_Text _foodText;
-        [SerializeField] private TMP_Text _actionText;
-        [SerializeField] private TMP_Text _daysText;
-        
-        [Header("Decision History Display")]
-        [SerializeField] private GameObject _content;
-        [SerializeField] private TMP_Text _historyText;
 
         private void OnEnable()
         {
             DayManager.OnShowDay += ShowDay;
             BaseInteraction.OnShowMonologue += ShowMonolog;
-            BaseInteraction.OnShowHistory += ShowHistory;
             PlayerStatusData.OnStatusChange += ShowStatus;
             GameplayFlow.OnShowEndGame += ShowEndPanel;
             GameplayFlow.OnBeginGame += ShowBegin;
@@ -66,7 +65,6 @@ namespace Team8.Unemployment.Gameplay
         {
             DayManager.OnShowDay -= ShowDay;
             BaseInteraction.OnShowMonologue -= ShowMonolog;
-            BaseInteraction.OnShowHistory -= ShowHistory;
             PlayerStatusData.OnStatusChange -= ShowStatus;
             GameplayFlow.OnShowEndGame -= ShowEndPanel;
             GameplayFlow.OnBeginGame -= ShowBegin;
@@ -76,39 +74,55 @@ namespace Team8.Unemployment.Gameplay
         {
             _playerStatusData = PlayerStatusData.Instance;
             _beginPanel.GetComponent<Button>().onClick.AddListener(ClickBegin);
+            _retryButton.onClick.AddListener(ResetGameplay);
             _endGamePanel.GetComponent<Button>().onClick.AddListener(ResetGameplay);
             InitStatusFloat();
+            
+            _positivePosition = new Vector2(0,_monologPanel.rectTransform.anchoredPosition.y);
+            _negativePosition = _positivePosition * -1;
+            _monologPanel.rectTransform.anchoredPosition = _negativePosition;
         }
 
         private void Update()
         {
-            _skillText.text = Constants.Status.Skill + _playerStatusData.skill;
-            _stressText.text = Constants.Status.Stress + _playerStatusData.stress;
-            _healthText.text = Constants.Status.Health + _playerStatusData.health;
-            _moneyText.text = Constants.Status.Money + _playerStatusData.money;
-            _bookText.text = Constants.Status.Book + _playerStatusData.book;
-            _foodText.text = Constants.Status.Food + _playerStatusData.food;
-            _actionText.text = Constants.Status.Action + _playerStatusData.action;
-            _daysText.text = Constants.Status.Day + _dayManager.AmountDay().ToString();
+            if (_isShowingMonolog)
+            {
+                if(Input.GetMouseButtonDown(0))
+                {
+                    UnShowMonolog();
+                }
+            }
         }
 
         void ResetGameplay()
         {
+            _endGamePanel.DOFade(0, 0.5f).From(0)
+                .OnComplete(()=>_endGamePanel.gameObject.SetActive(false));
             _playerStatusData.ResetStatus();
             SceneManager.LoadScene("TestGameplay");
         }
 
         private void ShowBegin()
         {
-            _beginPanel.SetActive(true);
+            // _beginPanel.gameObject.SetActive(true);
+            // _beginPanel.DOFade(1, 0.5f).From(0);
+            
+            _beginDisplay.gameObject.SetActive(true);
+            _beginDisplay.DOFade(1, 0.5f).From(0);
         }
         private void ClickBegin()
         {
-            _beginPanel.SetActive(false);
-            _dayManager.ChangeDay(0);
+            // _beginPanel.DOFade(0, 0.5f)
+            //     .OnComplete(() => _beginPanel.gameObject.SetActive(false));
+            // _beginText.DOFade(0, 0.5f);
+            
+             _beginDisplay.DOFade(0, 0.5f)
+               .OnComplete(() => _beginDisplay.gameObject.SetActive(false));
+
+             _dayManager.ChangeDay(0.5f);
         }
 
-        private void ShowDay(int value, int delay)
+        private void ShowDay(int value,float delay)
         {
             // _dayText.text = Constants.Status.Day + value.ToString();
             // _dayPanel.SetActive(true);
@@ -117,22 +131,25 @@ namespace Team8.Unemployment.Gameplay
 
         private void ShowMonolog(string monolog)
         {
+            _playerStatusData.isNewDay = false;
+            _isShowingMonolog = true;
             _monologText.text = monolog;
-            _monologPanel.SetActive(true);
-            StartCoroutine(AfterActive(_monologPanel,3f));
+            _monologPanel.gameObject.SetActive(true);
+            _monologPanel.rectTransform.DOAnchorPos(_positivePosition, _monologDuration).SetEase(_monologEase);
+        }
+        private void UnShowMonolog()
+        {
+            //Vector2 negativePosition = new Vector2(0, _monologPanel.rectTransform.anchoredPosition.y*-1);
+            _monologPanel.rectTransform.DOAnchorPos(_negativePosition, _monologDuration)
+                .OnComplete(_playerStatusData.NewDay);
+            _isShowingMonolog = false;
         }
         private void ShowEndPanel(string title, string description)
         {
             _titleText.text = title;
             _descriptionText.text = description;
-            _endGamePanel.SetActive(true);
-        }
-
-        void ShowHistory(string getHistory)
-        {
-            var text = Instantiate(_historyText,_content.transform);
-            text.text = getHistory;
-            text.gameObject.SetActive(true);
+            _endGamePanel.gameObject.SetActive(true);
+            _endGamePanel.DOFade(1, 0.5f).From(0);
         }
         private void InitStatusFloat()
         {
@@ -151,7 +168,10 @@ namespace Team8.Unemployment.Gameplay
                 text.gameObject.SetActive(true);
                 text.text = $"{name} {value.ToString("+#;-#;0")}";
                 text.transform.SetAsLastSibling();
-                text.DOFade(1,1.5f).OnComplete(() => text.DOFade(0,3f).OnComplete(() => text.gameObject.SetActive(false)));
+                text.DOFade(1,1f)
+                    .From(0)
+                    .OnComplete(() => text.DOFade(0,0.5f).SetDelay(2f)
+                            .OnComplete(() => text.gameObject.SetActive(false)));
                 //StartCoroutine(AfterActive(text.gameObject, 3f));
             }
         }
@@ -166,19 +186,27 @@ namespace Team8.Unemployment.Gameplay
             }
             return null;
         }
-        private IEnumerator AfterActive(GameObject obj, float delay)
+        private IEnumerator ShowDayDelay(int value,float delay)
         {
-            yield return new WaitForSeconds(delay);
-            obj.SetActive(false);
-        }
-        private IEnumerator ShowDayDelay(int value, int delay)
-        {
-            yield return new WaitForSeconds(delay);
-            _dayText.text = Constants.Status.Day + value.ToString();
-            _dayPanel.SetActive(true);
-            yield return new WaitForSeconds(3);
+            if (value > 1)
+            {
+                _dayText.text = Constants.Status.Day + value.ToString();
+                _dayPanel.gameObject.SetActive(true);
+                _dayGroup.alpha = 1;
+                _dayGroup.DOFade(1, delay).From(0);
+            }
+            else
+            {
+                _dayText.text = Constants.Status.Day + value.ToString();
+                _dayPanel.gameObject.SetActive(true);
+                _dayGroup.alpha = 1;
+                _dayText.DOFade(1, delay).From(0).SetDelay(delay);
+            }
+            yield return new WaitForSeconds(1 + delay);
             _playerStatusData.ChangeStatus();
-            _dayPanel.SetActive(false);
+            _dayGroup.DOFade(0, delay)
+                .OnComplete(() => _dayPanel.gameObject.SetActive(false));
+            //_dayText.DOFade(0, 0.5f);
         }
     }
 }

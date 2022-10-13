@@ -21,10 +21,6 @@ namespace Team8.Unemployment.Gameplay
         [SerializeField] private DayManager _dayManager;
         
         [SerializeField] private bool isEndGame;
-        
-        [Header("Config")]
-        private float _time;
-        private float _delay = 3;
 
         private void Awake()
         {
@@ -36,7 +32,6 @@ namespace Team8.Unemployment.Gameplay
             playerStatusData = PlayerStatusData.Instance;
             
             OnBeginGame?.Invoke();
-            //_dayManager.ChangeDay();
         }
 
         private void Update()
@@ -53,14 +48,12 @@ namespace Team8.Unemployment.Gameplay
             if (playerStatusData.action == 0)
             {
                 OnEndDay?.Invoke();
-                _time += Time.deltaTime;
-                if (_time >= _delay)
+                if (playerStatusData.isNewDay)
                 {
                     OnChangeDay?.Invoke();
                     playerStatusData.ResetAction();
                     playerStatusData.AppliedJob();
-                    _dayManager.ChangeDay(0);
-                    _time = 0;
+                    _dayManager.ChangeDay(0.5f);
                 }
             }
         }

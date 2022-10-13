@@ -288,6 +288,7 @@ GameObject:
   - component: {fileID: 3697483571691808230}
   - component: {fileID: 3080768853353474445}
   - component: {fileID: 1326533543282892002}
+  - component: {fileID: 8116907184473066421}
   m_Layer: 5
   m_Name: BeginPanel
   m_TagString: Untagged
@@ -399,3 +400,15 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!225 &8116907184473066421
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6211989835541017697}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
