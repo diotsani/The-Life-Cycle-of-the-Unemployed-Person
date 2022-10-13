@@ -30,7 +30,7 @@ MonoBehaviour:
     bookCost: 0
     foodCost: 0
   - decisionName: Take Course
-    skillCost: 10
+    skillCost: 12
     stressCost: 30
     healthCost: 0
     moneyCost: 0
@@ -39,7 +39,7 @@ MonoBehaviour:
     foodCost: 0
   - decisionName: Play Game
     skillCost: 0
-    stressCost: -8
+    stressCost: -12
     healthCost: 0
     moneyCost: 0
     actionCost: 1

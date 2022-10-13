@@ -129,7 +129,7 @@ internal static class Constants
         public const string BuyFoodFeedback = "It’s worth buying. I guarantee you.";
         
         public const string EatFeedback = "Don’t forget to eat and stay hydrated!";
-        public const string ThrowFoodFeedback = "Yikes!";
+        public const string ThrowFoodFeedback = "Oh God, this is a waste of food.";
     }
     public static class History
     {

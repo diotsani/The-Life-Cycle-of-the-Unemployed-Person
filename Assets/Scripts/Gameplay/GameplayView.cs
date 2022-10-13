@@ -23,8 +23,6 @@ namespace Team8.Unemployment.Gameplay
         [SerializeField] TMP_Text _beginText;
         
         [Header("Pause Display")]
-        [SerializeField] private Button _pauseButton;
-        [SerializeField] private Button _lockPauseButton;
         [SerializeField] private CanvasGroup _pausePanel;
         [SerializeField] private Button _resumeButton;
         [SerializeField] private Button _homeButton;
@@ -70,7 +68,7 @@ namespace Team8.Unemployment.Gameplay
             DayManager.OnShowDay += ShowDay;
             BaseInteraction.OnShowMonologue += ShowMonolog;
             BaseInteraction.OnShowFeedback += ShowFeedback;
-            PlayerStatusData.OnStatusChange += ShowStatus;
+            //PlayerStatusData.OnStatusChange += ShowStatus;
             GameplayFlow.OnShowEndGame += ShowEndPanel;
             GameplayFlow.OnBeginGame += ShowBegin;
         }
@@ -80,7 +78,7 @@ namespace Team8.Unemployment.Gameplay
             DayManager.OnShowDay -= ShowDay;
             BaseInteraction.OnShowMonologue -= ShowMonolog;
             BaseInteraction.OnShowFeedback -= ShowFeedback;
-            PlayerStatusData.OnStatusChange -= ShowStatus;
+            //PlayerStatusData.OnStatusChange -= ShowStatus;
             GameplayFlow.OnShowEndGame -= ShowEndPanel;
             GameplayFlow.OnBeginGame -= ShowBegin;
         }
@@ -90,7 +88,7 @@ namespace Team8.Unemployment.Gameplay
             _playerStatusData = PlayerStatusData.Instance;
             _beginPanel.GetComponent<Button>().onClick.AddListener(ClickBegin);
             _endGamePanel.GetComponent<Button>().onClick.AddListener(ResetGameplay);
-            InitStatusFloat();
+            //InitStatusFloat();
             InitPause();
             
             _positivePosition = new Vector2(0,_monologPanel.rectTransform.anchoredPosition.y);
@@ -100,7 +98,6 @@ namespace Team8.Unemployment.Gameplay
 
         private void Update()
         {
-            _lockPauseButton.gameObject.SetActive(_isShowingMonolog);
             if (_isShowingMonolog)
             {
                 if(Input.GetMouseButtonDown(0))
@@ -155,7 +152,6 @@ namespace Team8.Unemployment.Gameplay
 
         private void InitPause()
         {
-            _pauseButton.onClick.AddListener(()=> ShowPause("Pause"));
             _resumeButton.onClick.AddListener(()=> ShowPause("Resume"));
             _homeButton.onClick.AddListener(()=>SceneManager.LoadScene("Home"));
             _quitButton.onClick.AddListener(Application.Quit);
