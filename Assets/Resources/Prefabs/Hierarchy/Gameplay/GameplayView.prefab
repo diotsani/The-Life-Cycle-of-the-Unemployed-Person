@@ -44,11 +44,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0f44bf0217e47d5ad463fc94c3f105b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _retryButton: {fileID: 0}
   _dayManager: {fileID: 0}
+  _gameplayFlow: {fileID: 0}
   _beginDisplay: {fileID: 0}
   _beginPanel: {fileID: 0}
   _beginText: {fileID: 0}
+  _pauseButton: {fileID: 0}
+  _lockPauseButton: {fileID: 0}
+  _pausePanel: {fileID: 0}
+  _resumeButton: {fileID: 0}
+  _homeButton: {fileID: 0}
+  _quitButton: {fileID: 0}
   _dayGroup: {fileID: 0}
   _dayPanel: {fileID: 0}
   _dayText: {fileID: 0}
@@ -56,6 +62,10 @@ MonoBehaviour:
   _monologText: {fileID: 0}
   _monologDuration: 1
   _monologEase: 27
+  _feedbackPanel: {fileID: 0}
+  _feedbackText: {fileID: 0}
+  _feedbackDuration: 1
+  _feedbackEase: 0
   _statusFloatHeader: {fileID: 0}
   _statusPosition: {x: -300, y: 300}
   _statusSpacing: {x: 0, y: 10}

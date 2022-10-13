@@ -53,7 +53,8 @@ MonoBehaviour:
   action: 3
   day: 0
   _addStress: 12
-  _reduceHealth: 16
+  _reduceHealth: 20
+  isPlayGame: 0
   isFresh: 1
   isNewDay: 0
   isMaxDay: 0
