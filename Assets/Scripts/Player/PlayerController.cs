@@ -49,7 +49,7 @@ namespace Team8.Unemployment.Player
             {
                 isWalking = false;
                 currentInteraction.isInteracted = true;
-                interactionController.SetInteracted(true);
+                //interactionController.SetInteracted(true);
                 Interact();
                 agent.ResetPath();
                 animator.SetBool("isWalk", false);

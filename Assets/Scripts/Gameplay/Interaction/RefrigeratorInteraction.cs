@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using DG.Tweening;
 using Team8.Unemployment.Database;
 using UnityEngine;
 
@@ -6,6 +7,9 @@ namespace Team8.Unemployment.Gameplay
 {
     public class RefrigeratorInteraction : BaseInteraction
     {
+        [SerializeField] private GameObject _refrigeratorDoor;
+        [SerializeField] private Vector3 _openDoor;
+        [SerializeField] private Vector3 _closeDoor;
         protected override void OnEnable()
         {
             base.OnEnable();
@@ -23,6 +27,16 @@ namespace Team8.Unemployment.Gameplay
             _interactionName = Constants.Name.Refrigerator;
             _decisionScriptable = Resources.Load<DecisionScriptable>(Constants.Path.Refrigerator);
             base.Start();
+        }
+
+        public override void OnEffect()
+        {
+            _refrigeratorDoor.transform.DORotate(_openDoor, 1f);
+        }
+
+        public override void OffEffect()
+        {
+            _refrigeratorDoor.transform.DORotate(_closeDoor, 1f);
         }
 
         protected override void SpecificDecision(Decision decision)

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using DG.Tweening;
 using Team8.Unemployment.Database;
 using UnityEngine;
 
@@ -6,6 +7,8 @@ namespace Team8.Unemployment.Gameplay
 {
     public class LaptopInteraction : BaseInteraction
     {
+        [SerializeField] private Material _laptopScreen;
+        
         private int _priceRepair = 50;
         private int _minRandom = 3;
         private int _maxRandom = 6;
@@ -16,6 +19,20 @@ namespace Team8.Unemployment.Gameplay
             RandomMaxClick(_minRandom, _maxRandom);
             base.Start();
         }
+
+        public override void OnEffect()
+        {
+            _laptopScreen.EnableKeyword("_EMISSION");
+            _laptopScreen.globalIlluminationFlags = MaterialGlobalIlluminationFlags.EmissiveIsBlack;
+            //_laptopScreen.SetColor("_EmissionColor", Color.white);
+            _laptopScreen.DOColor(Color.white, "_EmissionColor", 1f).From(Color.black);
+        }
+
+        public override void OffEffect()
+        {
+            _laptopScreen.DOColor(Color.black, "_EmissionColor", 1f);
+        }
+
         protected override void SpecificDecision(Decision decision)
         {
             if (decision.DecisionText() == Constants.Requirments.ApplyJob)

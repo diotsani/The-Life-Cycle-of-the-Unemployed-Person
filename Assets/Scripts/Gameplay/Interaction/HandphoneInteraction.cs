@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using DG.Tweening;
 using Team8.Unemployment.Database;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ namespace Team8.Unemployment.Gameplay
 {
     public class HandphoneInteraction : BaseInteraction
     {
+        [SerializeField] private Material _handphoneScreen;
         private int _priceRepair = 25;
         private int _minRandom = 6;
         private int _maxRandom = 9;
@@ -15,6 +17,18 @@ namespace Team8.Unemployment.Gameplay
             _decisionScriptable = Resources.Load<DecisionScriptable>(Constants.Path.Handphone);
             RandomMaxClick(_minRandom, _maxRandom);
             base.Start();
+        }
+        public override void OnEffect()
+        {
+            _handphoneScreen.EnableKeyword("_EMISSION");
+            _handphoneScreen.globalIlluminationFlags = MaterialGlobalIlluminationFlags.EmissiveIsBlack;
+            //_laptopScreen.SetColor("_EmissionColor", Color.white);
+            _handphoneScreen.DOColor(Color.white, "_EmissionColor", 1f).From(Color.black);
+        }
+
+        public override void OffEffect()
+        {
+            _handphoneScreen.DOColor(Color.black, "_EmissionColor", 1f);
         }
         protected override void SpecificDecision(Decision decision)
         {

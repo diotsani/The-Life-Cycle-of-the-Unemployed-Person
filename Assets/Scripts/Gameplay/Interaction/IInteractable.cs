@@ -9,5 +9,6 @@ namespace Team8.Unemployment.Gameplay
         void OnInteraction(bool status);
 
         Vector3 TargetPostision();
+        float StopDistance();
     }
 }

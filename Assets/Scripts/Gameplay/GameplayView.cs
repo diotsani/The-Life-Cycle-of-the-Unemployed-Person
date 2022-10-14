@@ -50,16 +50,12 @@ namespace Team8.Unemployment.Gameplay
         
         [Header("Status Float Display")]
         [SerializeField] private GameObject _statusFloatHeader;
-        [SerializeField] private Vector2 _statusPosition;
-        [SerializeField] private Vector2 _statusSpacing;
         [SerializeField] private TMP_Text _statusFloatText;
-        [SerializeField] private float _statusFloatDuration;
-        [SerializeField] private Ease _statusFloatEase;
         private List<TMP_Text> _statusFloatTexts = new List<TMP_Text>();
         private int _amountStatus = 5;
 
         [Header("End Game Display")]
-        [SerializeField] private Image _endGamePanel;
+        [SerializeField] private CanvasGroup _endGamePanel;
         [SerializeField] private TMP_Text _titleText;
         [SerializeField] private TMP_Text _descriptionText;
 
@@ -154,7 +150,7 @@ namespace Team8.Unemployment.Gameplay
         {
             _resumeButton.onClick.AddListener(()=> ShowPause("Resume"));
             _homeButton.onClick.AddListener(()=>SceneManager.LoadScene("Home"));
-            _quitButton.onClick.AddListener(Application.Quit);
+            _quitButton.onClick.AddListener(()=>SceneManager.LoadScene("TestHome"));
         }
         private void ShowPause(string message)
         {
@@ -211,7 +207,7 @@ namespace Team8.Unemployment.Gameplay
             _titleText.text = title;
             _descriptionText.text = description;
             _endGamePanel.gameObject.SetActive(true);
-            _endGamePanel.DOFade(1, 0.5f).From(0);
+            _endGamePanel.DOFade(1, 1f).From(0).SetDelay(0.5f);
         }
         private void InitStatusFloat()
         {

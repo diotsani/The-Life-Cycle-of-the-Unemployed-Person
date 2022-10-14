@@ -6,6 +6,8 @@ namespace Team8.Unemployment.Gameplay
 {
     public class BookInteraction : BaseInteraction
     {
+        [SerializeField] private List<GameObject> _bookList;
+        [SerializeField] private Collider _bookCollider;
         protected override void Start()
         {
             _interactionName = Constants.Name.BookShelf;
@@ -26,6 +28,9 @@ namespace Team8.Unemployment.Gameplay
                 ShowMonologue(Constants.Monologue.SellBookMonolog);
                 ShowFeedback(Constants.Feedback.SellBookFeedback);
                 ShowHistory(Constants.History.SellBook);
+                
+                _bookList[0].SetActive(false);
+                _bookList.RemoveAt(0);
             }
             if (decision.DecisionText() == Constants.Requirments.CheckBookShelf)
             {
@@ -41,11 +46,9 @@ namespace Team8.Unemployment.Gameplay
                 bool set = _playerStatusData.book > 0;
                 if(_playerStatusData.book <= 0)
                 {
+                    _bookCollider.enabled = false;
                     DecisionParent().SetActive(false);
                 }
-                //DecisionParent().SetActive(set);
-                //this.gameObject.SetActive(set);
-                this.enabled = set;
             }
         }
     }
