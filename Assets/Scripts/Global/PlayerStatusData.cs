@@ -58,6 +58,7 @@ namespace Team8.Unemployment.Global
             action = 3;
             _resetAction = 3;
             _totalAction = 0;
+            day = 0;
             
             _addStress = 10; 
             _reduceHealth = 22;

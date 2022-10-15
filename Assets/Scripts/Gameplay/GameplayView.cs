@@ -27,6 +27,8 @@ namespace Team8.Unemployment.Gameplay
         [SerializeField] private Button _resumeButton;
         [SerializeField] private Button _homeButton;
         [SerializeField] private Button _quitButton;
+        private bool _isCoolDownPause;
+        private float _coolDownPauseTime = 0.6f;
         
         [Header("Day Display")]
         [SerializeField] private CanvasGroup _dayGroup;
@@ -102,19 +104,35 @@ namespace Team8.Unemployment.Gameplay
                 }
             }
 
-            if (_gameplayFlow.isPauseGame)
-            {
-                if(Input.GetKeyDown(KeyCode.Escape))
-                {
-                    ShowPause("Resume");
-                    _gameplayFlow.isPauseGame = false;
-                }
-                return;
-            }
+            // if (_gameplayFlow.isPauseGame)
+            // {
+            //     if(Input.GetKeyDown(KeyCode.Escape))
+            //     {
+            //         ShowPause("Resume");
+            //         _gameplayFlow.isPauseGame = false;
+            //     }
+            // }
+            // else
+            // {
+            //     if(Input.GetKeyDown(KeyCode.Escape))
+            //     {
+            //         ShowPause("Pause");
+            //         _gameplayFlow.isPauseGame = true;
+            //     }
+            // }
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                ShowPause("Pause");
-                _gameplayFlow.isPauseGame = true;
+                if(_isCoolDownPause)return;
+                if (Time.timeScale == 0)
+                {
+                    ShowPause("Resume");
+                    StartCoroutine(DelayOnPause(_coolDownPauseTime));
+                }
+                else
+                {
+                    ShowPause("Pause");
+                    StartCoroutine(DelayOnPause(_coolDownPauseTime));
+                }
             }
         }
 
@@ -123,7 +141,7 @@ namespace Team8.Unemployment.Gameplay
             _endGamePanel.DOFade(0, 0.5f).From(0)
                 .OnComplete(()=>_endGamePanel.gameObject.SetActive(false));
             _playerStatusData.ResetStatus();
-            SceneManager.LoadScene("TestGameplay");
+            SceneManager.LoadScene("TestHome");
         }
 
         void QuitGameplay()
@@ -145,8 +163,8 @@ namespace Team8.Unemployment.Gameplay
             // _beginPanel.DOFade(0, 0.5f)
             //     .OnComplete(() => _beginPanel.gameObject.SetActive(false));
             // _beginText.DOFade(0, 0.5f);
-            
-             _beginDisplay.DOFade(0, 0.5f)
+            _beginPanel.GetComponent<Button>().interactable = false;
+            _beginDisplay.DOFade(0, 0.5f)
                .OnComplete(() => _beginDisplay.gameObject.SetActive(false));
 
              _dayManager.ChangeDay(0.5f);
@@ -162,9 +180,10 @@ namespace Team8.Unemployment.Gameplay
         {
             if(message == "Pause")
             {
+                Debug.Log(message);
                 _pausePanel.gameObject.SetActive(true);
                 _pausePanel.DOFade(1, 0.5f).From(0)
-                    .OnComplete(()=> Time.timeScale = 0);
+                    .OnComplete(()=>Time.timeScale = 0);
                 _playerStatusData.isPlayGame = false;
             }
             else
@@ -175,6 +194,12 @@ namespace Team8.Unemployment.Gameplay
                     .OnComplete(() => _pausePanel.gameObject.SetActive(false));
                 _playerStatusData.isPlayGame = true;
             }
+        }
+        private IEnumerator DelayOnPause(float delay)
+        {
+            _isCoolDownPause = true;
+            yield return new WaitForSecondsRealtime(delay);
+            _isCoolDownPause = false;
         }
 
         private void ShowDay(int value,float delay)
