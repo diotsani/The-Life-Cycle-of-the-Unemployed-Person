@@ -50,6 +50,7 @@ namespace Team8.Unemployment.Gameplay
 
         private void DecisionChoose(BaseInteraction getBase,PlayerStatusData getPlayer)
         {
+            AudioManager.Instance.PlaySFX("ButtonClick");
             OnClickDecision?.Invoke();
             OnClickInteracted?.Invoke(false);
             

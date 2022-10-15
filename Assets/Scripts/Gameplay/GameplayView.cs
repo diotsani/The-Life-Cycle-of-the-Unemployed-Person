@@ -25,7 +25,6 @@ namespace Team8.Unemployment.Gameplay
         [Header("Pause Display")]
         [SerializeField] private CanvasGroup _pausePanel;
         [SerializeField] private Button _resumeButton;
-        [SerializeField] private Button _homeButton;
         [SerializeField] private Button _quitButton;
         private bool _isCoolDownPause;
         private float _coolDownPauseTime = 0.6f;
@@ -151,7 +150,6 @@ namespace Team8.Unemployment.Gameplay
         private void InitPause()
         {
             _resumeButton.onClick.AddListener(()=> ShowPause("Resume"));
-            _homeButton.onClick.AddListener(()=>SceneManager.LoadScene("Home"));
             _quitButton.onClick.AddListener(QuitGameplay);
         }
         private void ShowPause(string message)
