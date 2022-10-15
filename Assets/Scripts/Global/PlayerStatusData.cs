@@ -1,4 +1,5 @@
 ﻿using System;
+using Team8.Unemployment.Gameplay;
 using Team8.Unemployment.Utility;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -14,27 +15,31 @@ namespace Team8.Unemployment.Global
         public static event EventParameter OnStatusChange;
         
         [Header("Config")]
-        public int skill = 20;
+        public int skill = 8;
         public int stress = 10;
         public int health = 100;
-        public int money = 50;
+        public int money = 30;
         public int book = 5;
-        public int food = 30;
+        public int food = 26;
         public int action = 3;
         private int _resetAction = 3;
         private int _totalAction;
-        
-        [Header("Change Config")]
-        private int _addStress = 10;
-        private int _reduceHealth = 12;
 
+        [Header("Change Config")] 
+        public int day;
+        [SerializeField] private int _addStress = 10;
+        [SerializeField] private int _reduceHealth = 22;
+        public int maxSkill { get; private set; } = 100;
+
+        public bool isPlayGame;
         public bool isFresh = true;
+        public bool isNewDay;
         public bool isMaxDay;
         public bool isApplyJob;
         public bool isApplied;
         private void Start()
         {
-            
+            ResetStatus();
         }
 
         private void Update()
@@ -44,28 +49,35 @@ namespace Team8.Unemployment.Global
 
         public void ResetStatus()
         {
-            skill = 20;
+            skill = 8;
             stress = 10;
             health = 100;
-            money = 50;
+            money = 30;
             book = 5;
-            food = 30;
+            food = 26;
             action = 3;
             _resetAction = 3;
             _totalAction = 0;
+            
+            _addStress = 10; 
+            _reduceHealth = 22;
             
             isFresh = true;
             isMaxDay = false;
             isApplyJob = false;
             isApplied = false;
         }
+
+        public void NewDay()
+        {
+            isNewDay = true;
+        }
         public void ChangeStatus()
         {
-            // need delay
-            
+            if(day <=1)return;
             health -= _reduceHealth;
             stress += _addStress;
-            
+            isPlayGame = true;
             OnStatusChange?.Invoke("Health", _reduceHealth*-1);
             OnStatusChange?.Invoke("Stress", _addStress);
             
@@ -209,6 +221,7 @@ namespace Team8.Unemployment.Global
         public void AppliedJob()
         {
             if(isApplyJob) isApplied = true;
+            if(!isApplyJob) isApplied= false;
         }
     }
 }

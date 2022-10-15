@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using Team8.Unemployment.Gameplay;
+using Team8.Unemployment.Global;
 using Team8.Unemployment.Player;
 using TMPro;
 using UnityEngine;
@@ -49,6 +50,7 @@ namespace Team8.Unemployment.Utility
 
         void InitCurrentPos()
         {
+            if(!PlayerStatusData.Instance.isPlayGame)return;
             if (Physics.Raycast(_ray, out _hit, interactMask))
             {
                 _interactable = _hit.collider.GetComponent<IInteractable>();

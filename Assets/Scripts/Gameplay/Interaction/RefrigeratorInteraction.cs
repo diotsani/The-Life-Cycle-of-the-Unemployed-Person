@@ -30,10 +30,14 @@ namespace Team8.Unemployment.Gameplay
             if (decision.DecisionText() == Constants.Requirments.Eat)
             {
                 ShowMonologue(Constants.Monologue.EatMonolog);
+                ShowFeedback(Constants.Feedback.EatFeedback);
+                ShowHistory(Constants.History.Eat);
             }
             if(decision.DecisionText() == Constants.Requirments.ThrowFood)
             {
                 ShowMonologue(Constants.Monologue.ThrowFoodMonolog);
+                ShowFeedback(Constants.Feedback.ThrowFoodFeedback);
+                ShowHistory(Constants.History.ThrowFood);
                 _playerStatusData.ResetFood();
                 GoodInteraction();
             }
@@ -41,6 +45,7 @@ namespace Team8.Unemployment.Gameplay
             if (decision.DecisionText() == Constants.Requirments.CheckFoodStock)
             {
                 ShowMonologue(Constants.Monologue.FoodStockMonolog(_playerStatusData.food));
+                ShowHistory(Constants.History.CheckFoodStock);
             }
         }
 

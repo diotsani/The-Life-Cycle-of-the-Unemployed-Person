@@ -27,6 +27,7 @@ namespace Team8.Unemployment.Player
         
         public IInteractable currentInteractable;
         public BaseInteraction currentInteraction;
+        
         public bool isWalking;
         private void FixedUpdate()
         {
@@ -50,6 +51,7 @@ namespace Team8.Unemployment.Player
             {
                 isWalking = false;
                 currentInteraction.isInteracted = true;
+                interactionController.SetInteracted(true);
                 Interact();
                 agent.ResetPath();
                 animator.SetBool("isWalk", false);
@@ -62,7 +64,7 @@ namespace Team8.Unemployment.Player
             {
                 isWalking = true;
                 Interact();
-                //interactionController.SetOffParent(); // dont delete this line
+                interactionController.SetOffParent(); // dont delete this line
 
                 #region FootstepSFX
 
@@ -70,11 +72,13 @@ namespace Team8.Unemployment.Player
                 {
                     _lastPlayTime = Time.time;
                     
-                    AudioManager.instance.PlaySFX("Footstep 1");
+                    //AudioManager.instance.PlaySFX("Footstep 1");
                 }
 
                 #endregion
-
+                
+                interactionController.SetOffParent(); // dont delete this line
+                interactionController.SetInteracted(false); 
                 agent.SetDestination(tooltip.target);
                 animator.SetBool("isWalk", true);
             }
@@ -82,7 +86,7 @@ namespace Team8.Unemployment.Player
 
         public void Interact()
         {
-            //currentInteractable.OnInteraction(!isWalking); dont delete this line
+            currentInteractable.OnInteraction(!isWalking); //dont delete this line
         }
         
         public void LookAtTarget(Vector3 target)

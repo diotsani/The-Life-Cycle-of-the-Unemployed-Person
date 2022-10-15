@@ -44,14 +44,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a0df51df8304943a1b9a6c7c69cb49f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skill: 20
+  skill: 8
   stress: 10
   health: 100
-  money: 50
+  money: 30
   book: 5
-  food: 30
+  food: 26
   action: 3
+  day: 0
+  _addStress: 12
+  _reduceHealth: 20
+  isPlayGame: 0
   isFresh: 1
+  isNewDay: 0
   isMaxDay: 0
   isApplyJob: 0
   isApplied: 0

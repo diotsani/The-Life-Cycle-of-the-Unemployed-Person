@@ -11,17 +11,19 @@ namespace Team8.Unemployment.Gameplay
         private void OnEnable()
         {
             Decision.OnClickDecision += SetAllObjects;
-            Decision.OnClickDecision += SetOffInteracted;
+            Decision.OnClickInteracted += SetInteracted;
+            GameplayFlow.OnEndDay += DeactivatedDecision;
             GameplayFlow.OnChangeDay += ChangeDay;
-            GameplayFlow.OnEndGame += OnGameOver;
+            GameplayFlow.OnEndGame += DeactivatedDecision;
         }
 
         private void OnDisable()
         {
             Decision.OnClickDecision -= SetAllObjects;
-            Decision.OnClickDecision -= SetOffInteracted;
+            Decision.OnClickInteracted -= SetInteracted;
+            GameplayFlow.OnEndDay -= DeactivatedDecision;
             GameplayFlow.OnChangeDay -= ChangeDay;
-            GameplayFlow.OnEndGame -= OnGameOver;
+            GameplayFlow.OnEndGame -= DeactivatedDecision;
         }
         public void SetOffParent()
         {
@@ -30,11 +32,11 @@ namespace Team8.Unemployment.Gameplay
                 obj.DecisionParent().SetActive(false);
             }
         }
-        public void SetOffInteracted()
+        public void SetInteracted(bool isInteracted)
         {
             foreach (var obj in _objects)
             {
-                obj.isInteracted = false;
+                obj.isInteracted = isInteracted;
             }
         }
         private void SetAllObjects()
@@ -47,6 +49,7 @@ namespace Team8.Unemployment.Gameplay
 
         private void ChangeDay()
         {
+            ReactivatedDecision();
             foreach (var obj in _objects)
             {
                 obj.AddDurability();
@@ -60,12 +63,20 @@ namespace Team8.Unemployment.Gameplay
                 Debug.Log("ResetDurability");
             }
         }
-        private void OnGameOver()
+        private void DeactivatedDecision()
         {
             foreach (var obj in _objects)
             {
                 obj.DeactivateDecision();
             }
         }
+        private void ReactivatedDecision()
+        {
+            foreach (var obj in _objects)
+            {
+                obj.ReactivateDecision();
+            }
+        }
+        
     }
 }

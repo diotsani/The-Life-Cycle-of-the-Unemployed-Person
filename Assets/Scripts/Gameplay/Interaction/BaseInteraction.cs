@@ -17,9 +17,14 @@ namespace Team8.Unemployment.Gameplay
     {
         public delegate void EventParameter(string monologue);
         public static event EventParameter OnShowMonologue;
+        public static event EventParameter OnShowFeedback;
+        
+        public delegate void EventHistory(string history);
+        public static event EventHistory OnShowHistory;
         
         [Header("Dependencies")]
         [SerializeField] protected InteractionController _interactionController;
+        [SerializeField] protected DayManager _dayManager;
         protected PlayerStatusData _playerStatusData;
         [SerializeField] protected string _interactionName;
         
@@ -100,7 +105,7 @@ namespace Team8.Unemployment.Gameplay
                 decision.Init(getName, getSkill, getStress, getHealth, getMoney, getAction, getBook, getFood);
                 decision.OnClick(decision,this,_playerStatusData);
             }
-            //_decisionParent.SetActive(false); // dont delete this line
+            _decisionParent.SetActive(false); // dont delete this line
         }
         public void AddAmountClick()
         {
@@ -138,9 +143,18 @@ namespace Team8.Unemployment.Gameplay
         {
             //Damage Interaction in Laptop, Handphone, Refrigerator
         }
+
+        protected virtual void ShowHistory(string history)
+        {
+            OnShowHistory?.Invoke($"Day: {_dayManager.AmountDay()} " + history);
+        }
         protected virtual void ShowMonologue(string monologue)
         {
             OnShowMonologue?.Invoke(monologue);
+        }
+        protected virtual void ShowFeedback(string feedback)
+        {
+            OnShowFeedback?.Invoke(feedback);
         }
 
         protected virtual void ResetDecision()
@@ -168,6 +182,17 @@ namespace Team8.Unemployment.Gameplay
             foreach (Decision obj in _decisionList)
             {
                 obj.DecisionButton().interactable = false;
+                obj.LockButton().interactable = false;
+            }
+        }
+        public void ReactivateDecision()
+        {
+            foreach (Decision obj in _decisionList)
+            {
+                obj.DecisionButton().interactable = true;
+                obj.LockButton().interactable = true;
+                RequirementDecision(_decisionList);
+                CheckCondition();
             }
         }
         public void RandomMaxClick(int min, int max)

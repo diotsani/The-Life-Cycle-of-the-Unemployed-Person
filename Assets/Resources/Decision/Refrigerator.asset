@@ -15,7 +15,7 @@ MonoBehaviour:
   decisionList:
   - decisionName: Eat
     skillCost: 0
-    stressCost: 0
+    stressCost: -4
     healthCost: 0
     moneyCost: 0
     actionCost: 1
