@@ -22,6 +22,8 @@ namespace Team8.Unemployment.Player
         public Animator animator;
         public Tooltip tooltip;
         public float stopDistance;
+        [SerializeField] private float _footstepPlayRate = 0.7f;
+        private float _lastPlayTime;
         
         public IInteractable currentInteractable;
         public BaseInteraction currentInteraction;
@@ -61,6 +63,18 @@ namespace Team8.Unemployment.Player
                 isWalking = true;
                 Interact();
                 //interactionController.SetOffParent(); // dont delete this line
+
+                #region FootstepSFX
+
+                if (Time.time - _lastPlayTime > _footstepPlayRate)
+                {
+                    _lastPlayTime = Time.time;
+                    
+                    AudioManager.instance.PlaySFX("Footstep 1");
+                }
+
+                #endregion
+
                 agent.SetDestination(tooltip.target);
                 animator.SetBool("isWalk", true);
             }
