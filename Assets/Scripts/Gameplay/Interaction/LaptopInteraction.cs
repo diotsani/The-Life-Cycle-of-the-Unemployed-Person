@@ -22,8 +22,8 @@ namespace Team8.Unemployment.Gameplay
 
         public override void OnEffect()
         {
-            _laptopScreen.EnableKeyword("_EMISSION");
-            _laptopScreen.globalIlluminationFlags = MaterialGlobalIlluminationFlags.EmissiveIsBlack;
+            //_laptopScreen.EnableKeyword("_EMISSION");
+            //_laptopScreen.globalIlluminationFlags = MaterialGlobalIlluminationFlags.EmissiveIsBlack;
             //_laptopScreen.SetColor("_EmissionColor", Color.white);
             _laptopScreen.DOColor(Color.white, "_EmissionColor", 1f).From(Color.black);
         }

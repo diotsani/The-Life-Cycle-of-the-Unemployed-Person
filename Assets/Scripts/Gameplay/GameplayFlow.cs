@@ -31,7 +31,7 @@ namespace Team8.Unemployment.Gameplay
         private void Start()
         {
             playerStatusData = PlayerStatusData.Instance;
-            
+            Time.timeScale = 1;
             OnBeginGame?.Invoke();
         }
 

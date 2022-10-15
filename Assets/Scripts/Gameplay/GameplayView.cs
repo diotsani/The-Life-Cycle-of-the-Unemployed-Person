@@ -126,6 +126,12 @@ namespace Team8.Unemployment.Gameplay
             SceneManager.LoadScene("TestGameplay");
         }
 
+        void QuitGameplay()
+        {
+            _playerStatusData.ResetStatus();
+            SceneManager.LoadScene("TestHome");
+        }
+
         private void ShowBegin()
         {
             // _beginPanel.gameObject.SetActive(true);
@@ -150,7 +156,7 @@ namespace Team8.Unemployment.Gameplay
         {
             _resumeButton.onClick.AddListener(()=> ShowPause("Resume"));
             _homeButton.onClick.AddListener(()=>SceneManager.LoadScene("Home"));
-            _quitButton.onClick.AddListener(()=>SceneManager.LoadScene("TestHome"));
+            _quitButton.onClick.AddListener(QuitGameplay);
         }
         private void ShowPause(string message)
         {

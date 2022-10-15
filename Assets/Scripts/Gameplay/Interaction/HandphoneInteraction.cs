@@ -20,8 +20,8 @@ namespace Team8.Unemployment.Gameplay
         }
         public override void OnEffect()
         {
-            _handphoneScreen.EnableKeyword("_EMISSION");
-            _handphoneScreen.globalIlluminationFlags = MaterialGlobalIlluminationFlags.EmissiveIsBlack;
+           // _handphoneScreen.EnableKeyword("_EMISSION");
+            //_handphoneScreen.globalIlluminationFlags = MaterialGlobalIlluminationFlags.EmissiveIsBlack;
             //_laptopScreen.SetColor("_EmissionColor", Color.white);
             _handphoneScreen.DOColor(Color.white, "_EmissionColor", 1f).From(Color.black);
         }
