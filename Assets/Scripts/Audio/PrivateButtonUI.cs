@@ -1,4 +1,5 @@
 using System;
+using Team8.Unemployment.Global;
 using UnityEngine;
 using TMPro;
 
@@ -22,14 +23,14 @@ public class PrivateButtonUI : MonoBehaviour
     public void ToogleBGMUI()
     {
         textBGM.fontStyle = Boolean.Parse(PlayerPrefs.GetString("BGM")) ? FontStyles.Strikethrough : FontStyles.Normal;
-        AudioManager.instance.ToogleBGM(textBGM);
+        AudioManager.Instance.ToogleBGM(textBGM);
     }
     
     public void ToogleSFXUI()
     {
         textSFX.fontStyle = Boolean.Parse(PlayerPrefs.GetString("SFX")) ? FontStyles.Strikethrough : FontStyles.Normal;
-        AudioManager.instance.ToogleSFX(textSFX);
+        AudioManager.Instance.ToogleSFX(textSFX);
     }
-
+    
     #endregion
 }

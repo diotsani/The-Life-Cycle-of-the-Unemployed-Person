@@ -1,18 +1,16 @@
 using System;
 using System.Collections;
+using Team8.Unemployment.Database;
 using Team8.Unemployment.Player;
+using Team8.Unemployment.Utility;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine;
 
-public class AudioManager : MonoBehaviour
+namespace Team8.Unemployment.Global
 {
-    #region Singleton
-
-    public static AudioManager instance;
-
-    #endregion
-
+    public class AudioManager : SingletonMonoBehaviour<AudioManager>
+{
     #region Background Music Variabel
 
     [Header("Background Music")] 
@@ -34,17 +32,6 @@ public class AudioManager : MonoBehaviour
 
     #endregion
     
-    private void Awake()
-    {
-        if(instance != null && instance != this)
-            Destroy(this.gameObject);
-        else
-        {
-            instance = this;
-            DontDestroyOnLoad(this.gameObject);
-        }
-    }
-
     private void Start()
     {
         PlayBGM();
@@ -132,5 +119,6 @@ public class AudioManager : MonoBehaviour
     }
 
     #endregion
-    
 }
+}
+

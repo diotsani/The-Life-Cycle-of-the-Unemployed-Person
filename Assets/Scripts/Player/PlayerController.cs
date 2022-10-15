@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Team8.Unemployment.Gameplay;
+using Team8.Unemployment.Global;
 using Team8.Unemployment.Utility;
 using UnityEngine;
 using UnityEngine.AI;
@@ -63,24 +64,22 @@ namespace Team8.Unemployment.Player
             else
             {
                 isWalking = true;
+                FootStep();
                 Interact();
                 interactionController.SetOffParent(); // dont delete this line
-
-                #region FootstepSFX
-
-                if (Time.time - _lastPlayTime > _footstepPlayRate)
-                {
-                    _lastPlayTime = Time.time;
-                    
-                    //AudioManager.instance.PlaySFX("Footstep 1");
-                }
-
-                #endregion
-                
                 interactionController.SetOffParent(); // dont delete this line
                 interactionController.SetInteracted(false); 
                 agent.SetDestination(tooltip.target);
                 animator.SetBool("isWalk", true);
+            }
+        }
+        void FootStep()
+        {
+            if (Time.time - _lastPlayTime > _footstepPlayRate)
+            {
+                _lastPlayTime = Time.time;
+                    
+                AudioManager.Instance.PlaySFX("Footstep 1");
             }
         }
 
