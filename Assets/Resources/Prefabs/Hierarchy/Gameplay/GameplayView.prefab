@@ -65,11 +65,7 @@ MonoBehaviour:
   _feedbackDuration: 1
   _feedbackEase: 0
   _statusFloatHeader: {fileID: 0}
-  _statusPosition: {x: -300, y: 300}
-  _statusSpacing: {x: 0, y: 10}
   _statusFloatText: {fileID: 0}
-  _statusFloatDuration: 0
-  _statusFloatEase: 27
   _endGamePanel: {fileID: 0}
   _titleText: {fileID: 0}
   _descriptionText: {fileID: 0}

@@ -22,6 +22,7 @@ namespace Team8.Unemployment.Gameplay
         
         [SerializeField] private bool isEndGame;
         public bool isPauseGame;
+        public bool isWaitMonolog;
 
         private void Awake()
         {
@@ -31,7 +32,7 @@ namespace Team8.Unemployment.Gameplay
         private void Start()
         {
             playerStatusData = PlayerStatusData.Instance;
-            
+            Time.timeScale = 1;
             OnBeginGame?.Invoke();
         }
 
@@ -64,14 +65,19 @@ namespace Team8.Unemployment.Gameplay
             if (playerStatusData.isApplyJob)
             {
                 Debug.Log("Check End Game After Apply Job");
-                ProbabilityVictory(playerStatusData.skill,playerStatusData.maxSkill);
+                CheckProbability(playerStatusData.skill,playerStatusData.maxSkill);
             }
         }
         private void EndGameCondition()
         {
-            if (playerStatusData.stress >= 100 || playerStatusData.health <= 0)
+            if(isWaitMonolog) return;
+            if (playerStatusData.stress >= 100)
             {
-                OnGameOver(" Stress Over / Health Under 0, You are dead");
+                OnGameOver(Constants.EndGame.LoseDescriptionStress);
+            }
+            else if (playerStatusData.health <= 0)
+            {
+                OnGameOver(Constants.EndGame.LoseDescriptionHealth);
             }
             else if(playerStatusData.isApplied && playerStatusData.skill >= 100)
             {
@@ -83,7 +89,7 @@ namespace Team8.Unemployment.Gameplay
                 ProbabilityVictory(playerStatusData.skill,playerStatusData.maxSkill);
                 return;
             }
-            OnGameOver(" Skill Not Enough");
+            OnGameOver(Constants.EndGame.LoseDescriptionSkill);
         }
         private void ProbabilityVictory(int skillChance, int maxSkill)
         {
@@ -95,29 +101,53 @@ namespace Team8.Unemployment.Gameplay
             }
             else
             {
-                OnGameOver(" Skill Not Enough");
+                OnGameOver(Constants.EndGame.LoseDescriptionSkill);
             }
         }
-
-        private void OnGameOver(string add)
+        private void CheckProbability(int skillChance, int maxSkill)
         {
-            if (playerStatusData.isMaxDay)
+            int randomChance = Random.Range(0, maxSkill+1);
+            Debug.Log(randomChance);
+            if (randomChance <= skillChance)
             {
-                OnEndGame?.Invoke();
-                OnShowEndGame?.Invoke(Constants.EndGame.LoseTitle, Constants.EndGame.LoseDescription + add);
-                isEndGame = true;
+                OnVictory();
             }
             else
             {
+                Debug.Log("You are not lucky");
                 playerStatusData.isApplyJob = false;
             }
-            
+        }
+
+        private void OnGameOver(string message)
+        {
+            OnEndGame?.Invoke();
+            OnShowEndGame?.Invoke(Constants.EndGame.LoseTitle, message);
+            isEndGame = true;
+
         }
 
         private void OnVictory()
         {
             OnEndGame?.Invoke();
-            OnShowEndGame?.Invoke(Constants.EndGame.WinTitle, Constants.EndGame.WinDescription);
+
+            if (playerStatusData.skill <= 30)
+            {
+                OnShowEndGame?.Invoke(Constants.EndGame.WinTitle, Constants.EndGame.WinDescription30);
+            }
+            else if (playerStatusData.skill <= 60 && playerStatusData.skill > 30)
+            {
+                OnShowEndGame?.Invoke(Constants.EndGame.WinTitle, Constants.EndGame.WinDescription60);
+            }
+            else if (playerStatusData.skill <= 90 && playerStatusData.skill > 60)
+            {
+                OnShowEndGame?.Invoke(Constants.EndGame.WinTitle, Constants.EndGame.WinDescription90);
+            }
+            else if (playerStatusData.skill > 90)
+            {
+                OnShowEndGame?.Invoke(Constants.EndGame.WinTitle, Constants.EndGame.WinDescription90);
+            }
+            //OnShowEndGame?.Invoke(Constants.EndGame.WinTitle, Constants.EndGame.WinDescription);
             isEndGame = true;
         }
     }

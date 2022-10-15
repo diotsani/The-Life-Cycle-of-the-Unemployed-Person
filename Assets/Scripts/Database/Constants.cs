@@ -67,6 +67,14 @@ internal static class Constants
         
         public const string WinDescription = "You Win";
         public const string LoseDescription = "You Lose";
+        
+        public const string WinDescription30 = "You are a lucky person";
+        public const string WinDescription60 = "Your skill enough to get a job";
+        public const string WinDescription90 = "You are a genius";
+        
+        public const string LoseDescriptionSkill = "Your skill is too low";
+        public const string LoseDescriptionStress = "Your Stress is Over";
+        public const string LoseDescriptionHealth = "Your are too weak to do anything";
     }
     public static class Monologue
     {
@@ -114,7 +122,7 @@ internal static class Constants
     }
     public static class Feedback
     {
-        public const string ApplyJobFeedback = "Just wait for the response. You will be informed the next day.";
+        public const string ApplyJobFeedback = "Just wait for the response. You will be informed the next day. Don’t forget to check your email.";
         public const string TakeCourseFeedback = "You make some progress. Keep it up!";
         public const string PlayGameFeedback = "Release your stress a bit is important thing to do.";
         public const string RepairLaptopFeedback = "That’s a lot of money you have to spend.";
@@ -122,7 +130,7 @@ internal static class Constants
         public const string RepairHandphoneFeedback = "You need to consider your expenses. Is that worth it to repair your phone?";
         public const string SellHandphoneFeedback = "No phone is okay, right? At least you have more money now.";
         
-        public const string ReadBookFeedback = "Do not rush! You need to slow down your pace sometimes.";
+        public const string ReadBookFeedback = "Do not rush! You need to slow down your pace sometimes. You are still making progress.";
         public const string SellBookFeedback = "Don’t worry! If you get a job, you will buy the book back.";
         
         public const string JoggingFeedback = "Make sure to keep healthy. Releasing your stress is a good thing.";

@@ -41,7 +41,9 @@ namespace Team8.Unemployment.Gameplay
         protected int _maxDurability = 3;
         
         [Header("Position")]
+        public Collider _collider;
         [SerializeField] protected Transform _objectPosition;
+        [SerializeField] protected float _stopDistance;
         protected Vector3 _position = new Vector3(-0.3f,0.3f,0f);
         
         [Header("Condition")]
@@ -81,6 +83,7 @@ namespace Team8.Unemployment.Gameplay
                 CheckCondition();
                 isClicked = false;
             }
+            if(!isInteracted)OffEffect();
         }
 
         private void InitDecision()
@@ -134,6 +137,15 @@ namespace Team8.Unemployment.Gameplay
         }
         protected abstract void SpecificDecision(Decision decision);
         protected abstract void RequirementDecision(List<Decision> decisionList);
+
+        public virtual void OnEffect()
+        {
+            // Effect when player interact with this object
+        }
+        public virtual void OffEffect()
+        {
+            // Effect when player interact with this object
+        }
 
         protected virtual void CheckCondition()
         {
@@ -211,10 +223,20 @@ namespace Team8.Unemployment.Gameplay
         public void OnInteraction(bool status)
         {
             _decisionParent.SetActive(status);
+            RequirementDecision(_decisionList);
+
+            if (status)
+            {
+                OnEffect();
+            }
         }
         public Vector3 TargetPostision()
         {
             return _objectPosition.position;
+        }
+        public float StopDistance()
+        {
+            return _stopDistance;
         }
     }
 }

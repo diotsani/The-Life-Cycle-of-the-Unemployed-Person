@@ -53,8 +53,8 @@ namespace Team8.Unemployment.Utility
             if(!PlayerStatusData.Instance.isPlayGame)return;
             if (Physics.Raycast(_ray, out _hit, interactMask))
             {
-                _interactable = _hit.collider.GetComponent<IInteractable>();
-                _interaction = _hit.collider.GetComponent<BaseInteraction>();
+                _interactable = _hit.collider.GetComponentInParent<IInteractable>();
+                _interaction = _hit.collider.GetComponentInParent<BaseInteraction>();
                 
                 if (_interactable != null)
                 {
@@ -65,6 +65,7 @@ namespace Team8.Unemployment.Utility
                     if (Input.GetMouseButtonDown(0))
                     {
                         target = _interactable.TargetPostision();
+                        player.stopDistance = _interactable.StopDistance();
                         player.LookAtTarget(target);
                         player.currentInteractable = _interactable;
                         player.currentInteraction = _interaction;
