@@ -153,7 +153,7 @@ namespace Team8.Unemployment.Gameplay
         private void InitPause()
         {
             _resumeButton.onClick.AddListener(()=> ShowPause("Resume"));
-            _homeButton.onClick.AddListener(()=>SceneManager.LoadScene("Home"));
+            //_homeButton.onClick.AddListener(()=>SceneManager.LoadScene("Home"));
             _quitButton.onClick.AddListener(Application.Quit);
         }
         private void ShowPause(string message)
