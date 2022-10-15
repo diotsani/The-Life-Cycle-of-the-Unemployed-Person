@@ -86,6 +86,7 @@ namespace Team8.Unemployment.Gameplay
             _playerStatusData = PlayerStatusData.Instance;
             _beginPanel.GetComponent<Button>().onClick.AddListener(ClickBegin);
             _endGamePanel.GetComponent<Button>().onClick.AddListener(ResetGameplay);
+            _endGamePanel.GetComponent<Button>().interactable = false;
             //InitStatusFloat();
             InitPause();
             
@@ -103,23 +104,6 @@ namespace Team8.Unemployment.Gameplay
                     UnShowMonolog();
                 }
             }
-
-            // if (_gameplayFlow.isPauseGame)
-            // {
-            //     if(Input.GetKeyDown(KeyCode.Escape))
-            //     {
-            //         ShowPause("Resume");
-            //         _gameplayFlow.isPauseGame = false;
-            //     }
-            // }
-            // else
-            // {
-            //     if(Input.GetKeyDown(KeyCode.Escape))
-            //     {
-            //         ShowPause("Pause");
-            //         _gameplayFlow.isPauseGame = true;
-            //     }
-            // }
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 if(_isCoolDownPause)return;
@@ -152,17 +136,11 @@ namespace Team8.Unemployment.Gameplay
 
         private void ShowBegin()
         {
-            // _beginPanel.gameObject.SetActive(true);
-            // _beginPanel.DOFade(1, 0.5f).From(0);
-            
             _beginDisplay.gameObject.SetActive(true);
             _beginDisplay.DOFade(1, 0.5f).From(0);
         }
         private void ClickBegin()
         {
-            // _beginPanel.DOFade(0, 0.5f)
-            //     .OnComplete(() => _beginPanel.gameObject.SetActive(false));
-            // _beginText.DOFade(0, 0.5f);
             _beginPanel.GetComponent<Button>().interactable = false;
             _beginDisplay.DOFade(0, 0.5f)
                .OnComplete(() => _beginDisplay.gameObject.SetActive(false));
@@ -213,6 +191,8 @@ namespace Team8.Unemployment.Gameplay
         {
             _playerStatusData.isNewDay = false;
             _isShowingMonolog = true;
+            _gameplayFlow.isWaitMonolog = true;
+            
             _monologText.text = monolog;
             _monologPanel.gameObject.SetActive(true);
             _monologPanel.rectTransform.DOAnchorPos(_positivePosition, _monologDuration).SetEase(_monologEase);
@@ -224,6 +204,7 @@ namespace Team8.Unemployment.Gameplay
             _monologPanel.rectTransform.DOAnchorPos(_negativePosition, _monologDuration);
                 //.OnComplete(_playerStatusData.NewDay);
             _isShowingMonolog = false;
+            _gameplayFlow.isWaitMonolog = false;
         }
         private void ShowFeedback(string feedback)
         {
@@ -238,7 +219,12 @@ namespace Team8.Unemployment.Gameplay
             _titleText.text = title;
             _descriptionText.text = description;
             _endGamePanel.gameObject.SetActive(true);
-            _endGamePanel.DOFade(1, 1f).From(0).SetDelay(0.5f);
+            _endGamePanel.DOFade(1, 1f).From(0).SetDelay(0.5f)
+                .OnComplete(()=> SetEndGameButton());
+        }
+        void SetEndGameButton()
+        {
+            _endGamePanel.GetComponent<Button>().interactable = true;
         }
         private void InitStatusFloat()
         {

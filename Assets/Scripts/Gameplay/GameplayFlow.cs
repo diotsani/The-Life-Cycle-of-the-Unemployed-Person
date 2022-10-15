@@ -22,6 +22,7 @@ namespace Team8.Unemployment.Gameplay
         
         [SerializeField] private bool isEndGame;
         public bool isPauseGame;
+        public bool isWaitMonolog;
 
         private void Awake()
         {
@@ -69,6 +70,7 @@ namespace Team8.Unemployment.Gameplay
         }
         private void EndGameCondition()
         {
+            if(isWaitMonolog) return;
             if (playerStatusData.stress >= 100)
             {
                 OnGameOver(Constants.EndGame.LoseDescriptionStress);
