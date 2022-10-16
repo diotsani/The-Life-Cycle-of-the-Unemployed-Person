@@ -8,6 +8,9 @@ namespace Team8.Unemployment.Gameplay
     public class LaptopInteraction : BaseInteraction
     {
         [SerializeField] private Material _laptopScreen;
+        [SerializeField] private Color _whiteColor;
+        [SerializeField] private float _intensity;
+        private Color _defaultColor = new Color(22, 22, 22, 255);
         
         private int _priceRepair = 50;
         private int _minRandom = 3;
@@ -24,8 +27,9 @@ namespace Team8.Unemployment.Gameplay
         {
             //_laptopScreen.EnableKeyword("_EMISSION");
             //_laptopScreen.globalIlluminationFlags = MaterialGlobalIlluminationFlags.EmissiveIsBlack;
-            //_laptopScreen.SetColor("_EmissionColor", Color.white);
-            _laptopScreen.DOColor(Color.white, "_EmissionColor", 1f).From(Color.black);
+           // _laptopScreen.SetColor("_EmissionColor", _whiteColor* Mathf.Pow(2, _intensity));
+           _laptopScreen.DOColor(_whiteColor, "_EmissionColor", 1f).From(Color.black);
+
         }
 
         public override void OffEffect()

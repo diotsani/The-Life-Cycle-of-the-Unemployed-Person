@@ -83,7 +83,8 @@ namespace Team8.Unemployment.Gameplay
                 CheckCondition();
                 isClicked = false;
             }
-            if(!isInteracted)OffEffect();
+            if(isInteracted)SetOutline(1f);
+            else OffEffect();
         }
 
         private void InitDecision()
@@ -146,7 +147,10 @@ namespace Team8.Unemployment.Gameplay
         {
             // Effect when player interact with this object
         }
-
+        public virtual void SetOutline(float value)
+        {
+            this.GetComponent<QuickOutline>().OutlineWidth = value;
+        }
         protected virtual void CheckCondition()
         {
             //Check Condition for interaction state in Laptop, Handphone, Refrigerator

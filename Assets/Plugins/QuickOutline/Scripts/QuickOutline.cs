@@ -74,7 +74,7 @@ public class QuickOutline : MonoBehaviour {
   [SerializeField, HideInInspector]
   private List<ListVector3> bakeValues = new List<ListVector3>();
 
-  [SerializeField] private Renderer[] renderers;
+  private Renderer[] renderers;
   private Material outlineMaskMaterial;
   private Material outlineFillMaterial;
 

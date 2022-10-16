@@ -23,7 +23,7 @@ namespace Team8.Unemployment.Player
         public Animator animator;
         public float animSpeed;
         public float delayAnimSpeed;
-        public Tooltip tooltip;
+        public TipInteraction tipInteraction;
         public float stopDistance;
         [SerializeField] private float _footstepPlayRate = 0.7f;
         private float _lastPlayTime;
@@ -50,7 +50,7 @@ namespace Team8.Unemployment.Player
 
         public void Walk()
         {
-            if (Vector3.Distance(transform.position, tooltip.target) <= stopDistance)
+            if (Vector3.Distance(transform.position, tipInteraction.target) <= stopDistance)
             {
                 isWalking = false;
                 currentInteraction.isInteracted = true;
@@ -60,7 +60,7 @@ namespace Team8.Unemployment.Player
                 animator.SetBool("isWalk", false);
                 playerStatus = PlayerStatus.interact;
                 
-                LookAtTarget(tooltip.target);
+                LookAtTarget(tipInteraction.target);
             }
             else
             {
@@ -69,7 +69,7 @@ namespace Team8.Unemployment.Player
                 Interact();
                 interactionController.SetOffParent(); // dont delete this line
                 interactionController.SetInteracted(false); 
-                agent.SetDestination(tooltip.target);
+                agent.SetDestination(tipInteraction.target);
                 animator.SetBool("isWalk", true);
                 animator.speed = agent.speed+ animSpeed * delayAnimSpeed;
             }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -7,6 +8,7 @@ namespace Team8.Unemployment.Gameplay
     public class InteractionController : MonoBehaviour
     {
         [SerializeField] private List<BaseInteraction> _objects;
+        [SerializeField] private QuickOutline[] _outlines;
 
         private void OnEnable()
         {
@@ -25,6 +27,20 @@ namespace Team8.Unemployment.Gameplay
             GameplayFlow.OnChangeDay -= ChangeDay;
             GameplayFlow.OnEndGame -= DeactivatedDecision;
         }
+
+        private void Start()
+        {
+            SetOutlines(0);
+        }
+        
+        public void SetOutlines(float value)
+        {
+            foreach (var outline in _outlines)
+            {
+                outline.OutlineWidth = value;
+            }
+        }
+
         public void SetOffParent()
         {
             foreach (var obj in _objects)
