@@ -276,5 +276,6 @@ MonoBehaviour:
     m_Bits: 64
   player: {fileID: 0}
   target: {x: 0, y: 0, z: 0}
+  interactionController: {fileID: 0}
   tooltip: {fileID: 5650318976596677587}
   tooltipText: {fileID: 5650318976517700537}

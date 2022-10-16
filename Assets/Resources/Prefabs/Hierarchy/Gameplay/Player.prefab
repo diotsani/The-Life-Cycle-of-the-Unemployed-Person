@@ -504,6 +504,7 @@ GameObject:
   - component: {fileID: 2439061686917134254}
   - component: {fileID: 7593786749245577418}
   - component: {fileID: 7593786749245577420}
+  - component: {fileID: 1777516577}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -545,7 +546,7 @@ MonoBehaviour:
   animator: {fileID: 6165246842112322981}
   animSpeed: 1
   delayAnimSpeed: 1
-  tooltip: {fileID: 0}
+  tipInteraction: {fileID: 0}
   stopDistance: 0.4
   _footstepPlayRate: 0.7
   currentInteraction: {fileID: 0}
@@ -572,6 +573,24 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &1777516577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 790977796823261895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 2
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 0
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &1074814301168370103
 GameObject:
   m_ObjectHideFlags: 0

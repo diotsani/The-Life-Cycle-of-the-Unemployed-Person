@@ -668,6 +668,13 @@ MonoBehaviour:
   - {fileID: 3777217230279450266}
   - {fileID: 9141169668663902219}
   - {fileID: 1740399529067911081}
+  _outlines:
+  - {fileID: 1834876801}
+  - {fileID: 462518342}
+  - {fileID: 1020398687}
+  - {fileID: 537186212}
+  - {fileID: 645079059}
+  - {fileID: 1682570096}
 --- !u!1 &4153287036564226544
 GameObject:
   m_ObjectHideFlags: 0
@@ -846,6 +853,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3777217228795628712}
   - component: {fileID: 3777217228795628718}
+  - component: {fileID: 1020398687}
   m_Layer: 6
   m_Name: Laptop
   m_TagString: Untagged
@@ -899,6 +907,26 @@ MonoBehaviour:
   isClicked: 0
   _isDamaged: 0
   _laptopScreen: {fileID: 2100000, guid: 70890e55144fa764da57a0cbe1d1f0e5, type: 2}
+  _whiteColor: {r: 1, g: 1, b: 1, a: 1}
+  _intensity: 2.7
+--- !u!114 &1020398687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4548793549648893458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0.9960785, g: 0.8235295, b: 0.39607847, a: 1}
+  outlineWidth: 1
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &4548793549709601998
 GameObject:
   m_ObjectHideFlags: 0
@@ -909,6 +937,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3777217228860503668}
   - component: {fileID: 1740399529067911081}
+  - component: {fileID: 1682570096}
   m_Layer: 6
   m_Name: BookShelf
   m_TagString: Untagged
@@ -973,6 +1002,24 @@ MonoBehaviour:
   - {fileID: 4387809530383641963}
   - {fileID: 3195540911835416975}
   _bookCollider: {fileID: 6935000721832929567}
+--- !u!114 &1682570096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4548793549709601998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0.9960785, g: 0.8235295, b: 0.39607847, a: 1}
+  outlineWidth: 1
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &4548793550558388490
 GameObject:
   m_ObjectHideFlags: 0
@@ -986,6 +1033,7 @@ GameObject:
   - component: {fileID: 2603207930655359199}
   - component: {fileID: 5342764003875750342}
   - component: {fileID: 9046205635276639640}
+  - component: {fileID: 645079059}
   m_Layer: 6
   m_Name: Door
   m_TagString: Untagged
@@ -1101,6 +1149,24 @@ MonoBehaviour:
   isInteracted: 0
   isClicked: 0
   _isDamaged: 0
+--- !u!114 &645079059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4548793550558388490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0.9960785, g: 0.8235295, b: 0.39607847, a: 1}
+  outlineWidth: 1
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &4548793550782560272
 GameObject:
   m_ObjectHideFlags: 0
@@ -1114,6 +1180,7 @@ GameObject:
   - component: {fileID: 2603207932285082053}
   - component: {fileID: 1991320859090839150}
   - component: {fileID: 3777217229910385326}
+  - component: {fileID: 537186212}
   m_Layer: 6
   m_Name: Handphone
   m_TagString: Untagged
@@ -1229,6 +1296,24 @@ MonoBehaviour:
   isClicked: 0
   _isDamaged: 0
   _handphoneScreen: {fileID: 2100000, guid: 8f833f881ea894a4998116dac898d86e, type: 2}
+--- !u!114 &537186212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4548793550782560272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0.9960785, g: 0.8235295, b: 0.39607847, a: 1}
+  outlineWidth: 1
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &4548793551352939581
 GameObject:
   m_ObjectHideFlags: 0
@@ -1239,6 +1324,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3777217230279450247}
   - component: {fileID: 3777217230279450266}
+  - component: {fileID: 462518342}
   m_Layer: 6
   m_Name: Refrigerator
   m_TagString: Untagged
@@ -1293,6 +1379,24 @@ MonoBehaviour:
   _refrigeratorDoor: {fileID: 8112831253639299782}
   _openDoor: {x: 0, y: 30, z: 0}
   _closeDoor: {x: 0, y: 90, z: 0}
+--- !u!114 &462518342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4548793551352939581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0.9960785, g: 0.8235295, b: 0.39607847, a: 1}
+  outlineWidth: 1
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &4548793551502983433
 GameObject:
   m_ObjectHideFlags: 0
@@ -1303,6 +1407,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3777217230163155891}
   - component: {fileID: 9141169668663902219}
+  - component: {fileID: 1834876801}
   m_Layer: 6
   m_Name: Wallet
   m_TagString: Untagged
@@ -1354,6 +1459,24 @@ MonoBehaviour:
   isInteracted: 0
   isClicked: 0
   _isDamaged: 0
+--- !u!114 &1834876801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4548793551502983433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0.9960785, g: 0.8235295, b: 0.39607847, a: 1}
+  outlineWidth: 1
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &5677681212587835701
 GameObject:
   m_ObjectHideFlags: 0
@@ -1625,7 +1748,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6437734710847272095}
-  m_Mesh: {fileID: 8040104011643129580, guid: 5f245020dff8e7342ad6105fe4e03688, type: 3}
+  m_Mesh: {fileID: 8040104011643129580, guid: 1d2439c945238134d9eb240c301c7fe1, type: 3}
 --- !u!23 &8079481883787201095
 MeshRenderer:
   m_ObjectHideFlags: 0
