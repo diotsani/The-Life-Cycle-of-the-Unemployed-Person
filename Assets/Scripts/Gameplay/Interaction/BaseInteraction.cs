@@ -184,7 +184,7 @@ namespace Team8.Unemployment.Gameplay
                 if (obj.DecisionText() == Constants.Requirments.Repair)
                 {
                     bool set = _playerStatusData.money >= value;
-                    obj.LockButton().gameObject.SetActive(!set);
+                    obj.DecisionButton().interactable = set;
                     obj.DecisionObject().SetActive(_isDamaged);
                 }
             }

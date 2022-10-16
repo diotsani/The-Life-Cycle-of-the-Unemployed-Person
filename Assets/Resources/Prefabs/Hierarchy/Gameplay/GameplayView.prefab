@@ -49,9 +49,9 @@ MonoBehaviour:
   _beginDisplay: {fileID: 0}
   _beginPanel: {fileID: 0}
   _beginText: {fileID: 0}
+  _actionText: {fileID: 0}
   _pausePanel: {fileID: 0}
   _resumeButton: {fileID: 0}
-  _homeButton: {fileID: 0}
   _quitButton: {fileID: 0}
   _dayGroup: {fileID: 0}
   _dayPanel: {fileID: 0}
@@ -63,6 +63,7 @@ MonoBehaviour:
   _feedbackPanel: {fileID: 0}
   _feedbackText: {fileID: 0}
   _feedbackDuration: 1
+  _feedbackDelay: 0.8
   _feedbackEase: 0
   _statusFloatHeader: {fileID: 0}
   _statusFloatText: {fileID: 0}

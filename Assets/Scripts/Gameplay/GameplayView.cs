@@ -22,6 +22,9 @@ namespace Team8.Unemployment.Gameplay
         [SerializeField] Image _beginPanel;
         [SerializeField] TMP_Text _beginText;
         
+        [Header("HUD")] 
+        [SerializeField] private TMP_Text _actionText;
+        
         [Header("Pause Display")]
         [SerializeField] private CanvasGroup _pausePanel;
         [SerializeField] private Button _resumeButton;
@@ -47,6 +50,7 @@ namespace Team8.Unemployment.Gameplay
         [SerializeField] private CanvasGroup _feedbackPanel;
         [SerializeField] private TMP_Text _feedbackText;
         [SerializeField] private float _feedbackDuration;
+        [SerializeField] private float _feedbackDelay;
         [SerializeField] private Ease _feedbackEase;
         
         [Header("Status Float Display")]
@@ -96,6 +100,8 @@ namespace Team8.Unemployment.Gameplay
 
         private void Update()
         {
+            _actionText.text = Constants.Status.Action + _playerStatusData.action;
+            
             if (_isShowingMonolog)
             {
                 if(Input.GetMouseButtonDown(0))
@@ -208,7 +214,7 @@ namespace Team8.Unemployment.Gameplay
         {
             _feedbackText.text = feedback;
             _feedbackPanel.gameObject.SetActive(true);
-            _feedbackPanel.DOFade(1, _feedbackDuration/2).From(0).SetEase(_feedbackEase)
+            _feedbackPanel.DOFade(1, _feedbackDuration/2).From(0).SetDelay(_feedbackDelay).SetEase(_feedbackEase)
                 .OnComplete(()=>_feedbackPanel.DOFade(0, _feedbackDuration/2).From(1).SetDelay(_feedbackDuration)
                     .OnComplete(()=>_feedbackPanel.gameObject.SetActive(false)));
         }

@@ -167,7 +167,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: sdddsdsd
+  m_text: Music On
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f1f8655ed10a0b746a137ec1b31b08a4, type: 2}
   m_sharedMaterial: {fileID: -2536335490194776918, guid: f1f8655ed10a0b746a137ec1b31b08a4,
@@ -195,8 +195,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12
-  m_fontSizeBase: 12
+  m_fontSize: 8
+  m_fontSizeBase: 8
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -344,10 +344,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 15
-    m_Right: 15
-    m_Top: 10
-    m_Bottom: 10
+    m_Left: 10
+    m_Right: 10
+    m_Top: 8
+    m_Bottom: 8
   m_ChildAlignment: 3
   m_Spacing: 0
   m_ChildForceExpandWidth: 0
@@ -687,46 +687,37 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 574e32874be161b41abf85060d0b1f83, type: 3}
     volume: 1
     pitch: 1
-    loop: 0
   - name: Cynicmusic - Calm Relax 1
     clip: {fileID: 8300000, guid: 782d9fb7ca1a6644b9773c53477d4bd7, type: 3}
     volume: 1
     pitch: 1
-    loop: 0
   - name: Syncopika - Chill BGM
     clip: {fileID: 8300000, guid: abf723f4bfcc6b343996f5878cd9518c, type: 3}
     volume: 1
     pitch: 1
-    loop: 0
   - name: Cynicmusic - Calm Ambient 2
     clip: {fileID: 8300000, guid: 0462ae588b8bf3246b15efc39b14ca8d, type: 3}
     volume: 1
     pitch: 1
-    loop: 0
   - name: Cynicmusic - Calm Ambient 3
     clip: {fileID: 8300000, guid: bddc294e5ddcd6d4fb59c0dc8ad04bb9, type: 3}
     volume: 1
     pitch: 1
-    loop: 0
   sourceSFX: {fileID: 6837989276702681107}
   SFX:
   - name: ButtonClick
     clip: {fileID: 8300000, guid: c8d361bae0417214d9ef1e423a1f6ec2, type: 3}
     volume: 1
     pitch: 1
-    loop: 0
   - name: Footstep 1
     clip: {fileID: 8300000, guid: 459e0803bc49768488ca757b6b95d872, type: 3}
     volume: 1
     pitch: 1
-    loop: 1
   - name: Footstep 2
     clip: {fileID: 8300000, guid: ad5cb0f115009a34f8ad4238d258a6c2, type: 3}
     volume: 1
     pitch: 1
-    loop: 1
   - name: Footstep 3
     clip: {fileID: 8300000, guid: 9f60eade0f6b4584aa59827e557dd5ee, type: 3}
     volume: 1
     pitch: 1
-    loop: 1

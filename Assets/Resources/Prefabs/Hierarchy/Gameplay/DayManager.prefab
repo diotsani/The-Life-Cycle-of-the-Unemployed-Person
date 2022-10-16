@@ -51,8 +51,10 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
   _morningColor: {r: 0.3882353, g: 0.5529412, b: 0.6745098, a: 1}
   _noonColor: {r: 0.27058825, g: 0.89411765, b: 1, a: 1}
   _afternoonColor: {r: 0.59607846, g: 0.43529412, b: 0.14901961, a: 1}
+  _nightColor: {r: 0.17254902, g: 0.28235295, b: 0.39607844, a: 1}
   _noonLight_1: {fileID: 0}
   _noonLight_2: {fileID: 0}

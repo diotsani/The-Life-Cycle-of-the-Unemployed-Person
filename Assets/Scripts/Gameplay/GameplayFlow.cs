@@ -106,7 +106,7 @@ namespace Team8.Unemployment.Gameplay
         }
         private void CheckProbability(int skillChance, int maxSkill)
         {
-            int randomChance = Random.Range(0, maxSkill+1);
+            int randomChance = Random.Range(60, maxSkill+1);
             Debug.Log(randomChance);
             if (randomChance <= skillChance)
             {

@@ -6,6 +6,7 @@ using Team8.Unemployment.Utility;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Team8.Unemployment.Global
 {
@@ -56,21 +57,33 @@ namespace Team8.Unemployment.Global
 
             while (isPlay)
             {
-                for (int i = 0; i < BGM.Length; i++)
-                {
-                    _nameBGM.text = BGM[i].name;
-                    _animBGM.SetTrigger("PopUp");
-
-                    yield return new WaitForSeconds(3f);
-
-                    sourceBGM.clip = BGM[i].clip;
-                    sourceBGM.volume = BGM[i].volume;
-                    sourceBGM.pitch = BGM[i].pitch;
-
-                    sourceBGM.Play();
-
-                    while (sourceBGM.isPlaying) yield return null;
-                }
+                int random = Random.Range(0, BGM.Length);
+                _nameBGM.text = BGM[random].name;
+                _animBGM.SetTrigger("PopUp");
+                
+                yield return new WaitForSeconds(1f);
+                
+                sourceBGM.clip = BGM[random].clip;
+                sourceBGM.volume = BGM[random].volume;
+                sourceBGM.pitch = BGM[random].pitch;
+                sourceBGM.Play();
+                while (sourceBGM.isPlaying) yield return null;
+                
+                // for (int i = 0; i < BGM.Length; i++)
+                // {
+                //     _nameBGM.text = BGM[i].name;
+                //     _animBGM.SetTrigger("PopUp");
+                //
+                //     yield return new WaitForSeconds(3f);
+                //
+                //     sourceBGM.clip = BGM[i].clip;
+                //     sourceBGM.volume = BGM[i].volume;
+                //     sourceBGM.pitch = BGM[i].pitch;
+                //
+                //     sourceBGM.Play();
+                //
+                //     while (sourceBGM.isPlaying) yield return null;
+                // }
             }
         }
     }

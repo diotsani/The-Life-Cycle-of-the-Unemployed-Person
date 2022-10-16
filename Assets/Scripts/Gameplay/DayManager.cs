@@ -27,6 +27,7 @@ namespace Team8.Unemployment.Gameplay
         [SerializeField] private Color _morningColor; 
         [SerializeField] private Color _noonColor;
         [SerializeField] private Color _afternoonColor;
+        [SerializeField] private Color _nightColor;
         
         [Header("Light")]
         [SerializeField] private Light _noonLight_1;
@@ -40,10 +41,8 @@ namespace Team8.Unemployment.Gameplay
         private void Update()
         {
             float delay = Mathf.PingPong(Time.time, _dayCycleTime) / _dayCycleTime;
-            
             if (_playerStatusData.action == 3)
             {
-                //_camera.backgroundColor = Color.Lerp(_camera.backgroundColor, _morningColor, delay);
                 _camera.DOColor(_morningColor, _dayCycleTime);
                 _noonLight_1.DOIntensity(1.4f, _dayCycleTime).From(0);
                 _noonLight_2.DOIntensity(7.83f, _dayCycleTime).From(0);
@@ -59,7 +58,6 @@ namespace Team8.Unemployment.Gameplay
             }
             else if (_playerStatusData.action == 2)
             {
-                //_camera.backgroundColor = Color.Lerp(_camera.backgroundColor, _noonColor, delay);
                 _camera.DOColor(_noonColor, _dayCycleTime);
                 foreach (GameObject day in _dayCycle)
                 {
@@ -72,12 +70,23 @@ namespace Team8.Unemployment.Gameplay
             }
             else if (_playerStatusData.action == 1)
             {
-                //_camera.backgroundColor = Color.Lerp(_camera.backgroundColor, _afternoonColor, delay);
                 _camera.DOColor(_afternoonColor, _dayCycleTime);
                 foreach (GameObject day in _dayCycle)
                 {
                     day.SetActive(false);
                     if (day.name == "Afternoon")
+                    {
+                        day.SetActive(true);
+                    }
+                }
+            }
+            else if (_playerStatusData.action == 0)
+            {
+                _camera.DOColor(_nightColor, _dayCycleTime);
+                foreach (GameObject day in _dayCycle)
+                {
+                    day.SetActive(false);
+                    if (day.name == "Night")
                     {
                         day.SetActive(true);
                     }

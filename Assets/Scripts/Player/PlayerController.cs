@@ -21,6 +21,8 @@ namespace Team8.Unemployment.Player
         public PlayerStatus playerStatus;
         public NavMeshAgent agent;
         public Animator animator;
+        public float animSpeed;
+        public float delayAnimSpeed;
         public Tooltip tooltip;
         public float stopDistance;
         [SerializeField] private float _footstepPlayRate = 0.7f;
@@ -56,7 +58,6 @@ namespace Team8.Unemployment.Player
                 Interact();
                 agent.ResetPath();
                 animator.SetBool("isWalk", false);
-
                 playerStatus = PlayerStatus.interact;
                 
                 LookAtTarget(tooltip.target);
@@ -67,10 +68,10 @@ namespace Team8.Unemployment.Player
                 FootStep();
                 Interact();
                 interactionController.SetOffParent(); // dont delete this line
-                interactionController.SetOffParent(); // dont delete this line
                 interactionController.SetInteracted(false); 
                 agent.SetDestination(tooltip.target);
                 animator.SetBool("isWalk", true);
+                animator.speed = agent.speed+ animSpeed * delayAnimSpeed;
             }
         }
         void FootStep()
@@ -79,7 +80,7 @@ namespace Team8.Unemployment.Player
             {
                 _lastPlayTime = Time.time;
                     
-                AudioManager.Instance.PlaySFX("Footstep 1");
+                AudioManager.Instance.PlaySFX("Footstep 3");
             }
         }
 
