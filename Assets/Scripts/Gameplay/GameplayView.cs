@@ -20,7 +20,8 @@ namespace Team8.Unemployment.Gameplay
         [Header("Begin Display")]
         [SerializeField] private CanvasGroup _beginDisplay;
         [SerializeField] Image _beginPanel;
-        [SerializeField] TMP_Text _beginText;
+        [SerializeField] TMP_Text _beginDateText;
+        [SerializeField] TMP_Text _beginClickText;
         
         [Header("HUD")] 
         [SerializeField] private TMP_Text _actionText;
@@ -87,7 +88,10 @@ namespace Team8.Unemployment.Gameplay
         private void Start()
         {
             _playerStatusData = PlayerStatusData.Instance;
+            
             _beginPanel.GetComponent<Button>().onClick.AddListener(ClickBegin);
+            _beginDateText.text = DateTime.UtcNow.ToString("dd/MM/yyyy");
+            
             _endGamePanel.GetComponent<Button>().onClick.AddListener(ResetGameplay);
             _endGamePanel.GetComponent<Button>().interactable = false;
             //InitStatusFloat();

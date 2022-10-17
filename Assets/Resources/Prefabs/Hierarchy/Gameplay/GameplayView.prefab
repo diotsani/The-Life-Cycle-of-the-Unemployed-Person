@@ -48,7 +48,8 @@ MonoBehaviour:
   _gameplayFlow: {fileID: 0}
   _beginDisplay: {fileID: 0}
   _beginPanel: {fileID: 0}
-  _beginText: {fileID: 0}
+  _beginDateText: {fileID: 0}
+  _beginClickText: {fileID: 0}
   _actionText: {fileID: 0}
   _pausePanel: {fileID: 0}
   _resumeButton: {fileID: 0}

@@ -83,7 +83,11 @@ namespace Team8.Unemployment.Gameplay
                 CheckCondition();
                 isClicked = false;
             }
-            if(isInteracted)SetOutline(1f);
+
+            if (isInteracted)
+            {
+                //SetOutline(1f);
+            }
             else OffEffect();
         }
 

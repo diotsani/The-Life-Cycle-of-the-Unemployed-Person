@@ -33,9 +33,19 @@ namespace Team8.Unemployment.Gameplay
         [SerializeField] private Light _noonLight_1;
         [SerializeField] private Light _noonLight_2;
 
+        [SerializeField] private ParticleSystem _pSystemMorning;
+        [SerializeField] private ParticleSystem _pSystemCurrent;
+
         private void Awake()
         {
             _playerStatusData = PlayerStatusData.Instance;
+        }
+
+        private void Start()
+        { 
+            _pSystemCurrent = Instantiate(_pSystemMorning, transform);
+            _pSystemCurrent.gameObject.SetActive(true);
+            _pSystemCurrent.Play();
         }
 
         private void Update()

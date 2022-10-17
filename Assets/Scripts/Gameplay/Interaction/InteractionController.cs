@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Team8.Unemployment.Global;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -9,6 +11,9 @@ namespace Team8.Unemployment.Gameplay
     {
         [SerializeField] private List<BaseInteraction> _objects;
         [SerializeField] private QuickOutline[] _outlines;
+        
+        public BaseInteraction currentInteraction;
+        public BaseInteraction selectedInteraction;
 
         private void OnEnable()
         {
@@ -32,7 +37,52 @@ namespace Team8.Unemployment.Gameplay
         {
             SetOutlines(0);
         }
-        
+
+        private void Update()
+        {
+            Selected();
+            GetOutline();
+        }
+
+        private void GetOutline()
+        {
+            LayerMask _mask = LayerMask.GetMask("Interaction");
+            LayerMask _default = LayerMask.GetMask("Default");
+            RaycastHit _hit;
+            Ray _ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            
+            if(!PlayerStatusData.Instance.isPlayGame)return;
+            if (Physics.Raycast(_ray, out _hit, _mask))
+            {
+                currentInteraction = _hit.collider.GetComponentInParent<BaseInteraction>();
+                if (currentInteraction != null)
+                {
+                    currentInteraction.SetOutline(1);
+                    if (Input.GetMouseButtonDown(0))
+                    {
+                        selectedInteraction = currentInteraction;
+                    }
+                }
+                else 
+                {
+                    SetOutlines(0);
+                    Selected();
+                }
+            }
+        }
+
+        private void Selected()
+        {
+            if(selectedInteraction != null)
+            {
+                selectedInteraction.SetOutline(1);
+                if (Input.GetMouseButtonDown(0))
+                {
+                    selectedInteraction.SetOutline(0);
+                    selectedInteraction = null;
+                }
+            }
+        }
         public void SetOutlines(float value)
         {
             foreach (var outline in _outlines)

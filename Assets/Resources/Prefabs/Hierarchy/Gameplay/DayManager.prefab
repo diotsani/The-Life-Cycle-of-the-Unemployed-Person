@@ -58,3 +58,6 @@ MonoBehaviour:
   _nightColor: {r: 0.17254902, g: 0.28235295, b: 0.39607844, a: 1}
   _noonLight_1: {fileID: 0}
   _noonLight_2: {fileID: 0}
+  _pSystemMorning: {fileID: 8650720958971932817, guid: 71a3331510c35804a8d73ca448a287b0,
+    type: 3}
+  _pSystemCurrent: {fileID: 0}

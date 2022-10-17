@@ -35,7 +35,6 @@ namespace Team8.Unemployment.Utility
         private bool _hitInfo;
         private IInteractable _interactable;
         private BaseInteraction _interaction;
-        private QuickOutline _outline;
 
         #endregion
 
@@ -58,8 +57,7 @@ namespace Team8.Unemployment.Utility
             {
                 _interactable = _hit.collider.GetComponentInParent<IInteractable>();
                 _interaction = _hit.collider.GetComponentInParent<BaseInteraction>();
-                _outline = _hit.collider.GetComponentInParent<QuickOutline>();
-                
+
                 if (_interactable != null)
                 {
                     _hitInfo = true;
@@ -76,9 +74,6 @@ namespace Team8.Unemployment.Utility
                         player.playerStatus = PlayerController.PlayerStatus.walk;
                     }
                 }
-                
-                if(_hitInfo)_outline.OutlineWidth = 1;
-                else interactionController.SetOutlines(0);
 
                 if(_interaction !=null) TooltipUI(!_interaction.isInteracted);
                 else TooltipUI(false);

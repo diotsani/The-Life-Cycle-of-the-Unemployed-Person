@@ -57,6 +57,7 @@ namespace Team8.Unemployment.Global
 
             while (isPlay)
             {
+                Debug.Log("Music Play");
                 int random = Random.Range(0, BGM.Length);
                 _nameBGM.text = BGM[random].name;
                 _animBGM.SetTrigger("PopUp");
@@ -67,7 +68,7 @@ namespace Team8.Unemployment.Global
                 sourceBGM.volume = BGM[random].volume;
                 sourceBGM.pitch = BGM[random].pitch;
                 sourceBGM.Play();
-                while (sourceBGM.isPlaying) yield return null;
+                yield return new WaitForSecondsRealtime(sourceBGM.clip.length);
                 
                 // for (int i = 0; i < BGM.Length; i++)
                 // {
@@ -84,6 +85,10 @@ namespace Team8.Unemployment.Global
                 //
                 //     while (sourceBGM.isPlaying) yield return null;
                 // }
+            }
+            while (!isPlay)
+            {
+                Debug.Log("Music Stop");
             }
         }
     }
