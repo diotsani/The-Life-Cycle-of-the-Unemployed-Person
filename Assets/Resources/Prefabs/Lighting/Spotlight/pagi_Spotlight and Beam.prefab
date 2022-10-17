@@ -144,7 +144,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   intensityFromLight: 1
   intensityModeAdvanced: 0
-  intensityInside: 4.31
+  intensityInside: 5.3
   intensityOutside: 5.3
   blendingMode: 0
   spotAngleFromLight: 1
