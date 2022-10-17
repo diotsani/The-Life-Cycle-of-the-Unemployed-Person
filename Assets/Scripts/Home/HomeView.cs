@@ -24,6 +24,12 @@ namespace Team8.Unemployment.Home
 
         private void Start()
         {
+            Time.timeScale = 1;
+            _newGameButton.onClick.RemoveAllListeners();
+            _creditButton.onClick.RemoveAllListeners();
+            _quitButton.onClick.RemoveAllListeners();
+            _exitCreditButton.onClick.RemoveAllListeners();
+            
             _newGameButton.onClick.AddListener(OnNewGame);
             _creditButton.onClick.AddListener(OnCredit);
             _quitButton.onClick.AddListener(OnQuit);
@@ -38,8 +44,8 @@ namespace Team8.Unemployment.Home
         {
             AudioManager.Instance.PlaySFX("ButtonClick");
             _creditPanel.gameObject.SetActive(true);
-            
-            _creditPanel.DOFade(1, 0.5f).From(0);
+
+            _creditPanel.DOFade(1, 0.5f);
             _logoPanel.DOFade(0, 0.5f).From(1).OnComplete((() => _logoPanel.gameObject.SetActive(false)));
             _buttonPanel.DOFade(0, 0.5f).From(1).OnComplete((() => _buttonPanel.gameObject.SetActive(false)));
             
