@@ -34,7 +34,7 @@ namespace Team8.Unemployment.Gameplay
         [SerializeField] private Light _noonLight_2;
 
         [SerializeField] private ParticleSystem _particleSystem;
-        [SerializeField] private ParticleSystem _pSystemCurrent;
+        [SerializeField] private GameObject _pSystemSpotlight;
 
         [Header("Spotlight")]
         [SerializeField] private GameObject[] _spotlight;
@@ -46,9 +46,12 @@ namespace Team8.Unemployment.Gameplay
 
         private void Start()
         { 
-            _pSystemCurrent = Instantiate(_particleSystem, transform);
-            _pSystemCurrent.gameObject.SetActive(true);
-            _pSystemCurrent.Play();
+            var pSystem = Instantiate(_particleSystem, transform);
+            pSystem.gameObject.SetActive(true);
+            pSystem.Play();
+
+            var pSpotlight = Instantiate(_pSystemSpotlight, transform);
+            pSpotlight.gameObject.SetActive(true);
         }
 
         private void Update()
