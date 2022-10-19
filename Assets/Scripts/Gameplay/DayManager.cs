@@ -63,49 +63,49 @@ namespace Team8.Unemployment.Gameplay
                 _noonLight_1.DOIntensity(1.4f, _dayCycleTime).From(0);
                 _noonLight_2.DOIntensity(7.83f, _dayCycleTime).From(0);
 
-                foreach (GameObject day in _dayCycle)
-                {
-                    day.SetActive(false);
-                    if (day.name == "Morning")
-                    {
-                        day.SetActive(true);
-                    }
-                }
+                DayCycle("Morning");
+                Spotlight("MorningSpotlight");
             }
             else if (_playerStatusData.action == 2)
             {
                 _camera.DOColor(_noonColor, _dayCycleTime);
-                foreach (GameObject day in _dayCycle)
-                {
-                    day.SetActive(false);
-                    if (day.name == "Noon")
-                    {
-                        day.SetActive(true);
-                    }
-                }
+
+                DayCycle("Noon");
             }
             else if (_playerStatusData.action == 1)
             {
                 _camera.DOColor(_afternoonColor, _dayCycleTime);
-                foreach (GameObject day in _dayCycle)
-                {
-                    day.SetActive(false);
-                    if (day.name == "Afternoon")
-                    {
-                        day.SetActive(true);
-                    }
-                }
+
+                DayCycle("Afternoon");
+                Spotlight("AfternoonSpotlight");
             }
             else if (_playerStatusData.action == 0)
             {
                 _camera.DOColor(_nightColor, _dayCycleTime);
-                foreach (GameObject day in _dayCycle)
+
+                DayCycle("Night");
+                Spotlight("NightSpotlight");
+            }
+        }
+        private void DayCycle(string name)
+        {
+            foreach (GameObject day in _dayCycle)
+            {
+                day.SetActive(false);
+                if (day.name == name)
                 {
-                    day.SetActive(false);
-                    if (day.name == "Night")
-                    {
-                        day.SetActive(true);
-                    }
+                    day.SetActive(true);
+                }
+            }
+        }
+        private void Spotlight(string name)
+        {
+            foreach (GameObject spot in _spotlight)
+            {
+                spot.SetActive(false);
+                if (spot.name == name)
+                {
+                    spot.SetActive(true);
                 }
             }
         }

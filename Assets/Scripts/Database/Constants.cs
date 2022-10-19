@@ -25,6 +25,19 @@ internal static class Constants
         public const string Action = "Action: ";
         public const string Day = "Day ";
     }
+    public static class DaySystem
+    {
+        public const string Morning = "Morning";
+        public const string MorningSpotlight = "MorningSpotlight";
+
+        public const string Noon = "Noon";
+
+        public const string Afternoon = "Afternoon";
+        public const string AfternoonSpotlight = "AfternoonSpotlight";
+
+        public const string Night = "Night";
+        public const string NightSpotlight = "NightSpotlight";
+    }
     public static class Requirments
     {
         public const string ApplyJob = "Apply Job";
