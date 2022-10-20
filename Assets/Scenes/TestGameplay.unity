@@ -344,11 +344,6 @@ PrefabInstance:
       objectReference: {fileID: 1057161084}
     - target: {fileID: 7593786749245577418, guid: f7ee99ef460d0d447a114bdef4e30f84,
         type: 3}
-      propertyPath: _footstepPlayRate
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 7593786749245577418, guid: f7ee99ef460d0d447a114bdef4e30f84,
-        type: 3}
       propertyPath: interactionController
       value: 
       objectReference: {fileID: 123515075}

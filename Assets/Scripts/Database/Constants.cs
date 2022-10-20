@@ -14,6 +14,11 @@ internal static class Constants
         public const string Wallet = "Wallet";
         
     }
+    public static class Scene
+    {
+        public const string Home = "TestHome";
+        public const string Gameplay = "TestGameplay";
+    }
     public static class Status
     {
         public const string Skill = "Skill: ";
