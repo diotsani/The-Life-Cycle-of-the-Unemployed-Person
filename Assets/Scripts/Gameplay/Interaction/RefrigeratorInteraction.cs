@@ -27,7 +27,31 @@ namespace Team8.Unemployment.Gameplay
             _interactionName = Constants.Name.Refrigerator;
             _decisionScriptable = Resources.Load<DecisionScriptable>(Constants.Path.Refrigerator);
             base.Start();
+            
+            _dmgParticle = Instantiate(_damagedParticle, _objectPosition);
+            _dmgParticle.gameObject.SetActive(false);
         }
+        
+    
+
+    protected override void Update()
+    {
+        base.Update();
+        if (_isDamaged)
+        {
+            _dmgParticle.gameObject.SetActive(true);
+            //_dmgParticle.Play();
+        }
+        else
+        {
+            _dmgParticle.gameObject.SetActive(false);
+            if(_durabilityDay >= _maxDurability)
+            {
+                CheckCondition();
+            }
+            //_dmgParticle.Stop();
+        }
+    }
 
         public override void OnEffect()
         {

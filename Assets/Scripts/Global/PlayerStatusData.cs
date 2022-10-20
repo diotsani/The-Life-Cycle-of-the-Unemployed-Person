@@ -79,8 +79,8 @@ namespace Team8.Unemployment.Global
             health -= _reduceHealth;
             stress += _addStress;
             isPlayGame = true;
-            OnStatusChange?.Invoke("Health", _reduceHealth*-1);
-            OnStatusChange?.Invoke("Stress", _addStress);
+            // OnStatusChange?.Invoke("Health", _reduceHealth*-1);
+            // OnStatusChange?.Invoke("Stress", _addStress);
             
             if (health < 0)
             {
@@ -93,12 +93,18 @@ namespace Team8.Unemployment.Global
         }
         public void SkillCost(int value)
         {
-            skill += value;
-            
             var positiveValue = Mathf.Abs(value);
-            if(positiveValue > 1)
+            if(positiveValue >= 12)
             {
-                OnStatusChange?.Invoke("Skill", value);
+                int rndSkill = Random.Range(10, value + 1);
+                skill += rndSkill;
+                Debug.Log("Skill "+rndSkill);
+                //OnStatusChange?.Invoke("Skill", rndSkill);
+            }
+            else
+            {
+                skill += value;
+                Debug.Log("Skill " + value);
             }
             
             if(skill < 0)
@@ -112,14 +118,9 @@ namespace Team8.Unemployment.Global
         }
         public void StressCost(int value)
         {
-            stress += value;
-            
             var positiveValue = Mathf.Abs(value);
-            if(positiveValue > 1)
-            {
-                OnStatusChange?.Invoke("Stress", value);
-            }
-            
+            if(positiveValue > 1)Debug.Log("Stress " + value);
+            stress += value;
             if (stress < 0)
             {
                 stress = 0;
@@ -131,13 +132,15 @@ namespace Team8.Unemployment.Global
         }
         public void HealthCost(int value)
         {
-            health += value;
-            
             var positiveValue = Mathf.Abs(value);
-            if(positiveValue > 1)
-            {
-                OnStatusChange?.Invoke("Health", value);
-            }
+            
+            health += value;
+            Debug.Log("Health "+value);
+            
+            // if(positiveValue > 1)
+            // {
+            //     OnStatusChange?.Invoke("Health", value);
+            // }
             
             if (health < 0)
             {
@@ -150,13 +153,22 @@ namespace Team8.Unemployment.Global
         }
         public void MoneyCost(int value)
         {
-            money += value;
-        
-            var positiveValue = Mathf.Abs(value);
-            if(positiveValue > 1)
+            if (value >= 18)
             {
-                OnStatusChange?.Invoke("Money", value);
+                int rndMoney = Random.Range(12, 18 + 1);
+                money += rndMoney;
+                Debug.Log("Money "+ rndMoney);
             }
+            else
+            {
+                money += value;
+                Debug.Log("Money "+ value);
+            }
+            // var positiveValue = Mathf.Abs(value);
+            // if(positiveValue > 1)
+            // {
+            //     OnStatusChange?.Invoke("Money", value);
+            // }
 
             if (money < 0)
             {
@@ -167,11 +179,11 @@ namespace Team8.Unemployment.Global
         {
             book += value;
             
-            var positiveValue = Mathf.Abs(value);
-            if(positiveValue > 0)
-            {
-                OnStatusChange?.Invoke("Book", value);
-            }
+            // var positiveValue = Mathf.Abs(value);
+            // if(positiveValue > 0)
+            // {
+            //     OnStatusChange?.Invoke("Book", value);
+            // }
             
             if (book < 0)
             {
@@ -180,24 +192,28 @@ namespace Team8.Unemployment.Global
         }
         public void FoodCost(int value)
         {
-            if (value >= 20) //Buy Food
+            if (value == 8) //Buy Food
             {
                 food += value;
                 OnStatusChange?.Invoke("Food", value);
             }
-            if(isFresh && value == 10) // Eat Food
+            if(isFresh && value == 16) // Eat Food
             {
-                int randomFood = Random.Range(10, 16);
+                int randomFood = Random.Range(10, value+1);
                 food -= randomFood;
                 OnStatusChange?.Invoke("Food", randomFood*-1);
                 HealthCost(24);
+                
+                Debug.Log("Eat Fresh Food" + randomFood);
             }
-            else if(!isFresh && value == 10) // Eat Food not fresh
+            else if(!isFresh && value == 16) // Eat Food not fresh
             {
-                int randomFood = Random.Range(10, 16);
+                int randomFood = Random.Range(10, value+1);
                 food -= randomFood;
                 OnStatusChange?.Invoke("Food", randomFood*-1);
                 HealthCost(-14);
+                
+                Debug.Log("Eat Not Fresh Food" + randomFood);
             }
         
             if (food < 0)

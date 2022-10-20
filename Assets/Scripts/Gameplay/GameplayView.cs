@@ -24,11 +24,12 @@ namespace Team8.Unemployment.Gameplay
         [SerializeField] TMP_Text _beginClickText;
 
         [Header("HUD")]
-        private int maxProgress = 100;
         [SerializeField] private Image _skillBar;
         [SerializeField] private Image _healthBar;
         [SerializeField] private Image _stressBar;
         [SerializeField] private TMP_Text _actionText;
+        private float _maxProgress = 100;
+        private float _barDelay = 1f;
         
         [Header("Pause Display")]
         [SerializeField] private CanvasGroup _pausePanel;
@@ -108,6 +109,7 @@ namespace Team8.Unemployment.Gameplay
 
         private void Update()
         {
+            ProgressBar();
             _actionText.text = Constants.Status.Action + _playerStatusData.action;
             
             if (_isShowingMonolog)
@@ -134,9 +136,12 @@ namespace Team8.Unemployment.Gameplay
         }
         void ProgressBar()
         {
-            _skillBar.fillAmount = _playerStatusData.skill / maxProgress;
-            _healthBar.fillAmount = _playerStatusData.health / maxProgress;
-            _stressBar.fillAmount = _playerStatusData.stress / maxProgress;
+            float currentSkill = _playerStatusData.skill;
+            float currentHealth = _playerStatusData.health;
+            float currentStress = _playerStatusData.stress;
+            _skillBar.DOFillAmount(currentSkill / _maxProgress, _barDelay);
+            _healthBar.DOFillAmount(currentHealth / _maxProgress,_barDelay);
+            _stressBar.DOFillAmount(currentStress/_maxProgress, _barDelay);
         }
 
         void ResetGameplay()

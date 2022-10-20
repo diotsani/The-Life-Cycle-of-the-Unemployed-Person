@@ -48,6 +48,9 @@ namespace Team8.Unemployment.Gameplay
         
         [Header("Condition")]
         [SerializeField] protected InteractionState _interactionState;
+
+        protected ParticleSystem _damagedParticle;
+        protected ParticleSystem _dmgParticle;
         public bool isInteracted;
         public bool isClicked;
         [SerializeField] protected bool _isDamaged;
@@ -66,13 +69,14 @@ namespace Team8.Unemployment.Gameplay
         {
             _playerStatusData = PlayerStatusData.Instance;
             _decisionList = new List<Decision>();
-            _decisionPrefab = Resources.Load<Decision>("Prefabs/DecisionButton");
+            _decisionPrefab = Resources.Load<Decision>(Constants.Resources.Decision);
+            _damagedParticle = Resources.Load<ParticleSystem>(Constants.Resources.DamagedParticle);
             InitDecision();
             RequirementDecision(_decisionList);
             ClickSpecificDecision(_decisionList);
         }
 
-        protected void Update()
+        protected virtual void Update()
         {
             Vector3 parentPosition = Camera.main.WorldToScreenPoint(_objectPosition.position+ _position);
             _decisionParent.transform.position = parentPosition;

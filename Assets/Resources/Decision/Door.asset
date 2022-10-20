@@ -16,7 +16,7 @@ MonoBehaviour:
   - decisionName: Jogging
     skillCost: 0
     stressCost: -10
-    healthCost: 6
+    healthCost: 8
     moneyCost: 0
     actionCost: 1
     bookCost: 0
@@ -25,7 +25,7 @@ MonoBehaviour:
     skillCost: 0
     stressCost: 0
     healthCost: 0
-    moneyCost: -20
+    moneyCost: -8
     actionCost: 1
     bookCost: 0
-    foodCost: 20
+    foodCost: 8

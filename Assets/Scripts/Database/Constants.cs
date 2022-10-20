@@ -19,6 +19,12 @@ internal static class Constants
         public const string Home = "TestHome";
         public const string Gameplay = "TestGameplay";
     }
+
+    public static class Resources
+    {
+        public const string Decision = "Prefabs/DecisionButton";
+        public const string DamagedParticle = "Prefabs/DamagedParticle";
+    }
     public static class Status
     {
         public const string Skill = "Skill: ";
@@ -51,6 +57,7 @@ internal static class Constants
         public const string CheckMail = "Check Mail";
         
         public const string SocialMedia = "Social Media";
+        public const string JobInfo = "Job Info";
         
         public const string ReadBook = "Read Book";
         public const string CheckBookShelf = "Check Book Shelf";
@@ -109,16 +116,19 @@ internal static class Constants
         public const string TakeCourseMonolog = "That’s make my head hurt.";
         public const string CheckMailMonolog_1 = "There’s no email.";
         public const string CheckMailMonolog_2 = "It's hard to get a job. Oh God, what should I do now?";
-        public const string PlayGameMonolog = "I feel refreshed, I can release my stress.";
+        public const string PlayGameMonolog_1 = "I can relax for a while, but if I play this game for too long, I can't live anymore. I mean, no work, no money, no food.";
+        public const string PlayGameMonolog_2 = "Haha, this is my win. You imbecile!";
         public const string RepairLaptopMonolog = "I have to spend a lot of money to fix it, come on!";
-        
-        public const string SocialMediaMonolog_1 = "We are looking for a talented designer who will be responsible for the design of our mobile application. They said. I should try to apply for this job.";
-        public const string SocialMediaMonolog_2 = "No job info.";
+
+        public const string SocialMediaMonolog_1 = "...negatif";
+        public const string SocialMediaMonolog_2 = "...positif";
+        public const string JobInfoMonolog_1 = "We are looking for a talented designer who will be responsible for the design of our mobile application. They said. I should try to apply for this job.";
+        public const string JobInfoMonolog_2 = "No job info.";
         public const string RepairHandphoneMonolog = "I have to change my phone, this phone is too old. I want a new model of iPhone, but I'm broke.";
         public const string SellHandphoneMonolog = "This is the only thing I can do to survive, I really need money";
         
         public const string ReadBookMonolog = "I guess reading a book is not a bad thing.";
-        public const string SellBookMonolog = "Forgive me. Books are a window to the world, but I need money.";
+        public const string SellBookMonolog = "Forgive me. I have to sell this book, ‘cause I need money.";
         
         public const string JoggingMonolog = "I need to stretch my muscles, staying at home all the time is not good for my health.";
         public const string BuyFoodMonolog = "I need food to life.";
@@ -152,9 +162,9 @@ internal static class Constants
         public const string ApplyJobFeedback = "Just wait for the response. You will be informed the next day. Don’t forget to check your email.";
         public const string TakeCourseFeedback = "You make some progress. Keep it up!";
         public const string PlayGameFeedback = "Release your stress a bit is important thing to do.";
-        public const string RepairLaptopFeedback = "That’s a lot of money you have to spend.";
+        public const string RepairLaptopFeedback = "You need to consider your expenses.";
         
-        public const string RepairHandphoneFeedback = "You need to consider your expenses. Is that worth it to repair your phone?";
+        public const string RepairHandphoneFeedback = "You need to consider your expenses.";
         public const string SellHandphoneFeedback = "No phone is okay, right? At least you have more money now.";
         
         public const string ReadBookFeedback = "Do not rush! You need to slow down your pace sometimes. You are still making progress.";
@@ -175,6 +185,7 @@ internal static class Constants
         public const string RepairLaptop = "Repair Laptop";
         
         public const string SocialMedia = "Social Media";
+        public const string JobInfo = "JobInfo";
         public const string RepairHandphone = "Repair Handphone";
         public const string SellHandphone = "Sell Handphone";
         

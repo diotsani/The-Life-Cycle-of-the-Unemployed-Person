@@ -11,7 +11,6 @@ namespace Team8.Unemployment.Gameplay
         [ColorUsage(true, true)] [SerializeField] private Color _emissionColor;
         [SerializeField] private float _intensity;
         private Color _defaultColor = new Color(22, 22, 22, 255);
-        
         private int _priceRepair = 50;
         private int _minRandom = 3;
         private int _maxRandom = 6;
@@ -21,6 +20,24 @@ namespace Team8.Unemployment.Gameplay
             _decisionScriptable = Resources.Load<DecisionScriptable>(Constants.Path.Laptop);
             RandomMaxClick(_minRandom, _maxRandom);
             base.Start();
+
+            _dmgParticle = Instantiate(_damagedParticle, _objectPosition);
+            _dmgParticle.gameObject.SetActive(false);
+        }
+
+        protected override void Update()
+        {
+            base.Update();
+            if (_isDamaged)
+            {
+                _dmgParticle.gameObject.SetActive(true);
+                //_dmgParticle.Play();
+            }
+            else
+            {
+                _dmgParticle.gameObject.SetActive(false);
+                //_dmgParticle.Stop();
+            }
         }
 
         public override void OnEffect()
@@ -28,6 +45,7 @@ namespace Team8.Unemployment.Gameplay
             //_laptopScreen.EnableKeyword("_EMISSION");
             //_laptopScreen.globalIlluminationFlags = MaterialGlobalIlluminationFlags.EmissiveIsBlack;
            // _laptopScreen.SetColor("_EmissionColor", _whiteColor* Mathf.Pow(2, _intensity));
+           if(_isDamaged)return;
            _laptopScreen.DOColor(_emissionColor, "_EmissionColor", 1f).From(Color.black);
 
         }
@@ -55,7 +73,16 @@ namespace Team8.Unemployment.Gameplay
             }
             if (decision.DecisionText() == Constants.Requirments.PlayGame)
             {
-                ShowMonologue(Constants.Monologue.PlayGameMonolog);
+                int rndMonolog = Random.Range(0, 2);
+                Debug.Log("Random Play Game "+rndMonolog);
+                switch (rndMonolog)
+                {
+                    case 0 : ShowMonologue(Constants.Monologue.PlayGameMonolog_1);
+                        break;
+                    case 1 : ShowMonologue(Constants.Monologue.PlayGameMonolog_2);
+                        break;
+                }
+                
                 ShowFeedback(Constants.Feedback.PlayGameFeedback);
                 ShowHistory(Constants.History.PlayGame);
             }
