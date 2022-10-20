@@ -80,7 +80,7 @@ namespace Team8.Unemployment.Player
             {
                 _lastPlayTime = Time.time;
                     
-                AudioManager.Instance.PlaySFX("Footstep 3");
+                AudioManager.Instance.PlaySFX("Footstep 1");
             }
         }
 
