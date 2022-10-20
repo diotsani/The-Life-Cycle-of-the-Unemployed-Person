@@ -71,7 +71,7 @@ namespace Team8.Unemployment.Player
                 interactionController.SetInteracted(false); 
                 agent.SetDestination(tipInteraction.target);
                 animator.SetBool("isWalk", true);
-                animator.speed = agent.speed+ animSpeed * delayAnimSpeed;
+                animator.speed = agent.speed + animSpeed * delayAnimSpeed * Time.deltaTime;
             }
         }
         void FootStep()

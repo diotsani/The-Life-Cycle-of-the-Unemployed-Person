@@ -7,47 +7,44 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using UnityEngine.SceneManagement;
+using DG.Tweening;
 
 namespace Team8.Unemployment.Global
 {
     public class AudioManager : SingletonMonoBehaviour<AudioManager>
-{
-    #region Background Music Variabel
-
+    {
     [Header("Background Music")] 
     public bool isPlay;
     public AudioSource sourceBGM;
     public Sound[] BGM;
+        private string sceneName;
+    [SerializeField] private TMP_Text _BgmHome;
+    [SerializeField] private TMP_Text _BgmGameplay;
+        [SerializeField] private float _delay;
 
-    private GameObject _popUpBGM;
-    private Animator _animBGM;
-    private TMP_Text _nameBGM;
-
-    #endregion
-
-    #region Sound Effect Variabel
 
     [Space(20)] [Header("Sound Effect")]
     public AudioSource sourceSFX;
     public Sound[] SFX;
 
-    #endregion
+
     
-    private void Start()
+        private void Start()
     {
         PlayBGM();
         SetPlayerPrefsToogleUI();
     }
+        private void Update()
+        {
+            sceneName = SceneManager.GetActiveScene().name;
+        }
 
-    #region BGM Method
 
-    public void PlayBGM()
+        public void PlayBGM()
     {
         isPlay = true;
         
-        _popUpBGM = GameObject.Find("PopUpBGM");
-        _animBGM = _popUpBGM.GetComponent<Animator>();
-        _nameBGM = _popUpBGM.GetComponentInChildren<TMP_Text>();
 
         StartCoroutine(ListBGM());
 
@@ -59,8 +56,23 @@ namespace Team8.Unemployment.Global
             {
                 Debug.Log("Music Play");
                 int random = Random.Range(0, BGM.Length);
-                _nameBGM.text = BGM[random].name;
-                _animBGM.SetTrigger("PopUp");
+
+                    if(sceneName == Constants.Scene.Home)
+                    {
+                        _BgmHome.text = BGM[random].name;
+                        _BgmHome.gameObject.SetActive(true);
+                        _BgmHome.DOFade(1, _delay).From(0)
+                            .OnComplete(()=>_BgmHome.DOFade(0,_delay))
+                            .OnComplete(()=> _BgmHome.gameObject.SetActive(false));
+                    }
+                    else if(sceneName == Constants.Scene.Gameplay)
+                    {
+                        _BgmGameplay.text = BGM[random].name;
+                        _BgmGameplay.gameObject.SetActive(true);
+                        _BgmGameplay.DOFade(1, _delay).From(0)
+                            .OnComplete(()=>_BgmGameplay.DOFade(0,_delay))
+                            .OnComplete(() => _BgmGameplay.gameObject.SetActive(false));
+                    }
                 
                 yield return new WaitForSeconds(1f);
                 
@@ -93,9 +105,7 @@ namespace Team8.Unemployment.Global
         }
     }
 
-    #endregion
 
-    #region SFX Method
 
     public void PlaySFX(string name)
     {
@@ -112,9 +122,7 @@ namespace Team8.Unemployment.Global
         sourceSFX.PlayOneShot(sound.clip);
     }
 
-    #endregion
 
-    #region Toogle UI Method
 
     void SetPlayerPrefsToogleUI()
     {
@@ -136,7 +144,6 @@ namespace Team8.Unemployment.Global
         PlayerPrefs.SetString("SFX", sourceSFX.mute.ToString());
     }
 
-    #endregion
-}
+    }
 }
 
