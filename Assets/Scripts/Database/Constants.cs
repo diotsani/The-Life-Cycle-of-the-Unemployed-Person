@@ -91,8 +91,17 @@ internal static class Constants
         public const string WinDescription90 = "You are a genius";
         
         public const string LoseDescriptionSkill = "Your skill is too low";
-        public const string LoseDescriptionStress = "Your Stress is Over";
-        public const string LoseDescriptionHealth = "Your are too weak to do anything";
+        public const string LoseDescriptionStress = "Because of your parent pressure, you study so hard that you forget about your mental health. You keep forcing yourself to find a job in a brief time.";
+        public const string LoseDescriptionHealth = "Unfortunately, Because you are too focused on developing your skill you forget to check your health. Because of that, you're getting rushed to the hospital.";
+        
+        public static string StressMessage(int value)
+        {
+            return $"If your stress is over, and your qualification is on {value}.";
+        }
+        public static string HealthMessage(int value)
+        {
+            return $"If your qualification is scaled from 1 to 100. Approximately, your qualification is on {value}.";
+        }
     }
     public static class Monologue
     {

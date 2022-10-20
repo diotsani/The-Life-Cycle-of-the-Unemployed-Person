@@ -73,11 +73,11 @@ namespace Team8.Unemployment.Gameplay
             if(isWaitMonolog) return;
             if (playerStatusData.stress >= 100)
             {
-                OnGameOver(Constants.EndGame.LoseDescriptionStress);
+                OnGameOver(Constants.EndGame.LoseDescriptionStress + "\n" + Constants.EndGame.StressMessage(playerStatusData.skill));
             }
             else if (playerStatusData.health <= 0)
             {
-                OnGameOver(Constants.EndGame.LoseDescriptionHealth);
+                OnGameOver(Constants.EndGame.LoseDescriptionHealth + "\n" + Constants.EndGame.HealthMessage(playerStatusData.skill));
             }
             else if(playerStatusData.isApplied && playerStatusData.skill >= 100)
             {
