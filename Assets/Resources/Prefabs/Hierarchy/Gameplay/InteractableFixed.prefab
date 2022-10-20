@@ -675,6 +675,8 @@ MonoBehaviour:
   - {fileID: 537186212}
   - {fileID: 645079059}
   - {fileID: 1682570096}
+  currentInteraction: {fileID: 0}
+  selectedInteraction: {fileID: 0}
 --- !u!1 &4153287036564226544
 GameObject:
   m_ObjectHideFlags: 0
@@ -907,8 +909,8 @@ MonoBehaviour:
   isClicked: 0
   _isDamaged: 0
   _laptopScreen: {fileID: 2100000, guid: 70890e55144fa764da57a0cbe1d1f0e5, type: 2}
-  _whiteColor: {r: 1, g: 1, b: 1, a: 1}
-  _intensity: 2.7
+  _emissionColor: {r: 4.5412054, g: 4.5412054, b: 4.5412054, a: 1}
+  _intensity: 1
 --- !u!114 &1020398687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1296,6 +1298,7 @@ MonoBehaviour:
   isClicked: 0
   _isDamaged: 0
   _handphoneScreen: {fileID: 2100000, guid: 8f833f881ea894a4998116dac898d86e, type: 2}
+  _emissionColor: {r: 4.5412054, g: 4.5412054, b: 4.5412054, a: 1}
 --- !u!114 &537186212
 MonoBehaviour:
   m_ObjectHideFlags: 0

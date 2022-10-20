@@ -8,6 +8,7 @@ namespace Team8.Unemployment.Gameplay
     public class HandphoneInteraction : BaseInteraction
     {
         [SerializeField] private Material _handphoneScreen;
+        [ColorUsage(true, true)] [SerializeField] private Color _emissionColor;
         private int _priceRepair = 25;
         private int _minRandom = 6;
         private int _maxRandom = 9;
@@ -23,7 +24,7 @@ namespace Team8.Unemployment.Gameplay
            // _handphoneScreen.EnableKeyword("_EMISSION");
             //_handphoneScreen.globalIlluminationFlags = MaterialGlobalIlluminationFlags.EmissiveIsBlack;
             //_laptopScreen.SetColor("_EmissionColor", Color.white);
-            _handphoneScreen.DOColor(Color.white, "_EmissionColor", 1f).From(Color.black);
+            _handphoneScreen.DOColor(_emissionColor, "_EmissionColor", 1f).From(Color.black);
         }
 
         public override void OffEffect()

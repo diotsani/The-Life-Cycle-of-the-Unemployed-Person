@@ -8,10 +8,7 @@ namespace Team8.Unemployment.Gameplay
     public class LaptopInteraction : BaseInteraction
     {
         [SerializeField] private Material _laptopScreen;
-        
-        [ColorUsageAttribute(true,true,0f,8f,0.125f,3f)]
-        [SerializeField] private Color _hdrColor;
-        
+        [ColorUsage(true, true)] [SerializeField] private Color _emissionColor;
         [SerializeField] private float _intensity;
         private Color _defaultColor = new Color(22, 22, 22, 255);
         
@@ -31,7 +28,7 @@ namespace Team8.Unemployment.Gameplay
             //_laptopScreen.EnableKeyword("_EMISSION");
             //_laptopScreen.globalIlluminationFlags = MaterialGlobalIlluminationFlags.EmissiveIsBlack;
            // _laptopScreen.SetColor("_EmissionColor", _whiteColor* Mathf.Pow(2, _intensity));
-           _laptopScreen.DOColor(_hdrColor, "_EmissionColor", 1f).From(Color.black);
+           _laptopScreen.DOColor(_emissionColor, "_EmissionColor", 1f).From(Color.black);
 
         }
 
