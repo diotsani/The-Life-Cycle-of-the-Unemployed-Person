@@ -1385,7 +1385,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursorDummy: {fileID: 0}
   cursorFull: {fileID: 2800000, guid: 96e5a992703463f4aacc8a8cd76fb7ed, type: 3}
-  delayClick: 0
+  delayClick: 0.2
 --- !u!4 &1807925980
 Transform:
   m_ObjectHideFlags: 0
