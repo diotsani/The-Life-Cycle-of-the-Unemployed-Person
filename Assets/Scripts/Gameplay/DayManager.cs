@@ -22,7 +22,14 @@ namespace Team8.Unemployment.Gameplay
         [Header("Day Cycle")]
         [SerializeField] private Camera _camera;
         [SerializeField] private float _dayCycleTime;
+        [SerializeField] private GameObject _clockwise;
         [SerializeField] private GameObject[] _dayCycle;
+        private float _clockMorning = 210f;
+        private float _clockNoon = 360f;
+        private float _clockAfternoon = 120f;
+        private float _clockNight = 210f;
+        
+        
         [Header("Color")]
         [SerializeField] private Color _morningColor; 
         [SerializeField] private Color _noonColor;
@@ -65,12 +72,16 @@ namespace Team8.Unemployment.Gameplay
 
                 DayCycle("Morning");
                 Spotlight("MorningSpotlight");
+
+                _clockwise.transform.DORotate(new Vector3(0, 0, _clockMorning),4f);
             }
             else if (_playerStatusData.action == 2)
             {
                 _camera.DOColor(_noonColor, _dayCycleTime);
 
                 DayCycle("Noon");
+                
+                _clockwise.transform.DORotate(new Vector3(0, 0, _clockNoon),4f);
             }
             else if (_playerStatusData.action == 1)
             {
@@ -78,6 +89,8 @@ namespace Team8.Unemployment.Gameplay
 
                 DayCycle("Afternoon");
                 Spotlight("AfternoonSpotlight");
+                
+                _clockwise.transform.DORotate(new Vector3(0, 0, _clockAfternoon),4f);
             }
             else if (_playerStatusData.action == 0)
             {
@@ -85,6 +98,8 @@ namespace Team8.Unemployment.Gameplay
 
                 DayCycle("Night");
                 Spotlight("NightSpotlight");
+                
+                _clockwise.transform.DORotate(new Vector3(0, 0, _clockNight),4f);
             }
         }
         private void DayCycle(string name)

@@ -1354,6 +1354,53 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1807925978
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1807925980}
+  - component: {fileID: 1807925979}
+  m_Layer: 0
+  m_Name: CursorManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1807925979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1807925978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf5edd3903b64e598a5253eb4cb33a9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursorDummy: {fileID: 0}
+  cursorFull: {fileID: 2800000, guid: 96e5a992703463f4aacc8a8cd76fb7ed, type: 3}
+  delayClick: 0
+--- !u!4 &1807925980
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1807925978}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 17
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1846361700 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6963261963798145631, guid: 865b486cc4122a640b26b54402a84f67,
@@ -1390,6 +1437,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbdd6a7b9242453a860ff0fd70b2a98a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1892658784 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9009825274498961280, guid: 2bb20c3d14a2752439343432915473e5,
+    type: 3}
+  m_PrefabInstance: {fileID: 5478775174532327541}
+  m_PrefabAsset: {fileID: 0}
 --- !u!225 &1909663564 stripped
 CanvasGroup:
   m_CorrespondingSourceObject: {fileID: 1909663564, guid: e40db016cb0008f439eb932e09ad60ec,
@@ -1800,6 +1853,11 @@ PrefabInstance:
       propertyPath: _camera
       value: 
       objectReference: {fileID: 4172253519910020700}
+    - target: {fileID: 1719229278401193796, guid: 8fa9cfd5724037449a89bcfe9d2af432,
+        type: 3}
+      propertyPath: _clockwise
+      value: 
+      objectReference: {fileID: 1892658784}
     - target: {fileID: 1719229278401193796, guid: 8fa9cfd5724037449a89bcfe9d2af432,
         type: 3}
       propertyPath: _noonLight_1

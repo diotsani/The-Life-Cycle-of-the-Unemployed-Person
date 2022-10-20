@@ -47,6 +47,7 @@ MonoBehaviour:
   _amountDay: 0
   _camera: {fileID: 0}
   _dayCycleTime: 3
+  _clockwise: {fileID: 0}
   _dayCycle:
   - {fileID: 0}
   - {fileID: 0}
