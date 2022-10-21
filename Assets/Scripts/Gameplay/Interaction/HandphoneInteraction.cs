@@ -65,6 +65,7 @@ namespace Team8.Unemployment.Gameplay
                 {
                     ShowMonologue(Constants.Monologue.SocialMediaMonolog_1);
                 }
+                ShowFeedback(Constants.Feedback.SocialMediaFeedback);
             }
             if (decision.DecisionText() == Constants.Requirments.JobInfo)
             {
@@ -81,7 +82,7 @@ namespace Team8.Unemployment.Gameplay
             }
             if (decision.DecisionText() == Constants.Requirments.Sell)
             {
-                ShowMonologue(Constants.Monologue.SellHandphoneMonolog);
+                ShowMonologue(Constants.Monologue.SellHandphoneMonolog_1);
                 ShowFeedback(Constants.Feedback.SellHandphoneFeedback);
                 ShowHistory(Constants.History.SellHandphone);
 
@@ -90,7 +91,7 @@ namespace Team8.Unemployment.Gameplay
             }
             if (decision.DecisionText() == Constants.Requirments.Repair)
             {
-                ShowMonologue(Constants.Monologue.RepairHandphoneMonolog);
+                ShowMonologue(Constants.Monologue.RepairHandphoneMonolog_1);
                 ShowFeedback(Constants.Feedback.RepairHandphoneFeedback);
                 ShowHistory(Constants.History.RepairHandphone);
                 ResetDecision();

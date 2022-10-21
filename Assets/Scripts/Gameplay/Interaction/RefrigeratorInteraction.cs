@@ -28,29 +28,31 @@ namespace Team8.Unemployment.Gameplay
             _decisionScriptable = Resources.Load<DecisionScriptable>(Constants.Path.Refrigerator);
             base.Start();
             
-            _dmgParticle = Instantiate(_damagedParticle, _objectPosition);
-            _dmgParticle.gameObject.SetActive(false);
+            //_dmgParticle = Instantiate(_damagedParticle, _objectPosition);
+            //_dmgParticle.gameObject.SetActive(false);
         }
-        
-    
 
-    protected override void Update()
+        protected override void Update()
     {
         base.Update();
-        if (_isDamaged)
+        if(_isDamaged)return;
+        if(_durabilityDay >= _maxDurability)
         {
-            _dmgParticle.gameObject.SetActive(true);
-            //_dmgParticle.Play();
+            CheckCondition();
         }
-        else
-        {
-            _dmgParticle.gameObject.SetActive(false);
-            if(_durabilityDay >= _maxDurability)
-            {
-                CheckCondition();
-            }
-            //_dmgParticle.Stop();
-        }
+        
+        // if (_isDamaged)
+        // {
+        //     _dmgParticle.gameObject.SetActive(true);
+        // }
+        // else
+        // {
+        //     _dmgParticle.gameObject.SetActive(false);
+        //     if(_durabilityDay >= _maxDurability)
+        //     {
+        //         CheckCondition();
+        //     }
+        // }
     }
 
         public override void OnEffect()
@@ -67,13 +69,13 @@ namespace Team8.Unemployment.Gameplay
         {
             if (decision.DecisionText() == Constants.Requirments.Eat)
             {
-                ShowMonologue(Constants.Monologue.EatMonolog);
+                ShowMonologue(Constants.Monologue.EatMonolog_1);
                 ShowFeedback(Constants.Feedback.EatFeedback);
                 ShowHistory(Constants.History.Eat);
             }
             if(decision.DecisionText() == Constants.Requirments.ThrowFood)
             {
-                ShowMonologue(Constants.Monologue.ThrowFoodMonolog);
+                ShowMonologue(Constants.Monologue.ThrowFoodMonolog_1);
                 ShowFeedback(Constants.Feedback.ThrowFoodFeedback);
                 ShowHistory(Constants.History.ThrowFood);
                 _playerStatusData.ResetFood();
@@ -82,7 +84,8 @@ namespace Team8.Unemployment.Gameplay
 
             if (decision.DecisionText() == Constants.Requirments.CheckFoodStock)
             {
-                ShowMonologue(Constants.Monologue.FoodStockMonolog(_playerStatusData.food));
+                int rnd = Random.Range(0, 3);
+                ShowMonologue(Constants.Monologue.FoodStockMonolog(rnd,_playerStatusData.food));
                 ShowHistory(Constants.History.CheckFoodStock);
             }
         }

@@ -59,7 +59,7 @@ namespace Team8.Unemployment.Gameplay
         {
             if (decision.DecisionText() == Constants.Requirments.ApplyJob)
             {
-                ShowMonologue(Constants.Monologue.ApplyJobMonolog);
+                ShowMonologue(Constants.Monologue.ApplyJobMonolog_1);
                 ShowFeedback(Constants.Feedback.ApplyJobFeedback);
                 ShowHistory(Constants.History.ApplyJob);
                 _playerStatusData.isApplyJob = true;
@@ -67,7 +67,7 @@ namespace Team8.Unemployment.Gameplay
             }
             if (decision.DecisionText() == Constants.Requirments.TakeCourse)
             {
-                ShowMonologue(Constants.Monologue.TakeCourseMonolog);
+                ShowMonologue(Constants.Monologue.TakeCourseMonolog_1);
                 ShowFeedback(Constants.Feedback.TakeCourseFeedback);
                 ShowHistory(Constants.History.TakeCourse);
             }
@@ -100,7 +100,7 @@ namespace Team8.Unemployment.Gameplay
             }
             if (decision.DecisionText() == Constants.Requirments.Repair)
             {
-                ShowMonologue(Constants.Monologue.RepairLaptopMonolog);
+                ShowMonologue(Constants.Monologue.RepairLaptopMonolog_1);
                 ShowFeedback(Constants.Feedback.RepairLaptopFeedback);
                 ShowHistory(Constants.History.RepairLaptop);
                 ResetDecision();

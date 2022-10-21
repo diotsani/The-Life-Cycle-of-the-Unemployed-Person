@@ -93,7 +93,7 @@ namespace Team8.Unemployment.Gameplay
         }
         private void ProbabilityVictory(int skillChance, int maxSkill)
         {
-            int randomChance = Random.Range(0, maxSkill+1);
+            int randomChance = Random.Range(50, maxSkill+1);
             Debug.Log(randomChance);
             if (randomChance <= skillChance)
             {
@@ -106,7 +106,7 @@ namespace Team8.Unemployment.Gameplay
         }
         private void CheckProbability(int skillChance, int maxSkill)
         {
-            int randomChance = Random.Range(60, maxSkill+1);
+            int randomChance = Random.Range(50, maxSkill+1);
             Debug.Log(randomChance);
             if (randomChance <= skillChance)
             {
@@ -121,6 +121,7 @@ namespace Team8.Unemployment.Gameplay
 
         private void OnGameOver(string message)
         {
+            if(isEndGame)return;
             OnEndGame?.Invoke();
             OnShowEndGame?.Invoke(Constants.EndGame.LoseTitle, message);
             isEndGame = true;
@@ -129,26 +130,28 @@ namespace Team8.Unemployment.Gameplay
 
         private void OnVictory()
         {
+            if(isEndGame)return;
             OnEndGame?.Invoke();
 
-            if (playerStatusData.skill <= 30)
-            {
-                OnShowEndGame?.Invoke(Constants.EndGame.WinTitle, Constants.EndGame.WinDescription30);
-            }
-            else if (playerStatusData.skill <= 60 && playerStatusData.skill > 30)
-            {
-                OnShowEndGame?.Invoke(Constants.EndGame.WinTitle, Constants.EndGame.WinDescription60);
-            }
-            else if (playerStatusData.skill <= 90 && playerStatusData.skill > 60)
-            {
-                OnShowEndGame?.Invoke(Constants.EndGame.WinTitle, Constants.EndGame.WinDescription90);
-            }
-            else if (playerStatusData.skill > 90)
-            {
-                OnShowEndGame?.Invoke(Constants.EndGame.WinTitle, Constants.EndGame.WinDescription90);
-            }
-            //OnShowEndGame?.Invoke(Constants.EndGame.WinTitle, Constants.EndGame.WinDescription);
+            // if (playerStatusData.skill <= 30)
+            // {
+            //     OnShowEndGame?.Invoke(Constants.EndGame.WinTitle, Constants.EndGame.WinDescription30);
+            // }
+            // else if (playerStatusData.skill <= 60 && playerStatusData.skill > 30)
+            // {
+            //     OnShowEndGame?.Invoke(Constants.EndGame.WinTitle, Constants.EndGame.WinDescription60);
+            // }
+            // else if (playerStatusData.skill <= 90 && playerStatusData.skill > 60)
+            // {
+            //     OnShowEndGame?.Invoke(Constants.EndGame.WinTitle, Constants.EndGame.WinDescription90);
+            // }
+            // else if (playerStatusData.skill > 90)
+            // {
+            //     OnShowEndGame?.Invoke(Constants.EndGame.WinTitle, Constants.EndGame.WinDescription90);
+            // }
+            OnShowEndGame?.Invoke(Constants.EndGame.WinTitle,Constants.EndGame.WinDescription + "\n" + Constants.EndGame.WinMessage(playerStatusData.stress));
             isEndGame = true;
+            playerStatusData.isEndGame = true;
         }
     }
 }

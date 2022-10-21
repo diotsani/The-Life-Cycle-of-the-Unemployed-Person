@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _amountDay: 0
   _camera: {fileID: 0}
+  _scrollSpeed: 0.5
   _dayCycleTime: 3
   _clockwise: {fileID: 0}
   _dayCycle:

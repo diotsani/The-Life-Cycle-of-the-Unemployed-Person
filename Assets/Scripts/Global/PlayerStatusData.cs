@@ -32,6 +32,7 @@ namespace Team8.Unemployment.Global
         public int maxSkill { get; private set; } = 100;
 
         public bool isPlayGame;
+        public bool isEndGame;
         public bool isFresh = true;
         public bool isNewDay;
         public bool isMaxDay;

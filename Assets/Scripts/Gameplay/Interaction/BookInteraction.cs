@@ -19,13 +19,13 @@ namespace Team8.Unemployment.Gameplay
         {
             if (decision.DecisionText() == Constants.Requirments.ReadBook)
             {
-                ShowMonologue(Constants.Monologue.ReadBookMonolog);
+                ShowMonologue(Constants.Monologue.ReadBookMonolog_1);
                 ShowFeedback(Constants.Feedback.ReadBookFeedback);
                 ShowHistory(Constants.History.ReadBook);
             }
             if (decision.DecisionText() == Constants.Requirments.Sell)
             {
-                ShowMonologue(Constants.Monologue.SellBookMonolog);
+                ShowMonologue(Constants.Monologue.SellBookMonolog_1);
                 ShowFeedback(Constants.Feedback.SellBookFeedback);
                 ShowHistory(Constants.History.SellBook);
                 
@@ -34,7 +34,8 @@ namespace Team8.Unemployment.Gameplay
             }
             if (decision.DecisionText() == Constants.Requirments.CheckBookShelf)
             {
-                ShowMonologue(Constants.Monologue.BookStockMonolog(_playerStatusData.book));
+                int rnd = Random.Range(0, 3);
+                ShowMonologue(Constants.Monologue.BookStockMonolog(rnd,_playerStatusData.book));
                 ShowHistory(Constants.History.CheckBookShelf);
             }
         }

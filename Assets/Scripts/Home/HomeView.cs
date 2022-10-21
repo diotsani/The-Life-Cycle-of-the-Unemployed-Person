@@ -22,6 +22,12 @@ namespace Team8.Unemployment.Home
         [SerializeField] private CanvasGroup _creditPanel;
         [SerializeField] private Button _exitCreditButton;
 
+        [Header("Day")] 
+        [SerializeField,Range(0,24)] private float _currentTime;
+
+        [SerializeField] private GameObject[] _dayCycle;
+        [SerializeField] private GameObject[] _spotlight;
+
         private void Start()
         {
             Time.timeScale = 1;
@@ -35,6 +41,12 @@ namespace Team8.Unemployment.Home
             _quitButton.onClick.AddListener(OnQuit);
             _exitCreditButton.onClick.AddListener(OnExitCredit);
         }
+
+        private void Update()
+        {
+            DaySystem();
+        }
+
         private void OnNewGame()
         {
             AudioManager.Instance.PlaySFX("ButtonClick");
@@ -65,6 +77,52 @@ namespace Team8.Unemployment.Home
         {
             AudioManager.Instance.PlaySFX("ButtonClick");
             Application.Quit();
+        }
+
+        private void DaySystem()
+        {
+            _currentTime = DateTime.Now.Hour;
+            if (_currentTime > 5 && _currentTime < 9)
+            {
+                //Morning
+                SetDayCycle(Constants.DaySystem.Morning,Constants.DaySystem.MorningSpotlight);
+            }
+            else if (_currentTime > 9 && _currentTime < 14)
+            {
+                //Noon
+                SetDayCycle(Constants.DaySystem.Noon,Constants.DaySystem.MorningSpotlight);
+            }
+            else if (_currentTime > 14 && _currentTime < 18)
+            {
+                //Afternoon
+                SetDayCycle(Constants.DaySystem.Afternoon,Constants.DaySystem.AfternoonSpotlight);
+            }
+            else if (_currentTime > 0 && _currentTime < 5 || _currentTime > 18)
+            {
+                //Night
+                SetDayCycle(Constants.DaySystem.Night,Constants.DaySystem.NightSpotlight);
+            }
+        }
+
+        private void SetDayCycle(string dayName, string spotlightName)
+        {
+            foreach (GameObject day in _dayCycle)
+            {
+                day.SetActive(false);
+                if (day.name == dayName)
+                {
+                    day.SetActive(true);
+                }
+            }
+
+            foreach (GameObject spot in _spotlight)
+            {
+                spot.SetActive(false);
+                if (spot.name == spotlightName)
+                {
+                    spot.SetActive(true);
+                }
+            }
         }
     }
 }

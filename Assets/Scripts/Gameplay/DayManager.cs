@@ -21,6 +21,7 @@ namespace Team8.Unemployment.Gameplay
         
         [Header("Day Cycle")]
         [SerializeField] private Camera _camera;
+        [SerializeField] private float _scrollSpeed;
         [SerializeField] private float _dayCycleTime;
         [SerializeField] private GameObject _clockwise;
         [SerializeField] private GameObject[] _dayCycle;
@@ -63,6 +64,7 @@ namespace Team8.Unemployment.Gameplay
 
         private void Update()
         {
+            CameraZoom();
             float delay = Mathf.PingPong(Time.time, _dayCycleTime) / _dayCycleTime;
             if (_playerStatusData.action == 3)
             {
@@ -101,6 +103,23 @@ namespace Team8.Unemployment.Gameplay
                 
                 _clockwise.transform.DORotate(new Vector3(0, 0, _clockNight),4f);
             }
+        }
+
+        private void CameraZoom()
+        {
+            float maxZoom = 1.14f;
+            float minZoom = 0.65f;
+            _camera.orthographicSize -= Input.GetAxis("Mouse ScrollWheel") * _scrollSpeed;
+
+            if (_camera.orthographicSize > maxZoom)
+            {
+                _camera.orthographicSize = maxZoom;
+            }
+            else if(_camera.orthographicSize < minZoom)
+            {
+                _camera.orthographicSize = minZoom;
+            }
+            
         }
         private void DayCycle(string name)
         {

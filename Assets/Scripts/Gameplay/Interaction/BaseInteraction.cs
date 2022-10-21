@@ -140,7 +140,7 @@ namespace Team8.Unemployment.Gameplay
             for (int i = 0; i < decisionList.Count; i++)
             {
                 Decision decision = decisionList[i];
-                decision.LockButton().onClick.AddListener(()=> ShowMonologue(Constants.Monologue.LockRepairMonolog));
+                decision.LockButton().onClick.AddListener(()=> ShowMonologue(Constants.Monologue.LockRepairMonolog_1));
                 decision.DecisionButton().onClick.AddListener(()=> SpecificDecision(decision));
             }
         }
