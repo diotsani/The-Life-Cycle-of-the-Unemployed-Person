@@ -10,8 +10,9 @@ namespace Team8.Unemployment.Gameplay
         [SerializeField] private Material _handphoneScreen;
         [ColorUsage(true, true)] [SerializeField] private Color _emissionColor;
         private int _priceRepair = 25;
-        private int _minRandom = 6;
-        private int _maxRandom = 9;
+        [Header("Config Random Durability")]
+        [SerializeField] private int _minRandom;
+        [SerializeField] private int _maxRandom;
         protected override void Start()
         {
             _interactionName = Constants.Name.Handphone;

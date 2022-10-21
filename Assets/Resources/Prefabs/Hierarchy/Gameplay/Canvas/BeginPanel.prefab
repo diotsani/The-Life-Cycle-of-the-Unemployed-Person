@@ -37,7 +37,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 100}
-  m_SizeDelta: {x: 216.48, y: 37.51}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &55225794376076769
 CanvasRenderer:
@@ -219,13 +219,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "It\u2019s a story about someone who just graduated from the university;
-    she feels that her skill is not enough to apply in a job that she is hoping for,
-    so she started to improve her skill from courses. She live in a boarding house
-    that is quite simple with an environment that is girlish style. Day by day, it
-    became increasingly difficult for her to live because her parent had given her
-    an ultimatum where she must get a job in a seven day. If she couldn\u2019t fulfill
-    the ultimatum, her parents would stop to give her monthly allowance to survive
-    a day."
+    she feels that her skill is not enough to apply for the job that she is hoping
+    for, so she started to improve her skill through courses. She lives in a boarding
+    house that is quite simple with an environment that is girlish style. Day by
+    day, it became increasingly difficult for her to live because her parent had
+    given her an ultimatum that she must get a job in seven days. If she couldn\u2019t
+    fulfill the ultimatum, her parents would stop to give her a monthly allowance
+    to survive a day and they have other plans if she would ever fail."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 413273b6228472f4c80279b3a9801ace, type: 2}
   m_sharedMaterial: {fileID: 8773598191836073598, guid: 413273b6228472f4c80279b3a9801ace,
@@ -346,7 +346,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -355}
-  m_SizeDelta: {x: 375.62, y: 128.63}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1154080717694873219
 CanvasRenderer:

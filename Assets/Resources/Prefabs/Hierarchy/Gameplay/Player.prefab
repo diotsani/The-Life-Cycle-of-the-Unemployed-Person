@@ -548,7 +548,7 @@ MonoBehaviour:
   delayAnimSpeed: 1
   tipInteraction: {fileID: 0}
   stopDistance: 0.4
-  _footstepPlayRate: 0.7
+  _footstepPlayRate: 0.66
   currentInteraction: {fileID: 0}
   isWalking: 0
 --- !u!195 &7593786749245577420

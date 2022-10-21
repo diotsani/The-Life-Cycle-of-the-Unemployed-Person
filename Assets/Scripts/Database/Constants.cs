@@ -89,8 +89,11 @@ internal static class Constants
     {
         public const string WinTitle = "Congratulations!";
         public const string LoseTitle = "Too Bad!";
-        
-        public const string WinDescription = "Congratulations, you just proven yourself to your parent that nothing is impossible if you really put your effort on something. You just found a job that you been looking for all this time. You have made your parents proud. But, no any efforts comes without a price, that is your mental health.";
+
+        public static string WinDescription(int value)
+        {
+            return $"Congratulations, you proved to your parent that nothing is impossible if you really put your effort into something. You just found a job you have been looking for all this time. You have made your parents proud. But, no any efforts comes without a price, that is your mental health. If it were a scale of 0 to 100 your score on mental health is {value}. The higher the score, the higher the stress.";
+        }
        // public const string LoseDescription = "You Lose";
         
         public const string WinDescription30 = "You are a lucky person";

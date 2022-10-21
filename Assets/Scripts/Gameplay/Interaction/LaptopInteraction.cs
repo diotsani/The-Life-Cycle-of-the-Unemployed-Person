@@ -12,8 +12,9 @@ namespace Team8.Unemployment.Gameplay
         [SerializeField] private float _intensity;
         private Color _defaultColor = new Color(22, 22, 22, 255);
         private int _priceRepair = 50;
-        private int _minRandom = 3;
-        private int _maxRandom = 6;
+        [Header("Config Random Durability")]
+        [SerializeField] private int _minRandom;
+        [SerializeField] private int _maxRandom;
         protected override void Start()
         {
             _interactionName = Constants.Name.Laptop;

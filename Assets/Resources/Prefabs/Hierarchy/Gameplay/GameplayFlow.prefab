@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dayManager: {fileID: 0}
+  _gameplayView: {fileID: 0}
   isEndGame: 0
   isPauseGame: 0
   isWaitMonolog: 0

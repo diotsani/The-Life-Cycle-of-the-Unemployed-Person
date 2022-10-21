@@ -897,6 +897,51 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerStatusData
       objectReference: {fileID: 0}
+    - target: {fileID: 267900287149822659, guid: dd3a06933456df64eb51f8f72279cd50,
+        type: 3}
+      propertyPath: book
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 267900287149822659, guid: dd3a06933456df64eb51f8f72279cd50,
+        type: 3}
+      propertyPath: food
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 267900287149822659, guid: dd3a06933456df64eb51f8f72279cd50,
+        type: 3}
+      propertyPath: money
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 267900287149822659, guid: dd3a06933456df64eb51f8f72279cd50,
+        type: 3}
+      propertyPath: skill
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 267900287149822659, guid: dd3a06933456df64eb51f8f72279cd50,
+        type: 3}
+      propertyPath: action
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 267900287149822659, guid: dd3a06933456df64eb51f8f72279cd50,
+        type: 3}
+      propertyPath: health
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 267900287149822659, guid: dd3a06933456df64eb51f8f72279cd50,
+        type: 3}
+      propertyPath: stress
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 267900287149822659, guid: dd3a06933456df64eb51f8f72279cd50,
+        type: 3}
+      propertyPath: _addStress
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 267900287149822659, guid: dd3a06933456df64eb51f8f72279cd50,
+        type: 3}
+      propertyPath: _reduceHealth
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 267900287149822660, guid: dd3a06933456df64eb51f8f72279cd50,
         type: 3}
       propertyPath: m_RootOrder

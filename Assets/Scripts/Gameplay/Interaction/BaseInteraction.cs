@@ -37,7 +37,7 @@ namespace Team8.Unemployment.Gameplay
         [Header("Config")]
         [SerializeField] protected int _amountClicked;
         [SerializeField] protected int _maxClicked;
-        [SerializeField] protected int _durabilityDay;
+        protected int _durabilityDay;
         protected int _maxDurability = 3;
         
         [Header("Position")]
@@ -221,7 +221,7 @@ namespace Team8.Unemployment.Gameplay
         }
         public void RandomMaxClick(int min, int max)
         {
-            _maxClicked = Random.Range(min, max);
+            _maxClicked = Random.Range(min, max+1);
         }
 
         public string GetName()

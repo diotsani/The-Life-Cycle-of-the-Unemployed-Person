@@ -208,6 +208,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 7601066013057473186}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &454520135 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2357569347661892862, guid: 2f8e1d7f2359c0f4b9cdfec6cfaabb20,
+    type: 3}
+  m_PrefabInstance: {fileID: 2357569347851218823}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0f44bf0217e47d5ad463fc94c3f105b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &474667272
 GameObject:
   m_ObjectHideFlags: 0
@@ -1841,13 +1853,48 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 267900287149822659, guid: dd3a06933456df64eb51f8f72279cd50,
         type: 3}
+      propertyPath: book
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 267900287149822659, guid: dd3a06933456df64eb51f8f72279cd50,
+        type: 3}
+      propertyPath: food
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 267900287149822659, guid: dd3a06933456df64eb51f8f72279cd50,
+        type: 3}
+      propertyPath: money
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 267900287149822659, guid: dd3a06933456df64eb51f8f72279cd50,
+        type: 3}
+      propertyPath: skill
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 267900287149822659, guid: dd3a06933456df64eb51f8f72279cd50,
+        type: 3}
+      propertyPath: action
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 267900287149822659, guid: dd3a06933456df64eb51f8f72279cd50,
+        type: 3}
+      propertyPath: health
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 267900287149822659, guid: dd3a06933456df64eb51f8f72279cd50,
+        type: 3}
+      propertyPath: stress
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 267900287149822659, guid: dd3a06933456df64eb51f8f72279cd50,
+        type: 3}
       propertyPath: _addStress
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 267900287149822659, guid: dd3a06933456df64eb51f8f72279cd50,
         type: 3}
       propertyPath: _reduceHealth
-      value: 22
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 267900287149822660, guid: dd3a06933456df64eb51f8f72279cd50,
         type: 3}
@@ -2254,11 +2301,6 @@ PrefabInstance:
       objectReference: {fileID: 2112425835}
     - target: {fileID: 2357569347661892862, guid: 2f8e1d7f2359c0f4b9cdfec6cfaabb20,
         type: 3}
-      propertyPath: _titleText
-      value: 
-      objectReference: {fileID: 4540615857897019992}
-    - target: {fileID: 2357569347661892862, guid: 2f8e1d7f2359c0f4b9cdfec6cfaabb20,
-        type: 3}
       propertyPath: _actionText
       value: 
       objectReference: {fileID: 867205690}
@@ -2272,11 +2314,6 @@ PrefabInstance:
       propertyPath: _dayManager
       value: 
       objectReference: {fileID: 1875488692}
-    - target: {fileID: 2357569347661892862, guid: 2f8e1d7f2359c0f4b9cdfec6cfaabb20,
-        type: 3}
-      propertyPath: _guideDelay
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2357569347661892862, guid: 2f8e1d7f2359c0f4b9cdfec6cfaabb20,
         type: 3}
       propertyPath: _pausePanel
@@ -2339,19 +2376,24 @@ PrefabInstance:
       objectReference: {fileID: 5331555945605983715}
     - target: {fileID: 2357569347661892862, guid: 2f8e1d7f2359c0f4b9cdfec6cfaabb20,
         type: 3}
-      propertyPath: _descriptionText
-      value: 
-      objectReference: {fileID: 4540615857897019991}
-    - target: {fileID: 2357569347661892862, guid: 2f8e1d7f2359c0f4b9cdfec6cfaabb20,
-        type: 3}
       propertyPath: _statusFloatText
       value: 
       objectReference: {fileID: 431399097}
     - target: {fileID: 2357569347661892862, guid: 2f8e1d7f2359c0f4b9cdfec6cfaabb20,
         type: 3}
+      propertyPath: _titleEndGameText
+      value: 
+      objectReference: {fileID: 4540615857897019992}
+    - target: {fileID: 2357569347661892862, guid: 2f8e1d7f2359c0f4b9cdfec6cfaabb20,
+        type: 3}
       propertyPath: _statusFloatHeader
       value: 
       objectReference: {fileID: 765796878}
+    - target: {fileID: 2357569347661892862, guid: 2f8e1d7f2359c0f4b9cdfec6cfaabb20,
+        type: 3}
+      propertyPath: _descriptionEndGameText
+      value: 
+      objectReference: {fileID: 4540615857897019991}
     - target: {fileID: 2357569347661892863, guid: 2f8e1d7f2359c0f4b9cdfec6cfaabb20,
         type: 3}
       propertyPath: m_Name
@@ -2916,6 +2958,11 @@ PrefabInstance:
       propertyPath: _dayManager
       value: 
       objectReference: {fileID: 1875488692}
+    - target: {fileID: 4869834766544336066, guid: 77b34404fef8fe94fb6fa81540eda649,
+        type: 3}
+      propertyPath: _gameplayView
+      value: 
+      objectReference: {fileID: 454520135}
     - target: {fileID: 4869834766544336067, guid: 77b34404fef8fe94fb6fa81540eda649,
         type: 3}
       propertyPath: m_Name
@@ -3203,25 +3250,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1072247210}
     m_Modifications:
-    - target: {fileID: 5392227106870348214, guid: 04e02f13a3b3a7a469ac3c43dcf5ce7c,
-        type: 3}
-      propertyPath: m_fontSize
-      value: 28
-      objectReference: {fileID: 0}
-    - target: {fileID: 5392227106870348214, guid: 04e02f13a3b3a7a469ac3c43dcf5ce7c,
-        type: 3}
-      propertyPath: m_fontSizeBase
-      value: 28
-      objectReference: {fileID: 0}
     - target: {fileID: 5392227107034200448, guid: 04e02f13a3b3a7a469ac3c43dcf5ce7c,
         type: 3}
       propertyPath: m_Name
       value: MonologPanel
-      objectReference: {fileID: 0}
-    - target: {fileID: 5392227107034200448, guid: 04e02f13a3b3a7a469ac3c43dcf5ce7c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5392227107034200449, guid: 04e02f13a3b3a7a469ac3c43dcf5ce7c,
         type: 3}
@@ -4002,6 +4034,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3777217228795628718, guid: ec344407b9659984c9dd8213efcb0149,
         type: 3}
+      propertyPath: _maxRandom
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3777217228795628718, guid: ec344407b9659984c9dd8213efcb0149,
+        type: 3}
+      propertyPath: _minRandom
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3777217228795628718, guid: ec344407b9659984c9dd8213efcb0149,
+        type: 3}
       propertyPath: _dayManager
       value: 
       objectReference: {fileID: 1875488692}
@@ -4010,6 +4052,16 @@ PrefabInstance:
       propertyPath: _decisionParent
       value: 
       objectReference: {fileID: 1206766634}
+    - target: {fileID: 3777217229910385326, guid: ec344407b9659984c9dd8213efcb0149,
+        type: 3}
+      propertyPath: _maxRandom
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3777217229910385326, guid: ec344407b9659984c9dd8213efcb0149,
+        type: 3}
+      propertyPath: _minRandom
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3777217229910385326, guid: ec344407b9659984c9dd8213efcb0149,
         type: 3}
       propertyPath: _dayManager

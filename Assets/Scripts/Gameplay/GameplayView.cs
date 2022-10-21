@@ -6,6 +6,7 @@ using Team8.Unemployment.Global;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Team8.Unemployment.Gameplay
@@ -69,8 +70,8 @@ namespace Team8.Unemployment.Gameplay
 
         [Header("End Game Display")]
         [SerializeField] private CanvasGroup _endGamePanel;
-        [SerializeField] private TMP_Text _titleText;
-        [SerializeField] private TMP_Text _descriptionText;
+        [SerializeField] private TMP_Text _titleEndGameText;
+        [SerializeField] private TMP_Text _descriptionEndGameText;
 
         private void OnEnable()
         {
@@ -97,7 +98,7 @@ namespace Team8.Unemployment.Gameplay
             _playerStatusData = PlayerStatusData.Instance;
             
             _beginPanel.GetComponent<Button>().onClick.AddListener(ClickBegin);
-            _beginDateText.text = DateTime.UtcNow.ToString("dd/MM/yyyy");
+            _beginDateText.text = DateTime.Now.ToString("dd/MM/yyyy");
             
             _endGamePanel.GetComponent<Button>().onClick.AddListener(ResetGameplay);
             _endGamePanel.GetComponent<Button>().interactable = false;
@@ -238,16 +239,20 @@ namespace Team8.Unemployment.Gameplay
             _feedbackText.text = feedback;
             _feedbackPanel.gameObject.SetActive(true);
             _feedbackPanel.DOFade(1, _feedbackDuration/2).From(0).SetDelay(_feedbackDelay).SetEase(_feedbackEase)
-                .OnComplete(()=>_feedbackPanel.DOFade(0, _feedbackDuration/2).From(1).SetDelay(_feedbackDuration)
+                .OnComplete(()=>_feedbackPanel.DOFade(0, _feedbackDuration/2).From(1).SetDelay(_feedbackDelay*2)
                     .OnComplete(()=>_feedbackPanel.gameObject.SetActive(false)));
         }
         private void ShowEndPanel(string title, string description)
         {
-            _titleText.text = title;
-            _descriptionText.text = description;
+            _titleEndGameText.text = title;
+            _descriptionEndGameText.text = description;
             _endGamePanel.gameObject.SetActive(true);
             _endGamePanel.DOFade(1, 1f).From(0).SetDelay(0.5f)
                 .OnComplete(()=> SetEndGameButton());
+        }
+        public TMP_Text EndText()
+        {
+            return _descriptionEndGameText;
         }
         void SetEndGameButton()
         {

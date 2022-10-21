@@ -19,6 +19,7 @@ namespace Team8.Unemployment.Gameplay
         
         [Header("Dependencies")] private PlayerStatusData playerStatusData;
         [SerializeField] private DayManager _dayManager;
+        [SerializeField] private GameplayView _gameplayView;
         
         [SerializeField] private bool isEndGame;
         public bool isPauseGame;
@@ -122,6 +123,7 @@ namespace Team8.Unemployment.Gameplay
         private void OnGameOver(string message)
         {
             if(isEndGame)return;
+            _gameplayView.EndText().rectTransform.sizeDelta = new Vector2(800, 400);
             OnEndGame?.Invoke();
             OnShowEndGame?.Invoke(Constants.EndGame.LoseTitle, message);
             isEndGame = true;
@@ -131,6 +133,7 @@ namespace Team8.Unemployment.Gameplay
         private void OnVictory()
         {
             if(isEndGame)return;
+            _gameplayView.EndText().rectTransform.sizeDelta = new Vector2(850, 400);
             OnEndGame?.Invoke();
 
             // if (playerStatusData.skill <= 30)
@@ -149,7 +152,8 @@ namespace Team8.Unemployment.Gameplay
             // {
             //     OnShowEndGame?.Invoke(Constants.EndGame.WinTitle, Constants.EndGame.WinDescription90);
             // }
-            OnShowEndGame?.Invoke(Constants.EndGame.WinTitle,Constants.EndGame.WinDescription + "\n" + Constants.EndGame.WinMessage(playerStatusData.stress));
+            OnShowEndGame?.Invoke(Constants.EndGame.WinTitle,Constants.EndGame.WinDescription(playerStatusData.stress));
+            
             isEndGame = true;
             playerStatusData.isEndGame = true;
         }

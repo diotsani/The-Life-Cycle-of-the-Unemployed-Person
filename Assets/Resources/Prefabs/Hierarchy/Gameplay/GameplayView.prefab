@@ -54,6 +54,8 @@ MonoBehaviour:
   _healthBar: {fileID: 0}
   _stressBar: {fileID: 0}
   _actionText: {fileID: 0}
+  _guideText: {fileID: 0}
+  _guideDelay: 1
   _pausePanel: {fileID: 0}
   _resumeButton: {fileID: 0}
   _quitButton: {fileID: 0}
@@ -72,5 +74,5 @@ MonoBehaviour:
   _statusFloatHeader: {fileID: 0}
   _statusFloatText: {fileID: 0}
   _endGamePanel: {fileID: 0}
-  _titleText: {fileID: 0}
-  _descriptionText: {fileID: 0}
+  _titleEndGameText: {fileID: 0}
+  _descriptionEndGameText: {fileID: 0}

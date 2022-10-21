@@ -53,6 +53,10 @@ namespace Team8.Unemployment.Gameplay
                     _bookCollider.enabled = false;
                     DecisionParent().SetActive(false);
                 }
+                else
+                {
+                    //_bookCollider.enabled = true;
+                }
             }
         }
     }

@@ -15,20 +15,20 @@ namespace Team8.Unemployment.Global
         public static event EventParameter OnStatusChange;
         
         [Header("Config")]
-        public int skill = 8;
-        public int stress = 10;
-        public int health = 100;
-        public int money = 30;
-        public int book = 5;
-        public int food = 26;
-        public int action = 3;
+        public int skill;
+        public int stress;
+        public int health;
+        public int money;
+        public int book;
+        public int food;
+        public int action;
         private int _resetAction = 3;
         private int _totalAction;
 
         [Header("Change Config")] 
         public int day;
-        [SerializeField] private int _addStress = 10;
-        [SerializeField] private int _reduceHealth = 22;
+        [SerializeField] private int _addStress;
+        [SerializeField] private int _reduceHealth;
         public int maxSkill { get; private set; } = 100;
 
         public bool isPlayGame;
@@ -50,10 +50,10 @@ namespace Team8.Unemployment.Global
 
         public void ResetStatus()
         {
-            skill = 8;
-            stress = 10;
+            skill = 18;
+            stress = 9;
             health = 100;
-            money = 30;
+            money = 32;
             book = 5;
             food = 26;
             action = 3;
@@ -61,8 +61,8 @@ namespace Team8.Unemployment.Global
             _totalAction = 0;
             day = 0;
             
-            _addStress = 10; 
-            _reduceHealth = 22;
+            _addStress = 9; 
+            _reduceHealth = 18;
             
             isFresh = true;
             isMaxDay = false;
