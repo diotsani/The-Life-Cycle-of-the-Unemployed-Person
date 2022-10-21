@@ -28,6 +28,8 @@ namespace Team8.Unemployment.Gameplay
         [SerializeField] private Image _healthBar;
         [SerializeField] private Image _stressBar;
         [SerializeField] private TMP_Text _actionText;
+        [SerializeField] private TMP_Text _guideText;
+        [SerializeField] private float _guideDelay;
         private float _maxProgress = 100;
         private float _barDelay = 1f;
         
@@ -298,10 +300,15 @@ namespace Team8.Unemployment.Gameplay
             else
             {
                 // First Day
+                _guideText.gameObject.SetActive(true);
+                _guideText.alpha = 0;
                 _dayText.text = Constants.Status.Day + value.ToString();
                 _dayPanel.gameObject.SetActive(true);
                 _dayGroup.alpha = 1;
-                _dayText.DOFade(1, delay).From(0).SetDelay(delay);
+                _dayText.DOFade(1, delay).From(0).SetDelay(delay)
+                    .OnComplete(()=>_guideText.DOFade(1,0.6f).SetDelay(_guideDelay)
+                        .OnComplete(()=>_guideText.DOFade(0,0.6f).SetDelay(0.4f)
+                            .OnComplete(()=>_guideText.gameObject.SetActive(false))));
             }
             yield return new WaitForSeconds(1 + delay);
             _playerStatusData.ChangeStatus();

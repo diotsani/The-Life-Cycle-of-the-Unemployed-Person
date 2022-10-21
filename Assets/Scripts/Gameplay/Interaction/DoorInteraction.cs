@@ -30,15 +30,19 @@ namespace Team8.Unemployment.Gameplay
 
         protected override void SpecificDecision(Decision decision)
         {
+            int rnd = Random.Range(0, 3);
+            Debug.Log(rnd);
             if(decision.DecisionText() == Constants.Requirments.Jogging)
             {
-                ShowMonologue(Constants.Monologue.JoggingMonolog_1);
+                ShowMonologue(Constants.Monologue.JoggingMonolog(rnd));
+                
                 ShowFeedback(Constants.Feedback.JoggingFeedback);
                 ShowHistory(Constants.History.Jogging);
             }
             if (decision.DecisionText() == Constants.Requirments.BuyFoodStock)
             {
-                ShowMonologue(Constants.Monologue.BuyFoodMonolog_1);
+                ShowMonologue(Constants.Monologue.BuyFoodMonolog(rnd));
+                
                 ShowFeedback(Constants.Feedback.BuyFoodFeedback);
                 ShowHistory(Constants.History.BuyFoodStock);
 

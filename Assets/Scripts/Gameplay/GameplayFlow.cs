@@ -89,7 +89,7 @@ namespace Team8.Unemployment.Gameplay
                 ProbabilityVictory(playerStatusData.skill,playerStatusData.maxSkill);
                 return;
             }
-            OnGameOver(Constants.EndGame.LoseDescriptionSkill);
+            OnGameOver(Constants.EndGame.LoseDescription+ "\n" +Constants.EndGame.LoseMessage(playerStatusData.skill));
         }
         private void ProbabilityVictory(int skillChance, int maxSkill)
         {
@@ -101,7 +101,7 @@ namespace Team8.Unemployment.Gameplay
             }
             else
             {
-                OnGameOver(Constants.EndGame.LoseDescriptionSkill);
+                OnGameOver(Constants.EndGame.LoseDescription+ "\n" +Constants.EndGame.LoseMessage(playerStatusData.skill));
             }
         }
         private void CheckProbability(int skillChance, int maxSkill)

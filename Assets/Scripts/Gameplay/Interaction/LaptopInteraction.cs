@@ -57,9 +57,12 @@ namespace Team8.Unemployment.Gameplay
 
         protected override void SpecificDecision(Decision decision)
         {
+            int rnd = Random.Range(0, 3);
+            Debug.Log(rnd);
+            
             if (decision.DecisionText() == Constants.Requirments.ApplyJob)
             {
-                ShowMonologue(Constants.Monologue.ApplyJobMonolog_1);
+                ShowMonologue(Constants.Monologue.ApplyJobMonolog(rnd));
                 ShowFeedback(Constants.Feedback.ApplyJobFeedback);
                 ShowHistory(Constants.History.ApplyJob);
                 _playerStatusData.isApplyJob = true;
@@ -67,21 +70,13 @@ namespace Team8.Unemployment.Gameplay
             }
             if (decision.DecisionText() == Constants.Requirments.TakeCourse)
             {
-                ShowMonologue(Constants.Monologue.TakeCourseMonolog_1);
+                ShowMonologue(Constants.Monologue.TakeCourseMonolog(rnd));
                 ShowFeedback(Constants.Feedback.TakeCourseFeedback);
                 ShowHistory(Constants.History.TakeCourse);
             }
             if (decision.DecisionText() == Constants.Requirments.PlayGame)
             {
-                int rndMonolog = Random.Range(0, 2);
-                Debug.Log("Random Play Game "+rndMonolog);
-                switch (rndMonolog)
-                {
-                    case 0 : ShowMonologue(Constants.Monologue.PlayGameMonolog_1);
-                        break;
-                    case 1 : ShowMonologue(Constants.Monologue.PlayGameMonolog_2);
-                        break;
-                }
+                ShowMonologue(Constants.Monologue.PlayGameMonolog(rnd));
                 
                 ShowFeedback(Constants.Feedback.PlayGameFeedback);
                 ShowHistory(Constants.History.PlayGame);
@@ -100,7 +95,7 @@ namespace Team8.Unemployment.Gameplay
             }
             if (decision.DecisionText() == Constants.Requirments.Repair)
             {
-                ShowMonologue(Constants.Monologue.RepairLaptopMonolog_1);
+                ShowMonologue(Constants.Monologue.RepairLaptopMonolog(rnd));
                 ShowFeedback(Constants.Feedback.RepairLaptopFeedback);
                 ShowHistory(Constants.History.RepairLaptop);
                 ResetDecision();

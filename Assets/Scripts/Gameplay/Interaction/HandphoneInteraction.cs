@@ -53,6 +53,9 @@ namespace Team8.Unemployment.Gameplay
         }
         protected override void SpecificDecision(Decision decision)
         {
+            int rnd = Random.Range(0, 3);
+            Debug.Log(rnd);
+            
             if (decision.DecisionText() == Constants.Requirments.SocialMedia)
             {
                 int rndStress = Random.Range(-10, 12 + 1);
@@ -82,7 +85,7 @@ namespace Team8.Unemployment.Gameplay
             }
             if (decision.DecisionText() == Constants.Requirments.Sell)
             {
-                ShowMonologue(Constants.Monologue.SellHandphoneMonolog_1);
+                ShowMonologue(Constants.Monologue.SellHandphoneMonolog(rnd));
                 ShowFeedback(Constants.Feedback.SellHandphoneFeedback);
                 ShowHistory(Constants.History.SellHandphone);
 
@@ -91,7 +94,7 @@ namespace Team8.Unemployment.Gameplay
             }
             if (decision.DecisionText() == Constants.Requirments.Repair)
             {
-                ShowMonologue(Constants.Monologue.RepairHandphoneMonolog_1);
+                ShowMonologue(Constants.Monologue.RepairHandphoneMonolog(rnd));
                 ShowFeedback(Constants.Feedback.RepairHandphoneFeedback);
                 ShowHistory(Constants.History.RepairHandphone);
                 ResetDecision();

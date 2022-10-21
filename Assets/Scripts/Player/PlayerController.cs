@@ -48,6 +48,13 @@ namespace Team8.Unemployment.Player
             }
         }
 
+        private void PlayerIdle()
+        {
+            if(!PlayerStatusData.Instance.isPlayGame)return;
+            // float timer;
+            // timer += Time.deltaTime;
+        }
+
         public void Walk()
         {
             if (Vector3.Distance(transform.position, tipInteraction.target) <= stopDistance)

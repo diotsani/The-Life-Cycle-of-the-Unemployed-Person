@@ -67,15 +67,18 @@ namespace Team8.Unemployment.Gameplay
 
         protected override void SpecificDecision(Decision decision)
         {
+            int rnd = Random.Range(0, 3);
+            Debug.Log(rnd);
+            
             if (decision.DecisionText() == Constants.Requirments.Eat)
             {
-                ShowMonologue(Constants.Monologue.EatMonolog_1);
+                ShowMonologue(Constants.Monologue.EatMonolog(rnd));
                 ShowFeedback(Constants.Feedback.EatFeedback);
                 ShowHistory(Constants.History.Eat);
             }
             if(decision.DecisionText() == Constants.Requirments.ThrowFood)
             {
-                ShowMonologue(Constants.Monologue.ThrowFoodMonolog_1);
+                ShowMonologue(Constants.Monologue.ThrowFoodMonolog(rnd));
                 ShowFeedback(Constants.Feedback.ThrowFoodFeedback);
                 ShowHistory(Constants.History.ThrowFood);
                 _playerStatusData.ResetFood();
@@ -84,7 +87,6 @@ namespace Team8.Unemployment.Gameplay
 
             if (decision.DecisionText() == Constants.Requirments.CheckFoodStock)
             {
-                int rnd = Random.Range(0, 3);
                 ShowMonologue(Constants.Monologue.FoodStockMonolog(rnd,_playerStatusData.food));
                 ShowHistory(Constants.History.CheckFoodStock);
             }

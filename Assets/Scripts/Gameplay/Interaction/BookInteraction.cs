@@ -17,15 +17,19 @@ namespace Team8.Unemployment.Gameplay
 
         protected override void SpecificDecision(Decision decision)
         {
+            int rnd = Random.Range(0, 3);
+            Debug.Log(rnd);
             if (decision.DecisionText() == Constants.Requirments.ReadBook)
             {
-                ShowMonologue(Constants.Monologue.ReadBookMonolog_1);
+                ShowMonologue(Constants.Monologue.ReadBookMonolog(rnd));
+                
                 ShowFeedback(Constants.Feedback.ReadBookFeedback);
                 ShowHistory(Constants.History.ReadBook);
             }
             if (decision.DecisionText() == Constants.Requirments.Sell)
             {
-                ShowMonologue(Constants.Monologue.SellBookMonolog_1);
+                ShowMonologue(Constants.Monologue.SellBookMonolog(rnd));
+                
                 ShowFeedback(Constants.Feedback.SellBookFeedback);
                 ShowHistory(Constants.History.SellBook);
                 
@@ -34,7 +38,6 @@ namespace Team8.Unemployment.Gameplay
             }
             if (decision.DecisionText() == Constants.Requirments.CheckBookShelf)
             {
-                int rnd = Random.Range(0, 3);
                 ShowMonologue(Constants.Monologue.BookStockMonolog(rnd,_playerStatusData.book));
                 ShowHistory(Constants.History.CheckBookShelf);
             }
