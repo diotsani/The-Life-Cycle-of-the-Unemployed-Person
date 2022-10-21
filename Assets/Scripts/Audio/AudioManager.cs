@@ -62,7 +62,7 @@ namespace Team8.Unemployment.Global
                         _BgmHome.text = BGM[random].name;
                         _BgmHome.gameObject.SetActive(true);
                         _BgmHome.DOFade(1, _delay).From(0)
-                            .OnComplete(()=>_BgmHome.DOFade(0,_delay))
+                            .OnComplete(()=>_BgmHome.DOFade(0,_delay)).From(1).SetDelay(2)
                             .OnComplete(()=> _BgmHome.gameObject.SetActive(false));
                     }
                     else if(sceneName == Constants.Scene.Gameplay)
@@ -70,7 +70,7 @@ namespace Team8.Unemployment.Global
                         _BgmGameplay.text = BGM[random].name;
                         _BgmGameplay.gameObject.SetActive(true);
                         _BgmGameplay.DOFade(1, _delay).From(0)
-                            .OnComplete(()=>_BgmGameplay.DOFade(0,_delay))
+                            .OnComplete(()=>_BgmGameplay.DOFade(0,_delay)).From(1).SetDelay(2)
                             .OnComplete(() => _BgmGameplay.gameObject.SetActive(false));
                     }
                 
@@ -81,22 +81,7 @@ namespace Team8.Unemployment.Global
                 sourceBGM.pitch = BGM[random].pitch;
                 sourceBGM.Play();
                 yield return new WaitForSecondsRealtime(sourceBGM.clip.length);
-                
-                // for (int i = 0; i < BGM.Length; i++)
-                // {
-                //     _nameBGM.text = BGM[i].name;
-                //     _animBGM.SetTrigger("PopUp");
-                //
-                //     yield return new WaitForSeconds(3f);
-                //
-                //     sourceBGM.clip = BGM[i].clip;
-                //     sourceBGM.volume = BGM[i].volume;
-                //     sourceBGM.pitch = BGM[i].pitch;
-                //
-                //     sourceBGM.Play();
-                //
-                //     while (sourceBGM.isPlaying) yield return null;
-                // }
+               
             }
             while (!isPlay)
             {
