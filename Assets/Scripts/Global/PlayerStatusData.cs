@@ -13,6 +13,8 @@ namespace Team8.Unemployment.Global
         
         public delegate void EventParameter(string name, int value);
         public static event EventParameter OnStatusChange;
+
+        private PlayerScriptable PlayerScriptable;
         
         [Header("Config")]
         public int skill;
@@ -27,8 +29,9 @@ namespace Team8.Unemployment.Global
 
         [Header("Change Config")] 
         public int day;
-        [SerializeField] private int _addStress;
-        [SerializeField] private int _reduceHealth;
+        public int addStress;
+        public int reduceHealth;
+        public int minStress = 60;
         public int maxSkill { get; private set; } = 100;
 
         public bool isPlayGame;
@@ -40,29 +43,23 @@ namespace Team8.Unemployment.Global
         public bool isApplied;
         private void Start()
         {
+            PlayerScriptable = Resources.Load<PlayerScriptable>(Constants.Path.Player);
             ResetStatus();
         }
-
-        private void Update()
-        {
-            
-        }
-
         public void ResetStatus()
         {
-            skill = 18;
-            stress = 9;
-            health = 100;
-            money = 32;
-            book = 5;
-            food = 26;
-            action = 3;
-            _resetAction = 3;
-            _totalAction = 0;
-            day = 0;
-            
-            _addStress = 9; 
-            _reduceHealth = 18;
+            skill = PlayerScriptable.playerData.skill;
+            stress = PlayerScriptable.playerData.stress;
+            health = PlayerScriptable.playerData.health;
+            money = PlayerScriptable.playerData.money;
+            book = PlayerScriptable.playerData.book;
+            food = PlayerScriptable.playerData.food;
+            action = PlayerScriptable.playerData.action;
+            _resetAction = PlayerScriptable.playerData.action;
+            //_totalAction = PlayerScriptable.playerData.totalAction;
+            day = PlayerScriptable.playerData.day;
+            addStress = PlayerScriptable.playerData.addStress;
+            reduceHealth = PlayerScriptable.playerData.reduceHealth;
             
             isFresh = true;
             isMaxDay = false;
@@ -77,8 +74,8 @@ namespace Team8.Unemployment.Global
         public void ChangeStatus()
         {
             if(day <=1)return;
-            health -= _reduceHealth;
-            stress += _addStress;
+            health -= reduceHealth;
+            stress += addStress;
             isPlayGame = true;
             // OnStatusChange?.Invoke("Health", _reduceHealth*-1);
             // OnStatusChange?.Invoke("Stress", _addStress);

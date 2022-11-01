@@ -49,29 +49,28 @@ isPlay = true;
 StartCoroutine(ListBGM());
 
 IEnumerator ListBGM()
-{
+{ 
 yield return null;
 
 while (isPlay)
 {
-Debug.Log("Music Play");
 int random = Random.Range(0, BGM.Length);
 
 if (sceneName == Constants.Scene.Home)
 {
-    _BgmHome.text = BGM[random].name;
-    _BgmHome.gameObject.SetActive(true);
-    _BgmHome.DOFade(1, _delay).From(0)
-        .OnComplete(() => _BgmHome.DOFade(0, _delay).SetDelay(2f)
-            .OnComplete(() => _BgmHome.gameObject.SetActive(false)));
+_BgmHome.text = BGM[random].name;
+_BgmHome.gameObject.SetActive(true);
+_BgmHome.DOFade(1, _delay).From(0)
+.OnComplete(() => _BgmHome.DOFade(0, _delay).SetDelay(2f)
+    .OnComplete(() => _BgmHome.gameObject.SetActive(false)));
 }
 else if (sceneName == Constants.Scene.Gameplay)
 {
-    _BgmGameplay.text = BGM[random].name;
-    _BgmGameplay.gameObject.SetActive(true);
-    _BgmGameplay.DOFade(1, _delay).From(0)
-        .OnComplete(() => _BgmGameplay.DOFade(0, _delay).SetDelay(2f)
-            .OnComplete(() => _BgmGameplay.gameObject.SetActive(false)));
+_BgmGameplay.text = BGM[random].name;
+_BgmGameplay.gameObject.SetActive(true);
+_BgmGameplay.DOFade(1, _delay).From(0)
+.OnComplete(() => _BgmGameplay.DOFade(0, _delay).SetDelay(2f)
+    .OnComplete(() => _BgmGameplay.gameObject.SetActive(false)));
 }
 
 yield return new WaitForSeconds(1f);

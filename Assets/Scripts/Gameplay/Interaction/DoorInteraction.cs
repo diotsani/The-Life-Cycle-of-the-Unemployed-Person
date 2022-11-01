@@ -22,7 +22,7 @@ namespace Team8.Unemployment.Gameplay
             
                 if (obj.DecisionText() == Constants.Requirments.BuyFoodStock)
                 {
-                    bool set = _playerStatusData.money >= 20;
+                    bool set = _playerStatusData.money >= obj._moneyCost;
                     obj.DecisionButton().interactable = set;
                 }
             }
@@ -31,7 +31,6 @@ namespace Team8.Unemployment.Gameplay
         protected override void SpecificDecision(Decision decision)
         {
             int rnd = Random.Range(0, 3);
-            Debug.Log(rnd);
             if(decision.DecisionText() == Constants.Requirments.Jogging)
             {
                 ShowMonologue(Constants.Monologue.JoggingMonolog(rnd));

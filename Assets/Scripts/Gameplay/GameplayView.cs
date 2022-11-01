@@ -152,15 +152,15 @@ namespace Team8.Unemployment.Gameplay
             _endGamePanel.DOFade(0, 0.5f).From(0)
                 .OnComplete(()=>_endGamePanel.gameObject.SetActive(false));
             _playerStatusData.ResetStatus();
-            SceneManager.LoadScene("TestHome");
+            SceneManager.LoadScene(Constants.Scene.Home);
         }
 
         void QuitGameplay()
         {
             _pausePanel.DOFade(0, 0.5f).From(0)
                 .OnComplete(()=>_pausePanel.gameObject.SetActive(false));
-            _playerStatusData.ResetStatus();
-            SceneManager.LoadScene("TestHome");
+           _playerStatusData.ResetStatus();
+           SceneManager.LoadScene(Constants.Scene.Home);
         }
 
         private void ShowBegin()

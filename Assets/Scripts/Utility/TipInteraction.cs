@@ -32,7 +32,7 @@ namespace Team8.Unemployment.Utility
 
         private Ray _ray;
         private RaycastHit _hit;
-        private bool _hitInfo;
+       // private bool _hitInfo;
         private IInteractable _interactable;
         private BaseInteraction _interaction;
 
@@ -46,7 +46,7 @@ namespace Team8.Unemployment.Utility
 
         void InitRay()
         {
-            _hitInfo = false;
+            //_hitInfo = false;
             _ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         }
 
@@ -60,7 +60,7 @@ namespace Team8.Unemployment.Utility
 
                 if (_interactable != null)
                 {
-                    _hitInfo = true;
+                    //_hitInfo = true;
                     
                     //TooltipUI(!_hitInfo);
 

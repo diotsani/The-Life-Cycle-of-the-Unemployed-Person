@@ -40,7 +40,8 @@ public class QuickOutline : MonoBehaviour {
     }
   }
 
-  public float OutlineWidth {
+  public float OutlineWidth
+  {
     get { return outlineWidth; }
     set {
       outlineWidth = value;

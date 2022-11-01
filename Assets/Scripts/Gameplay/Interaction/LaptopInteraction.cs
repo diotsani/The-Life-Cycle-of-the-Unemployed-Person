@@ -59,8 +59,6 @@ namespace Team8.Unemployment.Gameplay
         protected override void SpecificDecision(Decision decision)
         {
             int rnd = Random.Range(0, 3);
-            Debug.Log(rnd);
-            
             if (decision.DecisionText() == Constants.Requirments.ApplyJob)
             {
                 ShowMonologue(Constants.Monologue.ApplyJobMonolog(rnd));
@@ -122,7 +120,7 @@ namespace Team8.Unemployment.Gameplay
                 }
                 if (obj.DecisionText() == Constants.Requirments.TakeCourse)
                 {
-                    bool set = _playerStatusData.stress <= 60;
+                    bool set = _playerStatusData.stress <= _playerStatusData.minStress;
                     obj.DecisionButton().interactable = set;
                 }
             }
