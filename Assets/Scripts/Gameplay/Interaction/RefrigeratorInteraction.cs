@@ -68,8 +68,6 @@ namespace Team8.Unemployment.Gameplay
         protected override void SpecificDecision(Decision decision)
         {
             int rnd = Random.Range(0, 3);
-            Debug.Log(rnd);
-            
             if (decision.DecisionText() == Constants.Requirments.Eat)
             {
                 ShowMonologue(Constants.Monologue.EatMonolog(rnd));
@@ -105,7 +103,7 @@ namespace Team8.Unemployment.Gameplay
                 }
                 if (obj.DecisionText() == Constants.Requirments.Eat)
                 {
-                    bool set = _playerStatusData.food >= 10;
+                    bool set = _playerStatusData.food >= obj._foodCost;
                     obj.DecisionButton().interactable = set;
                 }
             }

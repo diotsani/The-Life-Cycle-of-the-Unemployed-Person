@@ -50,7 +50,7 @@ namespace Team8.Unemployment.Home
         private void OnNewGame()
         {
             AudioManager.Instance.PlaySFX("ButtonClick");
-            SceneManager.LoadScene("TestGameplay");
+            SceneManager.LoadScene(Constants.Scene.Gameplay);
         }
         private void OnCredit()
         {

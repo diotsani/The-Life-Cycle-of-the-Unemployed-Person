@@ -22,11 +22,11 @@ namespace Team8.Unemployment.Gameplay
         private int _skillCost;
         private int _stressCost;
         private int _healthCost;
-        private int _moneyCost;
+        public int _moneyCost { get; private set; }
         private int _actionCost;
         private int _bookCost;
-        private int _foodCost;
-        
+        public int _foodCost { get; private set; }
+
         public void Init(string getName,int getSkill, int getStress, int getHealth, int getMoney, int getAction, int getBook, int getFood)
         {
             this.name = getName;
@@ -84,6 +84,10 @@ namespace Team8.Unemployment.Gameplay
         void SetLockButton()
         {
             Debug.Log(name + " is locked");
+        }
+        public int FoodCost()
+        {
+            return _foodCost;
         }
     }
 }

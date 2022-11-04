@@ -16,8 +16,8 @@ internal static class Constants
     }
     public static class Scene
     {
-        public const string Home = "TestHome";
-        public const string Gameplay = "TestGameplay";
+        public const string Home = "Home";
+        public const string Gameplay = "Gameplay";
     }
 
     public static class Resources
@@ -77,6 +77,7 @@ internal static class Constants
     }
     public static class Path
     {
+        public const string Player = "PlayerData/PlayerData";
         public const string Laptop ="Decision/Laptop";
         public const string Handphone = "Decision/Handphone";
         public const string BookShelf = "Decision/BookShelf";
@@ -94,21 +95,11 @@ internal static class Constants
         {
             return $"Congratulations, you proved to your parent that nothing is impossible if you really put your effort into something. You just found a job you have been looking for all this time. You have made your parents proud. But, no any efforts comes without a price, that is your mental health. If it were a scale of 0 to 100 your score on mental health is {value}. The higher the score, the higher the stress.";
         }
-       // public const string LoseDescription = "You Lose";
-        
-        public const string WinDescription30 = "You are a lucky person";
-        public const string WinDescription60 = "Your skill enough to get a job";
-        public const string WinDescription90 = "You are a genius";
-        
+       // Lose Description
         public const string LoseDescription = "Unfortunately, you have exceeded the time limit that your parent has set. Because of that, they ask you to come back to your hometown. They will get you married to someone you hardly know of.";
         public const string LoseDescriptionStress = "Because of your parent pressure, you study so hard that you forget about your mental health. You keep forcing yourself to find a job in a brief time.";
         public const string LoseDescriptionHealth = "Unfortunately, Because you are too focused on developing your skill you forget to check your health. Because of that, you're getting rushed to the hospital.";
-
-        public static string WinMessage(int value)
-        {
-            return $"If it were scale 0 to 100 your score on mental health is {value}";
-        }
-
+        
         public static string LoseMessage(int value)
         {
             return $"In the end, you could not fulfill your dreams, as a woman of career. If your qualification is scaled from 0 to 100, maybe your skill is on {value}";
@@ -125,38 +116,24 @@ internal static class Constants
     public static class Monologue
     {
         //Laptop
-        public const string ApplyJobMonolog_1 = "I have to get a job or I will suffer for the rest of my life. Wish me luck!.";
-        public const string ApplyJobMonolog_2 = "I’m gonna hope for the best.";
-        public const string ApplyJobMonolog_3 = "I put all my effort just to apply for this job. Hoping all those times become worth it.";
-
         public static string ApplyJobMonolog(int rnd)
         {
             switch (rnd)
             {
                 case 0: return "I have to get a job or I will suffer for the rest of my life. Wish me luck!.";
-                break;
                 case 1: return "I’m gonna hope for the best.";
-                break;
                 case 2 : return "I put all my effort just to apply for this job. Hoping all those times become worth it.";
-                break;
             }
             return null;
         }
         
-        
-        public const string TakeCourseMonolog_1 = "That makes my head hurt. At least this is the only thing I can do to improve my skill significantly.";
-        public const string TakeCourseMonolog_2 = "Ugh, it's hard. At least I am making progress.";
-        public const string TakeCourseMonolog_3 = "So, this is how you do this job, ughh…. I think I need to relax a bit.";
         public static string TakeCourseMonolog(int rnd)
         {
             switch (rnd)
             {
                 case 0: return"That makes my head hurt. At least this is the only thing I can do to improve my skill significantly.";
-                    break;
                 case 1: return"Ugh, it's hard. At least I am making progress.";
-                    break;
                 case 2 : return"So, this is how you do this job, ughh…. I think I need to relax a bit.";
-                break;
             }
             return null;
         }
@@ -169,44 +146,30 @@ internal static class Constants
             switch (rnd)
             {
                 case 0: return"There’s no email.";
-                    break;
                 case 1: return"It's hard to get a job. Oh God, what should I do now?";
-                    break;
                 case 2 : return"I think they just forgot my existence.";
-                break;
             }
             return null;
         }
-        public const string PlayGameMonolog_1 = "I can relax for a while, but if I play this game for too long, I can't live anymore. I mean, no work, no money, no food.";
-        public const string PlayGameMonolog_2 = "Haha, this is my win. You imbecile!";
-        public const string PlayGameMonolog_3 = "This is too easy, I can win anytime that I want.";
+        
         public static string PlayGameMonolog(int rnd)
         {
             switch (rnd)
             {
                 case 0: return "I can relax for a while, but if I play this game for too long, I can't live anymore. I mean, no work, no money, no food.";
-                    break;
                 case 1: return "Haha, this is my win. You imbecile!";
-                    break;
                 case 2 : return "This is too easy, I can win anytime that I want.";
-                    break;
             }
             return null;
         }
         
-        public const string RepairLaptopMonolog_1 = "I have to spend a lot of money to fix it, come on!";
-        public const string RepairLaptopMonolog_2 = "I’m broke. I need money.";
-        public const string RepairLaptopMonolog_3 = "This device is the most essential device in my room, it may cost me a lot of money, but that is money that I’m willing to spend.";
         public static string RepairLaptopMonolog(int rnd)
         {
             switch (rnd)
             {
                 case 0: return"I have to spend a lot of money to fix it, come on!";
-                    break;
                 case 1: return "I’m broke. I need money.";
-                    break;
                 case 2 : return"This device is the most essential device in my room, it may cost me a lot of money, but that is money that I’m willing to spend.";
-                    break;
             }
             return null;
         }
@@ -219,11 +182,8 @@ internal static class Constants
             switch (rnd)
             {
                 case 0: return"Hooray, my favorite youtuber is streaming.";
-                    break;
                 case 1: return"Why is this thing have to appear in my timeline? So irritated.";
-                    break;
                 case 2 : return"Nothing major is happening, I guess.";
-                break;
             }
             return null;
         }
@@ -236,148 +196,98 @@ internal static class Constants
             switch (rnd)
             {
                 case 0: return"We are looking for a talented designer who will be responsible for the design of our mobile application. They said. I should try to apply for this job.";
-                    break;
                 case 1: return"No job info.";
-                    break;
             }
             return null;
         }
         
-        public const string RepairHandphoneMonolog_1 = "I have to change my phone, this phone is too old. I want a new model of iPhone, but I'm broke.";
-        public const string RepairHandphoneMonolog_2 = "It may not be the best phone that exists, but it is the one I needed.";
-        public const string RepairHandphoneMonolog_3 = "Why does it have to break now of all times.";
         public static string RepairHandphoneMonolog(int rnd)
         {
             switch (rnd)
             {
                 case 0: return"I have to change my phone, this phone is too old. I want a new model of iPhone, but I'm broke.";
-                    break;
                 case 1: return"It may not be the best phone that exists, but it is the one I needed.";
-                    break;
                 case 2 : return"Why does it have to break now of all times.";
-                break;
             }
             return null;
         }
         
-        public const string SellHandphoneMonolog_1 = "This is the only thing I can do to survive, I really need money";
-        public const string SellHandphoneMonolog_2 = "I may need to inform my friends, that I can’t contact them for a while.";
-        public const string SellHandphoneMonolog_3 = "Goodbye, my phone. You have served me well.";
         public static string SellHandphoneMonolog(int rnd)
         {
             switch (rnd)
             {
                 case 0: return"This is the only thing I can do to survive, I really need money";
-                    break;
                 case 1: return"I may need to inform my friends, that I can’t contact them for a while.";
-                    break;
                 case 2 : return"Goodbye, my phone. You have served me well.";
-                break;
             }
             return null;
         }
         
         //Book
-        public const string ReadBookMonolog_1 = "I guess reading a book is not a bad thing.";
-        public const string ReadBookMonolog_2 = "They say that book is the window of the world, I may not learn much but it’s better than not learning at all.";
-        public const string ReadBookMonolog_3 = "I feel like I have broaden my horizons and slightly change my perspective.";
         public static string ReadBookMonolog(int rnd)
         {
             switch (rnd)
             {
                 case 0: return"I guess reading a book is not a bad thing.";
-                    break;
                 case 1: return"They say that book is the window of the world, I may not learn much but it’s better than not learning at all.";
-                    break;
                 case 2 : return"I feel like I have broaden my horizons and slightly change my perspective.";
-                    break;
             }
             return null;
         }
         
-        public const string SellBookMonolog_1 = "Forgive me. I have to sell this book, ‘cause I need money.";
-        public const string SellBookMonolog_2 = "Some books get sacrificed for a greater cause.";
-        public const string SellBookMonolog_3 = "This book was an incredible read. I hope that anyone who bought it can appreciate it as well.";
         public static string SellBookMonolog(int rnd)
         {
             switch (rnd)
             {
                 case 0: return"Forgive me. I have to sell this book, ‘cause I need money.";
-                    break;
                 case 1: return"Some books get sacrificed for a greater cause.";
-                    break;
                 case 2 : return"This book was an incredible read. I hope that anyone who bought it can appreciate it as well.";
-                break;
             }
             return null;
         }
         
-        //Pintu
-        public const string JoggingMonolog_1 = "I need to stretch my muscles, staying at home all the time is not good for my health.";
-        public const string JoggingMonolog_2 = "Jogging sure gives me some peace of mind.";
-        public const string JoggingMonolog_3 = "Nothing beats a good run.";
+        //Door
         public static string JoggingMonolog(int rnd)
         {
             switch (rnd)
             {
                 case 0: return"I need to stretch my muscles, staying at home all the time is not good for my health.";
-                    break;
                 case 1: return"Jogging sure gives me some peace of mind.";
-                    break;
                 case 2 : return"Nothing beats a good run.";
-                break;
             }
             return null;
         }
         
-        public const string BuyFoodMonolog_1 = "I need food to life.";
-        public const string BuyFoodMonolog_2 = "Food is the essential thing to have right now.";
-        public const string BuyFoodMonolog_3 = "A surplus for my stomach, but deficit on my money.";
         public static string BuyFoodMonolog(int rnd)
         {
             switch (rnd)
             {
                 case 0: return"I need food to life.";
-                    break;
                 case 1: return"Food is the essential thing to have right now.";
-                    break;
                 case 2 : return"A surplus for my stomach, but deficit on my money.";
-                break;
             }
             return null;
         }
         
-        //Kulkas
-        public const string EatMonolog_1 = "*munch munch much* *glug glug glug* My throat is in heaven right now.";
-        public const string EatMonolog_2 = "*munch munch much* *glug glug glug I better treasure the time I’m eating food because I might not eat for a while.";
-        public const string EatMonolog_3 = "Hmmm…. the best feeling in the world is a full stomach.";
+        //Refrigerator
         public static string EatMonolog(int rnd)
         {
             switch (rnd)
             {
                 case 0: return"*munch munch much* *glug glug glug* My throat is in heaven right now.";
-                    break;
                 case 1: return"*munch munch much* *glug glug glug I better treasure the time I’m eating food because I might not eat for a while.";
-                    break;
                 case 2 : return"Hmmm…. the best feeling in the world is a full stomach.";
-                break;
             }
             return null;
         }
         
-        public const string ThrowFoodMonolog_1 = "It's too bad if you have to throw it away.";
-        public const string ThrowFoodMonolog_2 = "May god forgive me, for I have to throw away my food.";
-        public const string ThrowFoodMonolog_3 = "A wasted food means wasted money. *sigh*";
         public static string ThrowFoodMonolog(int rnd)
         {
             switch (rnd)
             {
                 case 0: return"It's too bad if you have to throw it away.";
-                    break;
                 case 1: return"May god forgive me, for I have to throw away my food.";
-                    break;
                 case 2 : return"A wasted food means wasted money. *sigh*";
-                break;
             }
             return null;
         }
@@ -391,11 +301,8 @@ internal static class Constants
             switch (rnd)
             {
                 case 0 : return $"I have {value} food right now";
-                break;
                 case 1 : return $"Some {value} food left in the fridge.”";
-                break;
                 case 2 : return $"These food looks delicious. But, I must conserve my food. Because I have {value} food left in the fridge";
-                break;
             }
             return null;
         }
@@ -405,11 +312,8 @@ internal static class Constants
             switch (rnd)
             {
                 case 0 : return $"I have {value} book right now";
-                    break;
                 case 1 : return $"I have {value} book to read or sell.”";
-                    break;
                 case 2 : return $"This {value} book is all I have now.";
-                    break;
             }
             return null;
         }
@@ -418,11 +322,8 @@ internal static class Constants
             switch (rnd)
             {
                 case 0 : return $"I have ${value} left in my wallet";
-                    break;
                 case 1 : return $"“I only have ${value} in my wallet.”";
-                    break;
                 case 2 : return $"Got to save money because I only have ${value} left.";
-                    break;
             }
             return null;
         }
