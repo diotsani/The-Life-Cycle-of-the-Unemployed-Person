@@ -15,12 +15,12 @@ MonoBehaviour:
   decisionList:
   - decisionName: Eat
     skillCost: 0
-    stressCost: 0
-    healthCost: 24
+    stressCost: -4
+    healthCost: 0
     moneyCost: 0
     actionCost: 1
     bookCost: 0
-    foodCost: -10
+    foodCost: 16
   - decisionName: Throw Food
     skillCost: 0
     stressCost: 0

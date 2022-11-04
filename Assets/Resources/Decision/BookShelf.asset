@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   decisionList:
   - decisionName: Read Book
-    skillCost: 5
+    skillCost: 2
     stressCost: 0
     healthCost: 0
     moneyCost: 0
@@ -35,5 +35,5 @@ MonoBehaviour:
     healthCost: 0
     moneyCost: 5
     actionCost: 1
-    bookCost: 0
+    bookCost: -1
     foodCost: 0

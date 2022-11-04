@@ -18,6 +18,14 @@ MonoBehaviour:
     stressCost: 0
     healthCost: 0
     moneyCost: 0
+    actionCost: 1
+    bookCost: 0
+    foodCost: 0
+  - decisionName: Job Info
+    skillCost: 0
+    stressCost: 0
+    healthCost: 0
+    moneyCost: 0
     actionCost: 0
     bookCost: 0
     foodCost: 0
